@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
+import { SettingsPage } from '../settings/settings';
 
 @IonicPage()
 @Component({
@@ -12,4 +13,8 @@ export class HomePage {
 
   }
 
+  goSettings(): void {
+    console.log("GoSettings");
+    this.navCtrl.push('SettingsPage');
+  }
 }

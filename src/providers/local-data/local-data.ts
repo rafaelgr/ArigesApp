@@ -1,17 +1,20 @@
-import { HttpClient } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
 
-/*
-  Generated class for the LocalDataProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class LocalDataProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello LocalDataProvider Provider');
+  constructor(public storage: Storage) {
+    
+  }
+
+  getSettings(): Promise<any> {
+    return this.storage.get('settings')
+  }
+
+  saveSettings(settings): void {
+    let data = JSON.stringify(settings);
+    this.storage.set('settings', data);
   }
 
 }
