@@ -14,7 +14,10 @@ export class HomePage {
   }
 
   goSettings(): void {
-    console.log("GoSettings");
     this.navCtrl.push('SettingsPage');
+  }
+
+  goLogin(): void {
+    this.navCtrl.push('LoginPage');
   }
 }

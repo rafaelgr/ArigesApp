@@ -9,7 +9,7 @@ export class LocalDataProvider {
   }
 
   getSettings(): Promise<any> {
-    return this.storage.get('settings')
+    return this.storage.get('settings');
   }
 
   saveSettings(settings): void {

@@ -12,12 +12,36 @@
 
 
 <ion-content padding>
-  <ion-list no-lines>
-    <ion-item text-wrap>
+  <ion-list>
+    <ion-item text-wrap no-lines>
       <ion-avatar item-start>
         <img src="assets/imgs/Settings-WF.png">
       </ion-avatar>
       <p>Introduzca los valores adecuados y haga clic en aceptar</p>
     </ion-item>
+    <form [formGroup]="settingsForm">
+      <ion-item>
+        <ion-label stacked>URL API</ion-label>
+        <ion-input formControlName="url" type="text" [(ngModel)]="settings.url"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!settingsForm.controls.url.valid  && submitAttempt" no-lines>
+        <p style="color:red">Introduzca una url válida.</p>
+      </ion-item>
+    </form>
+    <ion-item no-lines>
+      <button ion-button outline item-end round icon-left (click)="saveSettings()">
+        <ion-icon name="checkmark"></ion-icon>
+        Aceptar
+      </button>
+    </ion-item>
   </ion-list>
 </ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

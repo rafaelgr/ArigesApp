@@ -4,10 +4,14 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
-
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { LocalDataProvider } from '../providers/local-data/local-data';
+import { ArigesDataProvider } from '../providers/ariges-data/ariges-data';
+
+
+
 
 @NgModule({
   declarations: [
@@ -15,6 +19,7 @@ import { LocalDataProvider } from '../providers/local-data/local-data';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
@@ -26,7 +31,8 @@ import { LocalDataProvider } from '../providers/local-data/local-data';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    LocalDataProvider
+    LocalDataProvider,
+    ArigesDataProvider
   ]
 })
 export class AppModule {}
