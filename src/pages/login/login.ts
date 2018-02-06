@@ -38,7 +38,15 @@ export class LoginPage {
   doLogin(): void {
     this.submitAttempt = true;
     if (this.loginForm.valid) {
-      
+      this.arigesData.getLogin(this.settings.url, this.login, this.password)
+      .subscribe(
+        (data)=>{
+          console.log("DATA: ", data);
+        },
+        (error)=>{
+          console.log("ERROR: ", error);
+        }
+      );
     }
   }
 

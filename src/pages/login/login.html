@@ -19,7 +19,7 @@
       </ion-avatar>
       <p>Introduzca su usuario y contraseña y pulse aceptar</p>
     </ion-item>
-    <form [formGroup]="loginForm">
+    <form [formGroup]="loginForm" no-lines>
       <ion-item>
         <ion-label stacked>USUARIO</ion-label>
         <ion-input formControlName="login" type="text" [(ngModel)]="login"></ion-input>
