@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>CLIENTES (BUSCAR)</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome()">
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item text-wrap no-lines>
+      <ion-avatar item-start>
+        <img src="assets/imgs/Business man-02-WF.png">
+      </ion-avatar>
+      <p>Introduca parte del nombre del cliente y pulse buscar</p>
+    </ion-item>
+    <form [formGroup]="buscarCliForm" no-lines>
+      <ion-item>
+        <ion-label stacked>Nombre del cliente</ion-label>
+        <ion-input formControlName="nomParcial" type="text" [(ngModel)]="nomParcial"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!buscarCliForm.controls.nomParcial.valid  && submitAttempt" no-lines>
+        <p style="color:red">Debe introducir un valor.</p>
+      </ion-item>
+    </form>
+    <ion-item no-lines>
+      <button ion-button outline item-end round icon-left (click)="doSearch()">
+        <ion-icon name="search"></ion-icon>
+        Buscar
+      </button>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let cliente of clientes">
+      <h4>{{cliente.nomclien}}</h4>
+      <ion-icon name="log-in" item-end></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

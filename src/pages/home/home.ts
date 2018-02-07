@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { SettingsPage } from '../settings/settings';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
+
 
 @IonicPage()
 @Component({
@@ -39,5 +39,9 @@ export class HomePage {
 
   goLogin(): void {
     this.navCtrl.push('LoginPage');
+  }
+
+  goClientes(): void {
+    this.navCtrl.push('CliBuscarPage');
   }
 }
