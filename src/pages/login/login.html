@@ -29,7 +29,7 @@
       </ion-item>   
       <ion-item>
         <ion-label stacked>CONTRASEÑA</ion-label>
-        <ion-input formControlName="password" type="text" [(ngModel)]="password"></ion-input>
+        <ion-input formControlName="password" type="password" [(ngModel)]="password"></ion-input>
       </ion-item>
       <ion-item *ngIf="!loginForm.controls.password.valid  && submitAttempt" no-lines>
         <p style="color:red">Se necesita una contraseña.</p>

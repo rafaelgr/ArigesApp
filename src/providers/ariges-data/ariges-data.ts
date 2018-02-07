@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 
 
@@ -14,6 +15,13 @@ export class ArigesDataProvider {
       params: {
         'login': login,
         'password': password
+      }
+    });
+  }
+  getAgente(apiUrl, login): any {
+    return this.http.get(apiUrl + '/api/trabajadores',{
+      params: {
+        'login': login
       }
     });
   }
