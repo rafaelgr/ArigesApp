@@ -27,9 +27,33 @@ export class ArigesDataProvider {
   }
 
   getClientes(apiUrl, agente, parnom): any {
-    let params = { 'parnom': parnom };
-    if (agente) params.agente = agente;
+    let params = { 
+      'parnom': parnom,
+      'agente': agente
+     };
     return this.http.get(apiUrl + '/api/clientes/clientes-agente', {
+      params: params
+    });
+  }
+
+  getIndicadores(apiUrl, codclien, codmacta): any {
+    let params = { 
+      'codclien': codclien,
+      'codmacta': codmacta
+     };
+    return this.http.get(apiUrl + '/api/indicadores', {
+      params: params
+    });
+  }
+  getVentaAnual(apiUrl, codclien): any {
+    return this.http.get(apiUrl + '/api/clientes/vanual/' + codclien);
+  }
+
+  getCobros(apiUrl, codmacta): any {
+    let params = { 
+      'codmacta': codmacta
+     };
+    return this.http.get(apiUrl + '/api/cobros', {
       params: params
     });
   }

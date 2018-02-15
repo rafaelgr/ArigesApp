@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ArigesDataProvider} from '../../providers/ariges-data/ariges-data';
+import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
+import { InterDataProvider } from '../../providers/inter-data/inter-data';
 
 @IonicPage()
 @Component({
@@ -14,13 +15,14 @@ export class CliBuscarPage {
   buscarCliForm: FormGroup;
   nomParcial: string = "";
   submitAttempt: boolean = false;
-  clientes:any[];
+  clientes: any[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public arigesData: ArigesDataProvider,
-    public localData: LocalDataProvider, public formBuilder: FormBuilder, public alertCrtl: AlertController) {
-      this.buscarCliForm = formBuilder.group({
-        nomParcial: ['', Validators.compose([Validators.required])]
-      });
+    public localData: LocalDataProvider, public formBuilder: FormBuilder, public alertCrtl: AlertController,
+    public interData: InterDataProvider) {
+    this.buscarCliForm = formBuilder.group({
+      nomParcial: ['', Validators.compose([Validators.required])]
+    });
   }
 
   ionViewDidLoad() {
@@ -47,32 +49,37 @@ export class CliBuscarPage {
     this.submitAttempt = true;
     if (this.buscarCliForm.valid) {
       this.arigesData.getClientes(this.settings.url, this.settings.user.codagent, this.nomParcial)
-      .subscribe(
-        (data)=>{
-          console.log("DATA: ", data);
-          this.clientes = data;
-        },
-        (error)=>{
-          console.log("ERROR: ", error);
-          console.log("STATUS:", error.status);
-          if (error.status == 404){
-            let alert = this.alertCrtl.create({
-              title: "AVISO",
-              subTitle: "No se ha encontrado ningún cliente con estos criterios",
-              buttons: ['OK']
-            });
-            alert.present();
-          }else{
-            let alert = this.alertCrtl.create({
-              title: "ERROR",
-              subTitle: JSON.stringify(error, null, 4),
-              buttons: ['OK']
-            });
-            alert.present();
+        .subscribe(
+          (data) => {
+            console.log("DATA: ", data);
+            this.clientes = data;
+          },
+          (error) => {
+            console.log("ERROR: ", error);
+            console.log("STATUS:", error.status);
+            if (error.status == 404) {
+              let alert = this.alertCrtl.create({
+                title: "AVISO",
+                subTitle: "No se ha encontrado ningún cliente con estos criterios",
+                buttons: ['OK']
+              });
+              alert.present();
+            } else {
+              let alert = this.alertCrtl.create({
+                title: "ERROR",
+                subTitle: JSON.stringify(error, null, 4),
+                buttons: ['OK']
+              });
+              alert.present();
+            }
           }
-        }
-      );
-    }    
+        );
+    }
+  }
+
+  goCliente(cliente): void {
+    this.interData.setCliente(cliente);
+    this.navCtrl.setRoot('CliMenuPage');
   }
 
 }

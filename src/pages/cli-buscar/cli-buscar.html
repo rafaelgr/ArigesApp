@@ -35,7 +35,7 @@
     </ion-item>
   </ion-list>
   <ion-list>
-    <ion-item *ngFor="let cliente of clientes">
+    <ion-item *ngFor="let cliente of clientes" (click)="goCliente(cliente)">
       <h4>{{cliente.nomclien}}</h4>
       <ion-icon name="log-in" item-end></ion-icon>
     </ion-item>
