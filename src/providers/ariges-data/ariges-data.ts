@@ -58,4 +58,7 @@ export class ArigesDataProvider {
     });
   }
 
+  getOfertas(apiUrl, codclien): any {
+    return this.http.get(apiUrl + '/api/ofertas/cliente/' + codclien);
+  }
 }

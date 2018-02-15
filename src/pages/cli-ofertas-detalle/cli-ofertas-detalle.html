@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{cliente.nomclien}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome()" end>
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item no-lines class="grptitle" text-wrap>
+      Oferta {{oferta.numofert}}
+    </ion-item>
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          <strong>Linea</strong>
+        </ion-col>
+        <ion-col>
+          <strong>Artículo</strong>
+        </ion-col>
+        <ion-col>
+          <strong>Cantidad</strong>
+        </ion-col>
+        <ion-col>
+          <strong>Precio</strong>
+        </ion-col>
+        <ion-col>
+          <strong>Dto1</strong>
+        </ion-col>
+        <ion-col>
+          <strong>Dto2</strong>
+        </ion-col>
+        <ion-col>
+          <strong>Importe</strong>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item *ngFor="let linea of oferta.lineas" text-wrap>
+      <ion-row>
+        <ion-col>
+          <strong>{{linea.numlinea}}</strong>
+        </ion-col>
+        <ion-col>
+          <strong>{{linea.nomartic}}</strong>
+        </ion-col>
+        <ion-col>
+          <strong>{{linea.cantidad}}</strong>
+        </ion-col>
+        <ion-col>
+          <strong>{{linea.precioar}}</strong>
+        </ion-col>
+        <ion-col>
+          <strong>{{linea.dtoline2}}</strong>
+        </ion-col>
+        <ion-col>
+          <strong>{{linea.dtoline2}}</strong>
+        </ion-col>
+        <ion-col>
+          <strong>{{linea.importel}}</strong>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

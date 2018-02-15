@@ -10,6 +10,7 @@ import { MyApp } from './app.component';
 import { LocalDataProvider } from '../providers/local-data/local-data';
 import { ArigesDataProvider } from '../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../providers/inter-data/inter-data';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 
 
@@ -34,7 +35,8 @@ import { InterDataProvider } from '../providers/inter-data/inter-data';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LocalDataProvider,
     ArigesDataProvider,
-    InterDataProvider
+    InterDataProvider,
+    ScreenOrientation
   ]
 })
 export class AppModule {}

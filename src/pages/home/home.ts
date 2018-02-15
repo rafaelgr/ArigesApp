@@ -3,6 +3,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 
 
+
 @IonicPage()
 @Component({
   selector: 'page-home',
@@ -14,13 +15,12 @@ export class HomePage {
   nombreUsuario: string = "";
 
   constructor(public navCtrl: NavController, public localData: LocalDataProvider) {
-
+    
   }
 
   ionViewDidLoad() {
     this.localData.getSettings().then(data => {
       if (data) {
-        console.log("SETTINGS: ", data);
         this.settings = JSON.parse(data);
         if (!this.settings.user) {
           this.navCtrl.setRoot('LoginPage');

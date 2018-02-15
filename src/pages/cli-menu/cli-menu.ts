@@ -15,21 +15,21 @@ export class CliMenuPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public menu: MenuController) {
       this.pages = [
-        { title: 'Resumen', component: 'CliResumenPage' }
+        { title: 'Resumen', component: 'CliResumenPage' },
+        { title: 'Contacto', component: 'CliContactoPage' },
+        { title: 'Ofertas', component: 'CliOfertasPage' }
       ];
       this.cliente = this.navParams.get('cliente');
-      console.log("CLIENTE_MENU: ", this.cliente);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CliMenuPage');
   }
 
   openPage(page) {
     // close the menu when clicking a link from the menu
     this.menu.close();
     // navigate to the new page if it is not the current page
-    //this.rootPage = page.component;
+    this.rootPage = page.component;
   }
 
 }

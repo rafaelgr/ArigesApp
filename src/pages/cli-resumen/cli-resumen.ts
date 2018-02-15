@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
+import * as moment from 'moment';
+import * as numeral from 'numeral';
+
 
 @IonicPage()
 @Component({
@@ -19,6 +22,7 @@ export class CliResumenPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
     public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
+      
   }
 
   ionViewWillEnter() {
@@ -45,7 +49,7 @@ export class CliResumenPage {
     this.arigesData.getIndicadores(this.settings.url, this.cliente.codclien, this.cliente.codmacta)
       .subscribe(
         (data) => {
-          this.indicadores = data;
+          this.indicadores = this.prepareIndicadores(data);
         },
         (error) => {
           this.showError(error);
@@ -63,8 +67,7 @@ export class CliResumenPage {
     this.arigesData.getCobros(this.settings.url, this.cliente.codmacta)
       .subscribe(
         (data) => {
-          this.cobros = data;
-          console.log("COBROS : ", this.cobros);
+          this.cobros = this.prepareCobros(data);
         },
         (error) => {
           this.showError(error);
@@ -83,6 +86,28 @@ export class CliResumenPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  prepareCobros(cobros): any {
+    for (var i = 0; i < cobros.length; i++) {
+      var vencimiento = new Date(cobros[i].fechavenci);
+      cobros[i].fechavenci = moment(new Date(cobros[i].fechavenci)).format('DD/MM/YYYY');
+      cobros[i].fechafact = moment(new Date(cobros[i].fechafact)).format('DD/MM/YYYY');
+      cobros[i].total = numeral(cobros[i].total).format('0,0.00 $');
+      // marcar como vencido
+      if (new Date() >= vencimiento) {
+        cobros[i].vencido = true;
+      } else {
+        cobros[i].vencido = false;
+      }
+    }
+    return cobros;
+  }
+
+  prepareIndicadores(indicadores): any {
+    indicadores.saldoPendiente = numeral(indicadores.saldoPendiente).format('0,0.00 $');
+    indicadores.saldoVencido = numeral(indicadores.saldoVencido).format('0,0.00 $');
+    return indicadores;
   }
 
 }

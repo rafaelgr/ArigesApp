@@ -26,7 +26,6 @@ export class SettingsPage {
   ionViewDidLoad() {
     this.localDataProvider.getSettings().then(data => {
       if (data) {
-        console.log(data);
         this.settings = JSON.parse(data);
       }
     });

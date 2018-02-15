@@ -28,7 +28,6 @@ export class CliBuscarPage {
   ionViewDidLoad() {
     this.localData.getSettings().then(data => {
       if (data) {
-        console.log("SETTINGS: ", data);
         this.settings = JSON.parse(data);
         if (!this.settings.user) {
           this.navCtrl.setRoot('LoginPage');
@@ -51,12 +50,9 @@ export class CliBuscarPage {
       this.arigesData.getClientes(this.settings.url, this.settings.user.codagent, this.nomParcial)
         .subscribe(
           (data) => {
-            console.log("DATA: ", data);
             this.clientes = data;
           },
           (error) => {
-            console.log("ERROR: ", error);
-            console.log("STATUS:", error.status);
             if (error.status == 404) {
               let alert = this.alertCrtl.create({
                 title: "AVISO",

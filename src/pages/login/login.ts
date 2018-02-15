@@ -29,7 +29,6 @@ export class LoginPage {
   ionViewDidLoad() {
     this.localData.getSettings().then(data => {
       if (data) {
-        console.log("SETTINGS: ", data);
         this.settings = JSON.parse(data);
       } else {
         this.navCtrl.setRoot('SettingsPage');
@@ -43,14 +42,11 @@ export class LoginPage {
       this.arigesData.getLogin(this.settings.url, this.login, this.password)
       .subscribe(
         (data)=>{
-          console.log("DATA: ", data);
           this.settings.user = data;
           this.localData.saveSettings(this.settings);
           this.navCtrl.setRoot('HomePage');
         },
         (error)=>{
-          console.log("ERROR: ", error);
-          console.log("STATUS:", error.status);
           if (error.status == 404){
             let alert = this.alertCrtl.create({
               title: "AVISO",

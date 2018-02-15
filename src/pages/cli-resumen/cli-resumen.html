@@ -14,10 +14,10 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item item-divider>
+    <ion-item no-lines class="grptitle">
       Indicadores
     </ion-item>
-    <ion-item item-text-wrap>
+    <ion-item text-wrap>
       <ion-row>
         <ion-col>
           <strong>Ofertas: </strong> {{indicadores.ofertas}}
@@ -30,7 +30,7 @@
         </ion-col>
       </ion-row>
     </ion-item>
-    <ion-item item-text-wrap>
+    <ion-item text-wrap>
       <ion-row>
         <ion-col>
           <strong>S.Pend.: </strong> {{indicadores.saldoPendiente}}
@@ -40,14 +40,14 @@
         </ion-col>
       </ion-row>
     </ion-item>
-    <ion-item item-text-wrap>
+    <ion-item text-wrap>
       <ion-row>
         <ion-col>
           <strong>Situación: </strong> {{cliente.situacio}}
         </ion-col>
       </ion-row>
     </ion-item>
-    <ion-item item-text-wrap>
+    <ion-item text-wrap>
       <ion-row>
         <ion-col>
           <strong>Agente: </strong> {{cliente.nomagent}}
@@ -57,7 +57,7 @@
         </ion-col>
       </ion-row>
     </ion-item>
-    <ion-item item-text-wrap>
+    <ion-item text-wrap>
       <ion-row>
         <ion-col>
           <strong>Limite de crédito: </strong> {{cliente.limiteCredito}}
@@ -67,7 +67,7 @@
         </ion-col>
       </ion-row>
     </ion-item>
-    <ion-item item-text-wrap>
+    <ion-item text-wrap>
       <div>
         <strong>Observaciones:</strong>
         <p>{{cliente.observac}}</p>
@@ -75,7 +75,7 @@
     </ion-item>
   </ion-list>
   <ion-list>
-    <ion-item item-divider>
+    <ion-item no-lines class="grptitle">
       Cobros pendientes
     </ion-item>
     <ion-item *ngFor="let cobro of cobros" (click)="goCobro(cobro)">
