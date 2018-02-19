@@ -61,4 +61,12 @@ export class ArigesDataProvider {
   getOfertas(apiUrl, codclien): any {
     return this.http.get(apiUrl + '/api/ofertas/cliente/' + codclien);
   }
+
+  getPedidos(apiUrl, codclien): any {
+    return this.http.get(apiUrl + '/api/pedidos/cliente/' + codclien);
+  }
+
+  getAlbaranes(apiUrl, codclien): any {
+    return this.http.get(apiUrl + '/api/albaranes/cliente/' + codclien);
+  }  
 }

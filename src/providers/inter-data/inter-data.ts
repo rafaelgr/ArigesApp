@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 export class InterDataProvider {
   cliente: any;
   oferta: any;
+  pedido: any;
+  albaran: any;
 
   constructor() {
 
@@ -25,4 +27,19 @@ export class InterDataProvider {
     return this.oferta;
   }
 
+  setPedido(pedido): void {
+    this.pedido = pedido;
+  }
+
+  getPedido(): any {
+    return this.pedido;
+  }
+
+  setAlbaran(albaran): void {
+    this.albaran = albaran;
+  }
+
+  getAlbaran(): any {
+    return this.albaran;
+  }  
 }

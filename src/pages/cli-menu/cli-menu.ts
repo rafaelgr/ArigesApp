@@ -17,7 +17,9 @@ export class CliMenuPage {
       this.pages = [
         { title: 'Resumen', component: 'CliResumenPage' },
         { title: 'Contacto', component: 'CliContactoPage' },
-        { title: 'Ofertas', component: 'CliOfertasPage' }
+        { title: 'Ofertas', component: 'CliOfertasPage' },
+        { title: 'Pedidos', component: 'CliPedidosPage' },
+        { title: 'Albaranes', component: 'CliAlbaranesPage' }
       ];
       this.cliente = this.navParams.get('cliente');
   }

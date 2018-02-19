@@ -15,9 +15,9 @@
 <ion-content padding>
   <ion-list>
     <ion-item no-lines class="grptitle" text-wrap>
-      Oferta: {{oferta.numofert}} Importe: {{oferta.totalofe}}
+      Pedido: {{pedido.numpedcl}} Importe: {{pedido.totalped}}
     </ion-item>
-    <ion-item *ngFor="let linea of oferta.lineas" text-wrap>
+    <ion-item *ngFor="let linea of pedido.lineas" text-wrap>
       <div>
         <strong>Lin: </strong>{{linea.numlinea}}
         <strong>Art: </strong>{{linea.nomartic}}
