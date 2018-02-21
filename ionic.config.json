@@ -1,6 +1,6 @@
 {
   "name": "ArigesApp",
-  "app_id": "",
+  "app_id": "730cff47",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
