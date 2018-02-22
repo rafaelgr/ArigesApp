@@ -69,4 +69,8 @@ export class ArigesDataProvider {
   getAlbaranes(apiUrl, codclien): any {
     return this.http.get(apiUrl + '/api/albaranes/cliente/' + codclien);
   }  
+
+  getFacturas(apiUrl, codclien): any {
+    return this.http.get(apiUrl + '/api/facturas/cliente/' + codclien);
+  }  
 }
