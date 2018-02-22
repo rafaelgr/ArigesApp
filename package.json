@@ -1,8 +1,8 @@
 {
   "name": "ArigesApp",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "Rafael Garcia (Ariadna Software SL)",
+  "homepage": "http://ariadnasw.com/",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -47,7 +47,7 @@
     "@ionic/app-scripts": "3.1.8",
     "typescript": "2.4.2"
   },
-  "description": "An Ionic project",
+  "description": "Aplicación móvil de AriGes",
   "cordova": {
     "plugins": {
       "cordova-sqlite-storage": {},
