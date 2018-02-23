@@ -35,7 +35,35 @@
           {{proveedor.nomprove}}
           <ion-icon name="checkmark-circle-outline" item-end></ion-icon>
         </ion-item>
-      </ion-list>      
+      </ion-list>
+
+      <ion-item>
+        <ion-label stacked>
+          Familia (al menos tres caracteres)
+          <ion-icon name="search"></ion-icon>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="parfam" name="parfam" (ionChange)="onChangeFamilia()"></ion-input>
+      </ion-item>
+      <ion-list *ngIf="showFamilias">
+        <ion-item style="font-size: 0.8em;" *ngFor="let familia of familias" (click)="selectFamilia(familia)">
+          {{familia.nomfamia}}
+          <ion-icon name="checkmark-circle-outline" item-end></ion-icon>
+        </ion-item>
+      </ion-list>
+
+      <ion-item>
+        <ion-label stacked>
+          Código de artículo
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="codigo" name="codigo"></ion-input>
+      </ion-item>
+
+      <ion-item no-lines>
+        <ion-label stacked>
+          Incluir artículos obsoletos
+        </ion-label>
+        <ion-checkbox [(ngModel)]="obsole" name="obsole"></ion-checkbox>
+      </ion-item>
     </form>
     <ion-item no-lines>
       <button ion-button outline item-end round icon-left (click)="doSearch()">

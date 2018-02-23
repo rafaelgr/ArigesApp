@@ -16,8 +16,11 @@ export class ArticulosPage {
   parnom: string = "";
   parpro: string = "";
   parfam: string = "";
+  codigo: string = "";
   showProveedores: boolean = false;
   proveedores: any[];
+  showFamilias: boolean = false;
+  familias: any[];
   submitAttempt: boolean = false;
   articulos: any[];
 
@@ -88,6 +91,36 @@ export class ArticulosPage {
   selectProveedor(proveedor): void {
     this.parpro = proveedor.nomprove;
     this.showProveedores = false;
+  }
+
+  onChangeFamilia(): void {
+    if (this.parfam.length > 2) {
+      this.showFamilias = true;
+      this.familias = [];
+      this.arigesData.getFamilias(this.settings.url, this.parfam)
+        .subscribe(
+          (data) => {
+            this.familias = data;
+            if (data.length == 1 && this.parfam == data[0].nomfamia) {
+              this.showFamilias = false;
+            }
+          },
+          (error) => {
+            if (error.status == 404) {
+              this.familias = [];
+            } else {
+              this.showError(error);
+            }
+          }
+        )
+    } else {
+      this.showFamilias = false;
+    }
+  }
+
+  selectFamilia(familia): void {
+    this.parfam = familia.nomfamia;
+    this.showFamilias = false;
   }
 
   showError(error): void {

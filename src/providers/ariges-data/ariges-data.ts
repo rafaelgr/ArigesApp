@@ -95,7 +95,7 @@ export class ArigesDataProvider {
       params: params
     });
   }
-  
+
   getArticulosCliente(apiUrl, codclien, codactiv, codtarif, parnom): any {
     let params = {
       'codclien': codclien,
@@ -131,6 +131,15 @@ export class ArigesDataProvider {
       'parnom': parnom
     };
     return this.http.get(apiUrl + '/api/proveedores', {
+      params: params
+    });
+  }
+
+  getFamilias(apiUrl, parnom): any {
+    let params = {
+      'parnom': parnom
+    };
+    return this.http.get(apiUrl + '/api/familias', {
       params: params
     });
   }
