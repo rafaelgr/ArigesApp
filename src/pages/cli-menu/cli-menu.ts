@@ -22,7 +22,8 @@ export class CliMenuPage {
         { title: 'Albaranes', component: 'CliAlbaranesPage' },
         { title: 'Facturas', component: 'CliFacturasPage' },
         { title: 'Precios', component: 'CliPreciosPage' },
-        { title: 'Precios especiales', component: 'CliPreciosEspecialesPage' }
+        { title: 'Precios especiales', component: 'CliPreciosEspecialesPage' },
+        { title: 'Descuentos especiales', component: 'CliDescuentosEspecialesPage' }
       ];
       this.cliente = this.navParams.get('cliente');
   }

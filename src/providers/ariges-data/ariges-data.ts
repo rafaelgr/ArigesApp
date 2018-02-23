@@ -74,6 +74,28 @@ export class ArigesDataProvider {
     return this.http.get(apiUrl + '/api/facturas/cliente/' + codclien);
   }
 
+  getArticulos(apiUrl, parnom): any {
+    let params = {
+      'parnom': parnom
+    };
+    return this.http.get(apiUrl + '/api/articulos', {
+      params: params
+    });
+  }
+
+  getArticulosExt(apiUrl, parnom, parpro, parfam, codigo, obsole): any {
+    let params = {
+      'parnom': parnom,
+      'parpro': parpro,
+      'parfam': parfam,
+      'codigo': codigo,
+      'obsole': obsole
+    };
+    return this.http.get(apiUrl + '/api/articulos/ext', {
+      params: params
+    });
+  }
+  
   getArticulosCliente(apiUrl, codclien, codactiv, codtarif, parnom): any {
     let params = {
       'codclien': codclien,
@@ -100,6 +122,15 @@ export class ArigesDataProvider {
       'codclien': codclien
     };
     return this.http.get(apiUrl + '/api/articulos/descuentos-especiales', {
+      params: params
+    });
+  }
+
+  getProveedores(apiUrl, parnom): any {
+    let params = {
+      'parnom': parnom
+    };
+    return this.http.get(apiUrl + '/api/proveedores', {
       params: params
     });
   }

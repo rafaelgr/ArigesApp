@@ -44,4 +44,8 @@ export class HomePage {
   goClientes(): void {
     this.navCtrl.push('CliBuscarPage');
   }
+
+  goArticulos(): void {
+    this.navCtrl.push('ArticulosPage');
+  }
 }
