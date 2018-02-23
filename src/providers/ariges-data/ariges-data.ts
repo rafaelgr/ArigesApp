@@ -85,4 +85,22 @@ export class ArigesDataProvider {
       params: params
     });
   }
+
+  getArticulosPreciosEspeciales(apiUrl, codclien): any {
+    let params = {
+      'codclien': codclien
+    };
+    return this.http.get(apiUrl + '/api/articulos/precios-especiales', {
+      params: params
+    });
+  }
+
+  getArticulosDescuentosEspeciales(apiUrl, codclien): any {
+    let params = {
+      'codclien': codclien
+    };
+    return this.http.get(apiUrl + '/api/articulos/descuentos-especiales', {
+      params: params
+    });
+  }
 }

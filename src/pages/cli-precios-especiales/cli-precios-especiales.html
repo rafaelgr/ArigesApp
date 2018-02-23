@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>{{cliente.nomclien}}</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="goHome()" end>
+          <ion-icon name="home"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-list>
+      <ion-item no-lines class="grptitle">
+        Precios especiales
+      </ion-item>
+      <ion-item *ngFor="let articulo of articulos" text-wrap>
+        <div>
+          <strong>Nombre: </strong> {{articulo.nomartic}}
+          <strong>Codigo: </strong> {{articulo.codartic}}
+        </div>
+        <div>
+          <strong>Precio: </strong> {{articulo.precioac}}
+          <strong>Descuento: </strong> {{articulo.dtoespe}}
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title>
+        <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
+      </ion-title>
+    </ion-toolbar>
+  </ion-footer>
