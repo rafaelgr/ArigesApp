@@ -20,7 +20,8 @@ export class CliMenuPage {
         { title: 'Ofertas', component: 'CliOfertasPage' },
         { title: 'Pedidos', component: 'CliPedidosPage' },
         { title: 'Albaranes', component: 'CliAlbaranesPage' },
-        { title: 'Facturas', component: 'CliFacturasPage' }
+        { title: 'Facturas', component: 'CliFacturasPage' },
+        { title: 'Precios', component: 'CliPreciosPage' }
       ];
       this.cliente = this.navParams.get('cliente');
   }

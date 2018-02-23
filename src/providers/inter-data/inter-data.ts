@@ -7,6 +7,7 @@ export class InterDataProvider {
   pedido: any;
   albaran: any;
   factura: any;
+  articulo: any;
 
   constructor() {
 
@@ -50,5 +51,13 @@ export class InterDataProvider {
 
   getFactura(): any {
     return this.factura;
+  }
+
+  setArticulo(articulo): void {
+    this.articulo = articulo;
+  }
+
+  getArticulo(): any {
+    return this.articulo;
   }
 }

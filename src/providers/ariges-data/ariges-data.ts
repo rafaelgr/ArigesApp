@@ -27,20 +27,20 @@ export class ArigesDataProvider {
   }
 
   getClientes(apiUrl, agente, parnom): any {
-    let params = { 
+    let params = {
       'parnom': parnom,
       'agente': agente
-     };
+    };
     return this.http.get(apiUrl + '/api/clientes/clientes-agente', {
       params: params
     });
   }
 
   getIndicadores(apiUrl, codclien, codmacta): any {
-    let params = { 
+    let params = {
       'codclien': codclien,
       'codmacta': codmacta
-     };
+    };
     return this.http.get(apiUrl + '/api/indicadores', {
       params: params
     });
@@ -50,9 +50,9 @@ export class ArigesDataProvider {
   }
 
   getCobros(apiUrl, codmacta): any {
-    let params = { 
+    let params = {
       'codmacta': codmacta
-     };
+    };
     return this.http.get(apiUrl + '/api/cobros', {
       params: params
     });
@@ -68,9 +68,21 @@ export class ArigesDataProvider {
 
   getAlbaranes(apiUrl, codclien): any {
     return this.http.get(apiUrl + '/api/albaranes/cliente/' + codclien);
-  }  
+  }
 
   getFacturas(apiUrl, codclien): any {
     return this.http.get(apiUrl + '/api/facturas/cliente/' + codclien);
-  }  
+  }
+
+  getArticulosCliente(apiUrl, codclien, codactiv, codtarif, parnom): any {
+    let params = {
+      'codclien': codclien,
+      'codactiv': codactiv,
+      'codtarif': codtarif,
+      'parnom': parnom
+    };
+    return this.http.get(apiUrl + '/api/articulos/cliente', {
+      params: params
+    });
+  }
 }
