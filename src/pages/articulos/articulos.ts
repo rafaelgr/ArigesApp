@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
+import * as moment from 'moment';
+import * as numeral from 'numeral';
 
 @IonicPage()
 @Component({
@@ -23,10 +25,11 @@ export class ArticulosPage {
   familias: any[];
   submitAttempt: boolean = false;
   articulos: any[];
+  obsole: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public arigesData: ArigesDataProvider,
     public localData: LocalDataProvider, public formBuilder: FormBuilder, public alertCrtl: AlertController,
-    public interData: InterDataProvider) {
+    public interData: InterDataProvider, public loadingCtrl: LoadingController) {
     this.buscarArtForm = formBuilder.group({
       parnom: ['', Validators.compose([Validators.required])]
     });
@@ -53,14 +56,48 @@ export class ArticulosPage {
 
   doSearch(): void {
     this.submitAttempt = true;
-    if (this.buscarArtForm.valid) {
-      console.log("LANZAR BÚSQUEDA....");
-    }
+    let loading = this.loadingCtrl.create({
+      content: 'Buscando...'
+    });
+    loading.present();
+    this.arigesData.getArticulosExt(this.settings.url, this.parnom, this.parpro,
+      this.parfam, this.codigo, this.obsole)
+      .subscribe(
+        (data) => {
+          loading.dismiss();
+          this.articulos = this.prepareArticulos(data);
+        },
+        (error) => {
+          loading.dismiss();
+          if (error.status == 404) {
+            this.showNoEncontrado();
+          } else {
+            this.showError(error);
+          }
+        }
+      );
   }
+
+  prepareArticulos(data): any {
+    // formatear datos
+    for (var i = 0; i < data.length; i++) {
+      data[i].preciove = numeral(data[i].preciove).format('0,0.00 $');
+      data[i].stock = numeral(data[i].stock).format('0,0');
+      data[i].reservas = numeral(data[i].reservas).format('0,0');
+      data[i].pedido = numeral(data[i].pedido).format('0,0');
+      if (data[i].rotacion == 0) {
+        data[i].rotacion = "NO";
+      } else {
+        data[i].rotacion = "SI";
+      }
+    }
+    return data;
+  }
+
 
   goArticulo(articulo): void {
     this.interData.setArticulo(articulo);
-    //this.navCtrl.setRoot('CliMenuPage');
+    this.navCtrl.push('ArticulosDetallePage');
   }
 
   onChangeProveedor(): void {
@@ -127,6 +164,15 @@ export class ArticulosPage {
     let alert = this.alertCrtl.create({
       title: "ERROR",
       subTitle: JSON.stringify(error, null, 4),
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  showNoEncontrado(): void {
+    let alert = this.alertCrtl.create({
+      title: "AVISO",
+      subTitle: "No se ha encontrado ningún artículo con estos criterios",
       buttons: ['OK']
     });
     alert.present();

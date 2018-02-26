@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>ARTICULOS (DETALLE)</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome()">
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item no-lines class="grptitle" text-wrap>
+      <div>
+        <strong>Artículo:</strong> {{articulo.nomartic}}
+      </div>
+      <div>
+        <div>
+          <strong>Familia: </strong>{{articulo.nomfamia}}
+        </div>
+        <div>
+          <strong>Proveedor: </strong>{{articulo.nomprove}}
+        </div>
+        <div>
+          <strong>Referencia: </strong>{{articulo.referprov}}
+        </div>
+      </div>
+    </ion-item>
+    <ion-item text-wrap>
+      <div>
+        <strong>Precio: </strong>{{articulo.preciove}}
+        <strong>Stock: </strong>{{articulo.stock}}
+      </div>
+      <div>
+        <strong>Reservas: </strong>{{articulo.reservas}}
+        <strong>Pedidos: </strong>{{articulo.pedido}}
+        <strong>Rotacion: </strong>{{articulo.rotacion}}
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>
