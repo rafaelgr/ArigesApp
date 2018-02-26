@@ -56,4 +56,8 @@ export class HomePage {
   goAlbaranes(): void {
     this.navCtrl.push('AlbaranesPage');
   }
+
+  goProveedores(): void {
+    this.navCtrl.push('ProveedoresPage');
+  }
 }

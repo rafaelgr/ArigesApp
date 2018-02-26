@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>PROVEEDORES (BUSCAR)</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome()">
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item text-wrap no-lines>
+      <ion-avatar item-start>
+        <img src="assets/imgs/proveedores.png">
+      </ion-avatar>
+      <p>Introduca los criterios que desee y pulse buscar</p>
+    </ion-item>
+    <form [formGroup]="buscarProvForm" no-lines>
+      <ion-item>
+        <ion-label stacked>Nombre del proveedor</ion-label>
+        <ion-input formControlName="parnom" type="text" [(ngModel)]="parnom"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!buscarProvForm.controls.parnom.valid  && submitAttempt" no-lines>
+        <p style="color:red">Debe introducir un valor.</p>
+      </ion-item>
+    </form>
+    <ion-item no-lines>
+      <button ion-button outline item-end round icon-left (click)="doSearch()">
+        <ion-icon name="search"></ion-icon>
+        Buscar
+      </button>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let proveedor of proveedores" (click)="goProveedor(proveedor)">
+      <h4> CIF: {{proveedor.nifprove}} </h4>
+      <p> {{proveedor.nomprove}}</p>
+      <ion-icon name="log-in" item-end></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

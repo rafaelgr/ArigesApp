@@ -170,5 +170,5 @@ export class ArigesDataProvider {
       params: params
     });
   }
-  
+ 
 }

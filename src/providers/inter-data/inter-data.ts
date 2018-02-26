@@ -8,6 +8,7 @@ export class InterDataProvider {
   albaran: any;
   factura: any;
   articulo: any;
+  proveedor: any;
 
   constructor() {
 
@@ -59,5 +60,13 @@ export class InterDataProvider {
 
   getArticulo(): any {
     return this.articulo;
+  }
+
+  setProveedor(proveedor): void {
+    this.proveedor = proveedor;
+  }
+
+  getProveedor(): any {
+    return this.proveedor;
   }
 }
