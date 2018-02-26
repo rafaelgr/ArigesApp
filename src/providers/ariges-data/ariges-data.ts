@@ -66,7 +66,7 @@ export class ArigesDataProvider {
     return this.http.get(apiUrl + '/api/pedidos/cliente/' + codclien);
   }
 
-  getAlbaranes(apiUrl, codclien): any {
+  getAlbaranesCliente(apiUrl, codclien): any {
     return this.http.get(apiUrl + '/api/albaranes/cliente/' + codclien);
   }
 
@@ -153,6 +153,20 @@ export class ArigesDataProvider {
       'numpedcl': numpedcl
     };
     return this.http.get(apiUrl + + '/api/pedidos/pedido',{
+      params: params
+    });
+  }
+
+  getAlbaranes(apiUrl): any {
+    return this.http.get(apiUrl + '/api/albaranes');
+  }
+
+  getAlbaranDetalle(apiUrl, codtipom, numalbar): any {
+    let params = {
+      'codtipom': codtipom,
+      'numalbar': numalbar
+    };
+    return this.http.get(apiUrl + '/api/albaranes/detalle',{
       params: params
     });
   }

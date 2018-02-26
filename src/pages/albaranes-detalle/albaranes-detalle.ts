@@ -5,22 +5,27 @@ import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
 import * as moment from 'moment';
 import * as numeral from 'numeral';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @IonicPage()
 @Component({
-  selector: 'page-cli-albaranes',
-  templateUrl: 'cli-albaranes.html',
+  selector: 'page-albaranes-detalle',
+  templateUrl: 'albaranes-detalle.html',
 })
-export class CliAlbaranesPage {
+export class AlbaranesDetallePage {
 
   settings: any;
   cliente: any = {};
-  albaranes: any = [];
+  albaran = {
+    codtipom: '',
+    numalbar: 0
+  };
+  alb = {};
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
-    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
-
+    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController,
+    private screenOrientation: ScreenOrientation) {
   }
 
   ionViewWillEnter() {
@@ -43,38 +48,28 @@ export class CliAlbaranesPage {
   }
 
   loadData(): void {
-    this.cliente = this.interData.getCliente();
-    this.arigesData.getAlbaranesCliente(this.settings.url, this.cliente.codclien)
+    this.albaran = this.interData.getAlbaran();
+    this.arigesData.getAlbaranDetalle(this.settings.url, this.albaran.codtipom, this.albaran.numalbar)
       .subscribe(
         (data) => {
-          this.albaranes = this.prepareAlbaranes(data);
+          this.alb = this.prepareAlbaran(data);
         },
         (error) => {
           this.showError(error);
-        }
-      );
+        });
+
   }
 
-  prepareAlbaranes(data): any {
+  prepareAlbaran(data): any {
     // formateo de los datos numéricos
-    for (var i = 0; i < data.length; i++) {
-      // formateamos las cabeceras
-      data[i].fechaalb = moment(data[i].fechaalb).format('DD/MM/YYYY');
-      data[i].totalalb = numeral(data[i].totalalb).format('0,0.00 $');
-      // ahora hay que procesar las líneas
-      for (var i2 = 0; i2 < data[i].lineas.length; i2++) {
-        data[i].lineas[i2].dtoline1 = numeral(data[i].lineas[i2].dtoline1).format('0,0.00');
-        data[i].lineas[i2].dtoline2 = numeral(data[i].lineas[i2].dtoline2).format('0,0.00');
-        data[i].lineas[i2].precioar = numeral(data[i].lineas[i2].precioar).format('0,0.00 $');
-        data[i].lineas[i2].importel = numeral(data[i].lineas[i2].importel).format('0,0.00 $');
-      }
+    data.fechaalb = moment(data.fechaalb).format('DD/MM/YYYY');
+    if (data.fecenvio) {
+      data.fecenvio = moment(data.fecenvio).format('DD/MM/YYYY');
+      data.enviado = true;
+    } else {
+      data.enviado = false;
     }
     return data;
-  }
-
-  goAlbaran(albaran): void {
-    this.interData.setAlbaran(albaran);
-    this.navCtrl.push('CliAlbaranesDetallePage');
   }
 
   showError(error): void {
@@ -85,6 +80,4 @@ export class CliAlbaranesPage {
     });
     alert.present();
   }
-
-
 }

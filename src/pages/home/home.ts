@@ -52,4 +52,8 @@ export class HomePage {
   goPedidos(): void {
     this.navCtrl.push('PedidosPage');
   }
+
+  goAlbaranes(): void {
+    this.navCtrl.push('AlbaranesPage');
+  }
 }
