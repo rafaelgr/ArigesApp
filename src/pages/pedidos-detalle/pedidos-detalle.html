@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>PEDIDOS (DETALLE)</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome()">
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item no-lines class="grptitle" text-wrap>
+      <div>
+        <strong>Agente: </strong>{{pedido.nomagent}}
+        <strong>Cliente: </strong>{{pedido.nomclien}}
+      </div>
+      <div>
+        <strong>Fecha: </strong>{{pedido.fecpedcl}}
+        <strong>Total: </strong>{{pedido.totalped}}
+      </div>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let linea of pedido.lineas" text-wrap>
+      <div>
+        <strong>Linea: </strong>{{linea.numlinea}}
+        <strong>Articulo: </strong>{{linea.nomartic}}
+      </div>
+      <div>
+        <strong>Cantidad: </strong>{{linea.cantidad}}
+        <strong>Precio: </strong>{{linea.precioar}}
+      </div>
+      <div>
+        <strong>Dto1: </strong>{{linea.dtoline1}}
+        <strong>Dto2: </strong>{{linea.dtoline2}}
+        <strong>Importe: </strong>{{linea.importel}}
+      </div>
+    </ion-item>
+  </ion-list>  
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

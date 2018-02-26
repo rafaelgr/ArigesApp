@@ -62,7 +62,7 @@ export class ArigesDataProvider {
     return this.http.get(apiUrl + '/api/ofertas/cliente/' + codclien);
   }
 
-  getPedidos(apiUrl, codclien): any {
+  getPedidosCliente(apiUrl, codclien): any {
     return this.http.get(apiUrl + '/api/pedidos/cliente/' + codclien);
   }
 
@@ -143,4 +143,18 @@ export class ArigesDataProvider {
       params: params
     });
   }
+
+  getPedidos(apiUrl): any {
+    return this.http.get(apiUrl + '/api/pedidos');
+  }
+
+  getPedido(apiUrl, numpedcl): any {
+    let params = {
+      'numpedcl': numpedcl
+    };
+    return this.http.get(apiUrl + + '/api/pedidos/pedido',{
+      params: params
+    });
+  }
+  
 }

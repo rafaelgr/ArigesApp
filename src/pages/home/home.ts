@@ -48,4 +48,8 @@ export class HomePage {
   goArticulos(): void {
     this.navCtrl.push('ArticulosPage');
   }
+
+  goPedidos(): void {
+    this.navCtrl.push('PedidosPage');
+  }
 }

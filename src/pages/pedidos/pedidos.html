@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>PEDIDOS </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome()">
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item text-wrap no-lines>
+      <ion-avatar item-start>
+        <img src="assets/imgs/pedidos.png">
+      </ion-avatar>
+      <p>Estos son los pedidos disponibles</p>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let pedido of pedidos" (click)="goPedido(pedido)" text-wrap>
+      <div>
+        <strong>Numero: </strong>{{pedido.numpedcl}}
+        <strong>Agente: </strong>{{pedido.nomagent}}
+      </div>
+      <div>
+        <strong>Cliente: </strong>{{pedido.nomclien}} ({{pedido.nomcomer}})
+      </div>
+      <div>
+        <strong>Fecha: </strong>{{pedido.fecpedcl}}
+        <strong>Total: </strong>{{pedido.totalped}}
+      </div>
+      <ion-icon name="log-in" item-end></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>
