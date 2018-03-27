@@ -1,10 +1,16 @@
-page-cli-ofertas {
+page-modal-oferta-linea {
     .grptitle {
         background-color: #718dba;
         color: white;
     }
+
     .mas {
         margin-left: 65%;
         margin-top: 0;
     }
+
+    form {
+        border: 1px solid black;
+    }
+
 }

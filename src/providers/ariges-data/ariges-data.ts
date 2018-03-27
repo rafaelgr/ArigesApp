@@ -170,5 +170,13 @@ export class ArigesDataProvider {
       params: params
     });
   }
+
+  postCabeceraOferta(apiUrl, oferta): any {
+    return this.http.post(apiUrl + '/api/ofertas/caboferta', oferta);
+  }
+
+  putCabeceraOferta(apiUrl, oferta): any {
+    return this.http.put(apiUrl + '/api/ofertas/caboferta', oferta);
+  }
  
 }

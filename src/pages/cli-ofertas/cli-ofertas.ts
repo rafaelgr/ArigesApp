@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
+import { ModalController } from 'ionic-angular';
+import { ModalOfertaCabeceraPage } from '../modal-oferta-cabecera/modal-oferta-cabecera'
 import * as moment from 'moment';
 import * as numeral from 'numeral';
 
@@ -19,7 +21,7 @@ export class CliOfertasPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
-    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
+    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController, public modalCtrl: ModalController) {
 
   }
 
@@ -74,7 +76,8 @@ export class CliOfertasPage {
 
   goOferta(oferta): void {
     this.interData.setOferta(oferta);
-    this.navCtrl.push('CliOfertasDetallePage');
+    let modalCabecera = this.modalCtrl.create('ModalOfertaCabeceraPage');
+    modalCabecera.present();
   }
 
   showError(error): void {
@@ -86,5 +89,10 @@ export class CliOfertasPage {
     alert.present();
   }
 
+  openModalCabecera() {
+    let modalCabecera = this.modalCtrl.create('ModalOfertaCabeceraPage');
+    this.interData.setOferta(null);//si se crea una oferta yhecemos la oferta local nula
+    modalCabecera.present();
+  }
 
 }
