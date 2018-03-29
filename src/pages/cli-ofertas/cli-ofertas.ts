@@ -76,7 +76,7 @@ export class CliOfertasPage {
 
   goOferta(oferta): void {
     this.interData.setOferta(oferta);
-    this.navCtrl.setRoot('EdicionOfertaPage');
+    this.navCtrl.push('EdicionOfertaPage');
   }
 
   showError(error): void {

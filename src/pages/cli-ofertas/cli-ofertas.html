@@ -15,12 +15,11 @@
 <ion-content padding>
   <ion-list>
     <ion-item no-lines class="grptitle">
-      <ion-buttons end>
           Ofertas
-        <button ion-button icon-only class="mas" (click)="openModalCabecera()" end>
-          <ion-icon name="add"></ion-icon>
-        </button>
-      </ion-buttons>
+          <button color="light" ion-button outline item-end round icon-left (click)="openModalCabecera()">
+              <ion-icon name="add"></ion-icon>
+              Crear Oferta
+          </button>
     </ion-item>
     <ion-item *ngFor="let oferta of ofertas" text-wrap (click)="goOferta(oferta)">
       <div>

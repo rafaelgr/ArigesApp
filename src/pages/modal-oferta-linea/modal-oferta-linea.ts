@@ -173,7 +173,7 @@ datos = {
           if(this.datos.oferta.lineas == undefined) {this.datos.oferta.lineas = []}
           this.datos.oferta.lineas.push(data);//añadimos la linea recien creada al array de lineas de la oferta
           this.interData.setOferta(this.datos.oferta)//guardamos la oferta con la linea recién creada
-          this.navCtrl.setRoot('EdicionOfertaPage');
+          this.dismiss();
         },
         (error) => {
           if (error.status == 404) {
@@ -199,7 +199,7 @@ datos = {
         .subscribe(
           (data) => {
             
-            this.navCtrl.setRoot('EdicionOfertaPage');//volvemos a la página de edición
+            this.dismiss();//volvemos a la página de edición
           },
           (error) => {
             if (error.status == 404) {

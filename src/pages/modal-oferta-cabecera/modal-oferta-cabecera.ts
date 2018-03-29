@@ -21,9 +21,8 @@ import * as numeral from 'numeral';
   templateUrl: 'modal-oferta-cabecera.html',
 })
 export class ModalOfertaCabeceraPage {
-
   datos: any = {
-    oferta: null,
+    oferta: {},
     cliente: {},
     linea: null,
     articulo: null,
@@ -32,16 +31,20 @@ export class ModalOfertaCabeceraPage {
     nomagent: ""
   };
 
+
+
+
   cabForm: FormGroup;
   settings: any = [];
   nomagent: any;
   fecha: string;
-
+  totalofe: number;
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     public formBuilder: FormBuilder, public localData: LocalDataProvider, public interData: InterDataProvider,
     public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
 
 
+      this.totalofe = 0;
 
     this.cabForm = formBuilder.group({
       fecha: ['', Validators.compose([Validators.required])]
@@ -86,7 +89,7 @@ export class ModalOfertaCabeceraPage {
           .subscribe(
             (data) => {
               this.interData.setOferta(data);
-              this.navCtrl.setRoot('EdicionOfertaPage');
+              this.dismiss();
 
             },
             (error) => {
@@ -111,8 +114,11 @@ export class ModalOfertaCabeceraPage {
         this.arigesData.putCabeceraOferta(this.settings.url, this.saveObjectMysql())
           .subscribe(
             (data) => {
-              this.interData.setOferta(data);
-              this.navCtrl.setRoot('EdicionOfertaPage');
+             
+              this.datos.oferta.fecofert = moment(this.fecha, "YYYY-MM-DD").format("DD/MM/YYYY");
+              this.datos.oferta.fecentre = moment(this.fecha, "YYYY-MM-DD").format("DD/MM/YYYY");
+              this.interData.setOferta(this.datos.oferta);
+              this.dismiss();
             },
             (error) => {
               if (error.status == 404) {
@@ -152,7 +158,8 @@ export class ModalOfertaCabeceraPage {
       pobclien: this.datos.cliente.pobclien,
       proclien: this.datos.cliente.proclien,
       nifclien: this.datos.cliente.nifclien,
-      codagent: this.datos.cliente.codagent
+      codagent: this.datos.cliente.codagent,
+      coddirec: null
     };
     return cabofert;
   }

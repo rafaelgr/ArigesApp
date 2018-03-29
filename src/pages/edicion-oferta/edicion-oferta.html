@@ -7,12 +7,7 @@
 
   <ion-header>
       <ion-navbar>
-          <ion-buttons>
-              <button ion-button icon-only (click)="volverOfertasGeneral()">
-                <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
-              </button>
-            </ion-buttons>
-        <ion-title>OFERTA Nº {{oferta.numofert}}</ion-title>
+        <ion-title>{{cliente.nomclien}}</ion-title>
         <ion-buttons end>
             <button ion-button icon-only (click)="goHome()">
               <ion-icon name="home"></ion-icon>
@@ -33,8 +28,10 @@
       </ion-item>
       <ion-item >
         <div>
-          <strong>Agente: </strong>{{cliente.nomagent}}
-          <strong>Cliente: </strong>{{cliente.nomclien}}
+          <strong>Oferta Nº </strong>{{oferta.numofert}}
+        </div>
+        <div>
+            <strong>Agente: </strong>{{cliente.nomagent}}
         </div>
         <div>
           <strong>Fecha: </strong>{{oferta.fecofert}}
