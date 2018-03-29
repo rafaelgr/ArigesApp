@@ -22,7 +22,7 @@ import * as numeral from 'numeral';
 })
 export class ModalOfertaCabeceraPage {
 
-  datos:any = {
+  datos: any = {
     oferta: null,
     cliente: {},
     linea: null,
@@ -30,25 +30,7 @@ export class ModalOfertaCabeceraPage {
     cantidad: null,
     parnomcli: "",
     nomagent: ""
-};
-
-cabofer = {
-  numofert: 0,
-  fecofert:null,
-  fecentre: null,
-  codclien: null,
-  nomclien: "",
-  domclien: "",
-  codpobla: "",
-  pobclien: "",
-  proclien: "",
-  nifclien: "",
-  telclien: "",
-  codtraba: 0,
-  codagent: null,
-  codforpa: 0,
-  coddirec: null
-};
+  };
 
   cabForm: FormGroup;
   settings: any = [];
@@ -56,14 +38,14 @@ cabofer = {
   fecha: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
-     public formBuilder: FormBuilder, public localData: LocalDataProvider, public interData: InterDataProvider, 
-     public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
+    public formBuilder: FormBuilder, public localData: LocalDataProvider, public interData: InterDataProvider,
+    public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
 
-     
-     
-      this.cabForm = formBuilder.group({
-        fecha: ['', Validators.compose([Validators.required])]
-      });
+
+
+    this.cabForm = formBuilder.group({
+      fecha: ['', Validators.compose([Validators.required])]
+    });
   }
 
   ionViewWillEnter() {
@@ -82,14 +64,14 @@ cabofer = {
   }
 
   loadData(): void {
-    
+
     this.datos.oferta = this.interData.getOferta();
     this.datos.cliente = this.interData.getCliente();
     this.datos.parnomcli = this.datos.cliente.nomclien;
-    if(!this.datos.oferta){
+    if (!this.datos.oferta) {
       //caso alta
       this.fecha = moment(new Date()).format("YYYY-MM-DD");//se carga fecha de hoy por defecto en el constructor
-     
+
     } else {
       var fecha_dos = this.datos.oferta.fecofert;//se carga fecha de base de datos por defecto en un método
       this.fecha = moment(fecha_dos, "DD/MM/YYYY").format("YYYY-MM-DD");
@@ -97,88 +79,82 @@ cabofer = {
   }
 
   guardarCabecera() {
-    if(this.cabForm.valid){
+    if (this.cabForm.valid) {
       //alta
-      if(!this.datos.oferta){
-      this.cabofer.fecofert = this.fecha
-      this.cabofer.fecentre = this.fecha
-      this.cabofer.codclien = this.datos.cliente.codclien;
-      this.cabofer.nomclien = this.datos.cliente.nomclien;
-      this.cabofer.domclien = this.datos.cliente.domclien;
-      this.cabofer.codpobla= this.datos.cliente.codpobla;
-      this.cabofer.pobclien= this.datos.cliente.pobclien;
-      this.cabofer.proclien= this.datos.cliente.proclien;
-      this.cabofer.nifclien= this.datos.cliente.nifclien;
-      this.cabofer.codagent= this.datos.cliente.codagent;
+      if (!this.datos.oferta) {
+        this.arigesData.postCabeceraOferta(this.settings.url, this.saveObjectMysql())
+          .subscribe(
+            (data) => {
+              this.interData.setOferta(data);
+              this.navCtrl.setRoot('EdicionOfertaPage');
 
-      this.arigesData.postCabeceraOferta(this.settings.url, this.cabofer)
-      .subscribe(
-        (data) => {
-          this.interData.setOferta(data);
-          this.navCtrl.setRoot('EdicionOfertaPage');
-         
-        },
-        (error) => {
-          if (error.status == 404) {
-            let alert = this.alertCrtl.create({
-              title: "AVISO",
-              subTitle: "No se ha podido crear",
-              buttons: ['OK']
-            });
-            alert.present();
-          } else {
-            let alert = this.alertCrtl.create({
-              title: "ERROR",
-              subTitle: JSON.stringify(error, null, 4),
-              buttons: ['OK']
-            });
-            alert.present();
-          }
-        }
-      );
-      } else {
-        this.cabofer.numofert = this.datos.oferta.numofert;
-        this.cabofer.fecofert = this.fecha;
-        this.cabofer.fecentre = this.fecha;
-        this.cabofer.codclien = this.datos.cliente.codclien;
-        this.cabofer.nomclien = this.datos.cliente.nomclien;
-        this.cabofer.domclien = this.datos.cliente.domclien;
-        this.cabofer.codpobla= this.datos.cliente.codpobla;
-        this.cabofer.pobclien= this.datos.cliente.pobclien;
-        this.cabofer.proclien= this.datos.cliente.proclien;
-        this.cabofer.nifclien= this.datos.cliente.nifclien;
-        this.cabofer.codagent= this.datos.cliente.codagent;
-        this.arigesData.putCabeceraOferta(this.settings.url, this.cabofer)
-        .subscribe(
-          (data) => {
-            this.interData.setOferta(data);
-            this.navCtrl.setRoot('EdicionOfertaPage');
-          },
-          (error) => {
-            if (error.status == 404) {
-              let alert = this.alertCrtl.create({
-                title: "AVISO",
-                subTitle: "No se ha podido Modificar",
-                buttons: ['OK']
-              });
-              alert.present();
-            } else {
-              let alert = this.alertCrtl.create({
-                title: "ERROR",
-                subTitle: JSON.stringify(error, null, 4),
-                buttons: ['OK']
-              });
-              alert.present();
+            },
+            (error) => {
+              if (error.status == 404) {
+                let alert = this.alertCrtl.create({
+                  title: "AVISO",
+                  subTitle: "No se ha podido crear",
+                  buttons: ['OK']
+                });
+                alert.present();
+              } else {
+                let alert = this.alertCrtl.create({
+                  title: "ERROR",
+                  subTitle: JSON.stringify(error, null, 4),
+                  buttons: ['OK']
+                });
+                alert.present();
+              }
             }
-          }
-        );
+          );
+      } else {
+        this.arigesData.putCabeceraOferta(this.settings.url, this.saveObjectMysql())
+          .subscribe(
+            (data) => {
+              this.interData.setOferta(data);
+              this.navCtrl.setRoot('EdicionOfertaPage');
+            },
+            (error) => {
+              if (error.status == 404) {
+                let alert = this.alertCrtl.create({
+                  title: "AVISO",
+                  subTitle: "No se ha podido Modificar",
+                  buttons: ['OK']
+                });
+                alert.present();
+              } else {
+                let alert = this.alertCrtl.create({
+                  title: "ERROR",
+                  subTitle: JSON.stringify(error, null, 4),
+                  buttons: ['OK']
+                });
+                alert.present();
+              }
+            }
+          );
       }
-      
+
     }
   }
 
   dismiss() {
     this.viewCtrl.dismiss();
+  }
+
+  saveObjectMysql(): any {
+    var cabofert = {
+      fecofert: this.fecha,
+      fecentre: this.fecha,
+      codclien: this.datos.cliente.codclien,
+      nomclien: this.datos.cliente.nomclien,
+      domclien: this.datos.cliente.domclien,
+      codpobla: this.datos.cliente.codpobla,
+      pobclien: this.datos.cliente.pobclien,
+      proclien: this.datos.cliente.proclien,
+      nifclien: this.datos.cliente.nifclien,
+      codagent: this.datos.cliente.codagent
+    };
+    return cabofert;
   }
 
 }
