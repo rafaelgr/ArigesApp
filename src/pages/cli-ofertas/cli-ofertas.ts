@@ -76,8 +76,7 @@ export class CliOfertasPage {
 
   goOferta(oferta): void {
     this.interData.setOferta(oferta);
-    let modalCabecera = this.modalCtrl.create('ModalOfertaCabeceraPage');
-    modalCabecera.present();
+    this.navCtrl.setRoot('EdicionOfertaPage');
   }
 
   showError(error): void {

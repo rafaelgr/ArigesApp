@@ -4,55 +4,76 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-    <ion-navbar>
+
+  <ion-header>
+      <ion-navbar>
+          <ion-buttons>
+              <button ion-button icon-only (click)="volverOfertasGeneral()">
+                <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+              </button>
+            </ion-buttons>
+        <ion-title>OFERTA Nº {{oferta.numofert}}</ion-title>
         <ion-buttons end>
-            <button ion-button icon-only (click)="volverOfertasGeneral()">
-              <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+            <button ion-button icon-only (click)="goHome()">
+              <ion-icon name="home"></ion-icon>
             </button>
-          </ion-buttons>
-      <ion-title>OFERTA NUMERO {{datos.numofert}}</ion-title>
-    </ion-navbar>
+        </ion-buttons>
+      </ion-navbar>
   </ion-header>
   
-  
   <ion-content padding>
-    <ion-list>
-      <ion-item no-lines class="grptitle">
-              Cabecera
+    <ion-list class="borde">
+      
+      <ion-item no-lines class="grptitle" text-wrap>
+        CABECERA
+        <button color="light" ion-button outline item-end round icon-left (click)="openModalCabecera()">
+            <ion-icon name="create"></ion-icon>
+            Editar
+        </button>
       </ion-item>
       <ion-item >
-          <strong>Agente:</strong>
-          <div>{{datos.cliente.nomagent}}</div>
+        <div>
+          <strong>Agente: </strong>{{cliente.nomagent}}
+          <strong>Cliente: </strong>{{cliente.nomclien}}
+        </div>
+        <div>
+          <strong>Fecha: </strong>{{oferta.fecofert}}
+          <strong>Total: </strong>{{oferta.totalofe}}
+        </div>
       </ion-item>
-      <ion-item>
-          <strong>Cliente:</strong>
-          <div>{{datos.nomclien}}</div>
-      </ion-item>
-      <ion-item>
-          <strong>Fecha:</strong>
-            <div>{{datos.fecofert}}</div>
-      </ion-item>
-      <ion-item>
-          <strong>Total:</strong>
-          <div>{{datos.total}}</div>
-      </ion-item>
-      <ion-item no-lines class="grptitle">
-          <ion-buttons end>
-              Lineas
-              <button ion-button class="mas" icon-only (click)="crearLinea()" end>
-                  <ion-icon name="checkmark-circle-outline"></ion-icon>
-                </button>
-          </ion-buttons>
-  </ion-item>
+      
     </ion-list>
+    <ion-list class="borde">
+        <ion-item no-lines class="grptitle" text-wrap>
+            LINEAS
+            <button color="light" ion-button outline item-end round icon-left (click)="crearLinea()">
+                <ion-icon name="add"></ion-icon>
+                Nueva linea
+            </button>
+        </ion-item>
+      <ion-item *ngFor="let linea of oferta.lineas" text-wrap>
+        <div>
+          <strong>Linea: </strong>{{linea.numlinea}}
+          <strong>Articulo: </strong>{{linea.nomartic}}
+        </div>
+        <div>
+          <strong>Cantidad: </strong>{{linea.cantidad}}
+          <strong>Precio: </strong>{{linea.precioar}}
+        </div>
+        <div>
+          <strong>Dto1: </strong>{{linea.dtoline1}}
+          <strong>Dto2: </strong>{{linea.dtoline2}}
+          <strong>Importe: </strong>{{linea.importel}}
+        </div>
+      </ion-item>
+    </ion-list>  
   </ion-content>
   
   <ion-footer>
-      <ion-toolbar>
-        <ion-title>
-          <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
-        </ion-title>
-      </ion-toolbar>
+    <ion-toolbar>
+      <ion-title>
+        <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
+      </ion-title>
+    </ion-toolbar>
   </ion-footer>
   

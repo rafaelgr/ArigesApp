@@ -20,17 +20,9 @@ import * as numeral from 'numeral';
 })
 export class EdicionOfertaPage {
 
-  linForm: FormGroup;
-  settings: any = [];
-  nomagent: any;
-  datos: any = {
-    numofert: "",
-    nomagent: "",
-    nomclient: "",
-    fecofert: "",
-    total: "",
-    cliente: {}         
-  }
+  settings: any;
+  cliente: any = {};
+  oferta: any = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     public formBuilder: FormBuilder, public localData: LocalDataProvider, public interData: InterDataProvider, 
@@ -42,27 +34,39 @@ export class EdicionOfertaPage {
  }
 
  ionViewWillEnter() {
-   this.localData.getSettings().then(data => {
-     if (data) {
-       this.settings = JSON.parse(data);
-       if (!this.settings.user) {
-         this.navCtrl.setRoot('LoginPage');
-       } else {
-         this.loadData();
-       }
-     } else {
-       this.navCtrl.setRoot('SettingsPage');
-     }
-   });
- }
+  this.localData.getSettings().then(data => {
+    if (data) {
+      this.settings = JSON.parse(data);
+      if (!this.settings.user) {
+        this.navCtrl.setRoot('LoginPage');
+      } else {
+        this.loadData();
+      }
+    } else {
+      this.navCtrl.setRoot('SettingsPage');
+    }
+  });
+}
 
- loadData(): void {
-    //recuperamos la cabecera
-  this.datos = this.interData.getOferta();
-  this.datos.cliente = this.interData.getCliente();
+goHome(): void {
+  this.navCtrl.setRoot('HomePage');
+}
 
-  this.datos.fecofert = moment(this.datos.fecofert, "YYYY-MM-DD").format("DD/MM/YYYY");
- }
+loadData(): void {
+  this.cliente = this.interData.getCliente();
+  this.oferta = this.interData.getOferta();
+}
+
+
+
+showError(error): void {
+  let alert = this.alertCrtl.create({
+    title: "ERROR",
+    subTitle: JSON.stringify(error, null, 4),
+    buttons: ['OK']
+  });
+  alert.present();
+}
 
  volverOfertasGeneral(): void {
   this.navCtrl.setRoot('CliOfertasPage');
@@ -71,5 +75,10 @@ export class EdicionOfertaPage {
  crearLinea() : any {
   let modalLinea = this.modalCtrl.create('ModalOfertaLineaPage');
   modalLinea.present();
+ }
+
+ openModalCabecera() {
+  let modalCabecera = this.modalCtrl.create('ModalOfertaCabeceraPage');
+  modalCabecera.present();
  }
 }

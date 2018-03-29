@@ -179,4 +179,13 @@ export class ArigesDataProvider {
     return this.http.put(apiUrl + '/api/ofertas/caboferta', oferta);
   }
  
+
+  postLineaOferta(apiUrl, oferta): any {
+    return this.http.post(apiUrl + '/api/ofertas/linoferta', oferta);
+  }
+
+  putLineaOferta(apiUrl, oferta): any {
+    return this.http.put(apiUrl + '/api/ofertas/linoferta', oferta);
+  }
+ 
 }

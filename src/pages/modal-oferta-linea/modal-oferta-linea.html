@@ -22,16 +22,38 @@
       <ion-item no-lines class="grptitle">
               <ion-buttons end>
                   Nueva linea
-                  <button ion-button class="mas" icon-only (click)="guardarCabecera()" end>
+                  <button ion-button class="mas" icon-only (click)="guardarLinea()" end>
                       <ion-icon name="checkmark-circle-outline"></ion-icon>
                     </button>
               </ion-buttons>
       </ion-item>
-      <ion-item >
-          <ion-label  color="primary">Nombre Articulo:</ion-label>
-          <ion-input type="text" [(ngModel)]="nomartic"  formControlName="nomartic"></ion-input>
+      <ion-item class="expand">
+          <ion-label  color="primary">Linea:</ion-label>
+          <ion-input  [(ngModel)]="datos.numlinea" [ngModelOptions]="{standalone: true}" disabled></ion-input>
       </ion-item>
-     
+      <ion-item class="expand">
+          <ion-label  color="primary">Articulo:</ion-label>
+          <ion-input type="text" [(ngModel)]="nomartic"  formControlName="nomartic" (keyup)='searchArticulos()'></ion-input>
+      </ion-item>
+      
+      <div *ngIf="encontrado" no-lines>
+          <ion-item *ngFor="let articulo of datos.articulos"  (click)="selectArticulo(articulo)">
+              <h4>{{articulo.nomartic}}</h4>
+              <ion-icon name="log-in" item-end></ion-icon>
+            </ion-item>
+      </div>
+      <ion-item class="expand">
+          <ion-label  color="primary">Precio:</ion-label>
+          <ion-input  [(ngModel)]="datos.precioar"  [ngModelOptions]="{standalone: true}" disabled></ion-input>
+      </ion-item>
+      <ion-item class="expand">
+          <ion-label  color="primary">Cantidad:</ion-label>
+          <ion-input type="number" [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()"></ion-input>
+      </ion-item>
+      <ion-item class="expand">
+          <ion-label  color="primary">Importe:</ion-label>
+          <ion-input [(ngModel)]="datos.importel" [ngModelOptions]="{standalone: true}" disabled></ion-input>
+      </ion-item>
     </form>
     </ion-list>
   </ion-content>

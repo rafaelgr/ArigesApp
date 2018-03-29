@@ -59,7 +59,7 @@ cabofer = {
      public formBuilder: FormBuilder, public localData: LocalDataProvider, public interData: InterDataProvider, 
      public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
 
-      
+     
      
       this.cabForm = formBuilder.group({
         fecha: ['', Validators.compose([Validators.required])]
@@ -88,11 +88,11 @@ cabofer = {
     this.datos.parnomcli = this.datos.cliente.nomclien;
     if(!this.datos.oferta){
       //caso alta
-      this.fecha =  moment(new Date()).format('YYYY-MM-DD');
+      this.fecha = moment(new Date()).format("YYYY-MM-DD");//se carga fecha de hoy por defecto en el constructor
      
     } else {
-      var fechaCadena: Date = new Date(this.datos.oferta.fecofert);
-      this.fecha =   moment(fechaCadena).format('YYYY-MM-DD');
+      var fecha_dos = this.datos.oferta.fecofert;//se carga fecha de base de datos por defecto en un método
+      this.fecha = moment(fecha_dos, "DD/MM/YYYY").format("YYYY-MM-DD");
     }
   }
 
@@ -178,7 +178,6 @@ cabofer = {
   }
 
   dismiss() {
-    this.interData.setOferta(null);
     this.viewCtrl.dismiss();
   }
 
