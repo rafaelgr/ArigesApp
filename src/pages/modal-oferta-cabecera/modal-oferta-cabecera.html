@@ -20,12 +20,12 @@
   <ion-list>
     <form [formGroup]="cabForm" no-lines>
     <ion-item no-lines class="grptitle">
-            <ion-buttons end>
-                Ofertas
-                <button ion-button class="mas" icon-only (click)="guardarCabecera()" end>
-                    <ion-icon name="checkmark-circle-outline"></ion-icon>
-                  </button>
-            </ion-buttons>
+      <div *ngIf="!datos.oferta">Cabecera (Creación)</div>
+      <div *ngIf="datos.oferta">Cabecera (Edición)</div>
+                <button color="light" ion-button outline item-end round icon-left (click)="guardarCabecera()">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  Aceptar
+                </button>
     </ion-item>
     <ion-item class="expand">
         <ion-label  color="primary">Agente:</ion-label>

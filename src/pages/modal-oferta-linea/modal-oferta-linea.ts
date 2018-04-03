@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, AlertController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
@@ -57,6 +57,7 @@ datos = {
 }
 
 
+  linea: any = {};//variable para la edicion de lineas
   nomartic: any = "";
   cantidad: number = 0
   searchArticulo: boolean;
@@ -65,7 +66,7 @@ datos = {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
      public formBuilder: FormBuilder, public localData: LocalDataProvider, public interData: InterDataProvider, 
-     public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
+     public arigesData: ArigesDataProvider, public alertCrtl: AlertController, public loadingCtrl: LoadingController) {
 
       this.linForm = formBuilder.group({
         nomartic: ['', Validators.compose([Validators.required])],
@@ -92,6 +93,17 @@ datos = {
   loadData():void {
     this.datos.cliente = this.interData.getCliente();
     this.datos.oferta = this.interData.getOferta();
+    this.linea = this.interData.getLineaOferta();
+    //si hay linea es edicion y cargamos el formulario con los valores de la linea
+    if(this.linea){
+      this.datos.numlinea = this.linea.numlinea;
+      this.nomartic = this.linea.nomartic;
+      this.datos.precioar = this.linea.precioar;
+      this.cantidad = this.linea.cantidad;
+      this.datos.importel = this.linea.importel;
+      this.linped.numlinea = this.linea.numlinea;
+      this.searchArticulos();
+    }
   }
 
   searchArticulos(): any {
@@ -99,7 +111,10 @@ datos = {
         this.searchArticulo = false;
         return;
     }
-    
+    let loading = this.loadingCtrl.create({
+      content: 'Buscando articulos...'
+    });
+    loading.present();
     this.searchArticulo = true;
     this.arigesData.getArticulosCliente(
         this.settings.url,
@@ -109,8 +124,17 @@ datos = {
         this.nomartic)
         .subscribe(
           (data) => {
+            loading.dismiss();
             this.encontrado = true;
             this.datos.articulos = data;
+            //si no devuelve articulos sale del método
+            if(this.datos.articulos.length == 0) {
+              return;
+            }
+            //si se trata de una edicion cargamos los datos del articulo de la linea
+            if(this.linped.numlinea != 0 && this.datos.articulos.length == 1) {
+              this.selectArticulo(this.datos.articulos[0]);
+            }
           },
           (error) => {
             if (error.status == 404) {
@@ -147,7 +171,11 @@ datos = {
       //cargamos las variables de binding con los objetos seleccionados
       this.nomartic =  articulo.nomartic;
       this.datos.precioar = articulo.precio.importe;
-      this.cantidad = 0;
+
+      if(!this.cantidad) {
+        this.cantidad = 0;
+      }
+      
    
       this.datos.articulo = articulo;
       //ocultamos los resultados de la busqueda de articulos
@@ -198,7 +226,8 @@ datos = {
         this.arigesData.putLineaOferta(this.settings.url, this.linped)
         .subscribe(
           (data) => {
-            
+            this.datos.oferta.lineas.splice(this.linea.numlinea-1, 1, data);//añadimos la linea recien creada al array de lineas de la oferta
+            this.interData.setLineaOferta(null);//establecemos la linea en edición a null una vez editada
             this.dismiss();//volvemos a la página de edición
           },
           (error) => {
@@ -230,6 +259,7 @@ datos = {
 
 
   dismiss() {
+    this.interData.setLineaOferta(null);//establecemos la linea en edición a null
     this.viewCtrl.dismiss();
   }
 }

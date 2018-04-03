@@ -18,6 +18,7 @@ export class CliOfertasPage {
   settings: any;
   cliente: any = {};
   ofertas: any = [];
+  modalCabecera: any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
@@ -88,10 +89,15 @@ export class CliOfertasPage {
     alert.present();
   }
 
-  openModalCabecera() {
-    let modalCabecera = this.modalCtrl.create('ModalOfertaCabeceraPage');
+  openModalCabecera(): void  {
+    this.modalCabecera = this.modalCtrl.create('ModalOfertaCabeceraPage');
     this.interData.setOferta(null);//si se crea una oferta yhecemos la oferta local nula
-    modalCabecera.present();
-  }
-
+    this.modalCabecera.onDidDismiss(crear => {
+      if(crear){
+        this.navCtrl.push('EdicionOfertaPage');
+       }
+   
+    });
+    this.modalCabecera.present();
+  } 
 }

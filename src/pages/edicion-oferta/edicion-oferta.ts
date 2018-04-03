@@ -28,9 +28,7 @@ export class EdicionOfertaPage {
     public formBuilder: FormBuilder, public localData: LocalDataProvider, public interData: InterDataProvider, 
     public arigesData: ArigesDataProvider, public alertCrtl: AlertController, public modalCtrl: ModalController) {
 
-    /* this.linForm = formBuilder.group({
-       fecha: ['', Validators.compose([Validators.required])]
-     });*/
+   
  }
 
  ionViewWillEnter() {
@@ -73,6 +71,12 @@ showError(error): void {
  }
 
  crearLinea() : any {
+  let modalLinea = this.modalCtrl.create('ModalOfertaLineaPage');
+  modalLinea.present();
+ }
+
+ editarLinea(linea): any {
+   this.interData.setLineaOferta(linea);
   let modalLinea = this.modalCtrl.create('ModalOfertaLineaPage');
   modalLinea.present();
  }

@@ -20,12 +20,12 @@
     <ion-list>
       <form   [formGroup]="linForm" no-lines>
       <ion-item no-lines class="grptitle">
-              <ion-buttons end>
-                  Nueva linea
-                  <button ion-button class="mas" icon-only (click)="guardarLinea()" end>
-                      <ion-icon name="checkmark-circle-outline"></ion-icon>
-                    </button>
-              </ion-buttons>
+                  <div *ngIf="linped.numlinea != 0">Linea (Edición)</div>
+                  <div *ngIf="linped.numlinea == 0">Linea (Creación)</div>
+                  <button color="light" ion-button outline item-end round icon-left (click)="guardarLinea()">
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    Aceptar
+                  </button>
       </ion-item>
       <ion-item class="expand">
           <ion-label  color="primary">Linea:</ion-label>

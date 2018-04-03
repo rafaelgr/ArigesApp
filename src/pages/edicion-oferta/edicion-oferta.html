@@ -48,21 +48,31 @@
                 Nueva linea
             </button>
         </ion-item>
-      <ion-item *ngFor="let linea of oferta.lineas" text-wrap>
-        <div>
-          <strong>Linea: </strong>{{linea.numlinea}}
-          <strong>Articulo: </strong>{{linea.nomartic}}
-        </div>
-        <div>
-          <strong>Cantidad: </strong>{{linea.cantidad}}
-          <strong>Precio: </strong>{{linea.precioar}}
-        </div>
-        <div>
-          <strong>Dto1: </strong>{{linea.dtoline1}}
-          <strong>Dto2: </strong>{{linea.dtoline2}}
-          <strong>Importe: </strong>{{linea.importel}}
-        </div>
-      </ion-item>
+      <ion-item-sliding *ngFor="let linea of oferta.lineas" text-wrap>
+        <ion-item>
+            <div>
+                <strong>Linea: </strong>{{linea.numlinea}}
+                <strong>Articulo: </strong>{{linea.nomartic}}
+              </div>
+              <div>
+                <strong>Cantidad: </strong>{{linea.cantidad}}
+                <strong>Precio: </strong>{{linea.precioar}}
+              </div>
+              <div>
+                <strong>Dto1: </strong>{{linea.dtoline1}}
+                <strong>Dto2: </strong>{{linea.dtoline2}}
+                <strong>Importe: </strong>{{linea.importel}}
+              </div>
+        </ion-item>
+        <ion-item-options>
+            <button ion-button icon-only color="light" (click)="editarLinea(linea)">
+                <ion-icon name="clipboard"></ion-icon>Editar
+              </button>
+              <button ion-button icon-only color="danger" (click)="borrarLinea(linea)">
+                <ion-icon name="trash"></ion-icon> Borrar
+            </button>
+      </ion-item-options>
+      </ion-item-sliding>
     </ion-list>  
   </ion-content>
   

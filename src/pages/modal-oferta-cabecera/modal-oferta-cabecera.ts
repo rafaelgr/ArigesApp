@@ -88,9 +88,9 @@ export class ModalOfertaCabeceraPage {
         this.arigesData.postCabeceraOferta(this.settings.url, this.saveObjectMysql())
           .subscribe(
             (data) => {
+              var crear = true;
               this.interData.setOferta(data);
-              this.dismiss();
-
+              this.dismiss(crear);
             },
             (error) => {
               if (error.status == 404) {
@@ -114,11 +114,11 @@ export class ModalOfertaCabeceraPage {
         this.arigesData.putCabeceraOferta(this.settings.url, this.saveObjectMysql())
           .subscribe(
             (data) => {
-             
+             var crear = false;
               this.datos.oferta.fecofert = moment(this.fecha, "YYYY-MM-DD").format("DD/MM/YYYY");
               this.datos.oferta.fecentre = moment(this.fecha, "YYYY-MM-DD").format("DD/MM/YYYY");
               this.interData.setOferta(this.datos.oferta);
-              this.dismiss();
+              this.dismiss(crear);
             },
             (error) => {
               if (error.status == 404) {
@@ -143,8 +143,13 @@ export class ModalOfertaCabeceraPage {
     }
   }
 
-  dismiss() {
-    this.viewCtrl.dismiss();
+  dismiss(crear) {
+    if(crear) {
+      this.viewCtrl.dismiss(crear);
+    } else {
+      this.viewCtrl.dismiss();
+    }
+    
   }
 
   saveObjectMysql(): any {
