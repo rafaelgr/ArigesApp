@@ -188,4 +188,11 @@ export class ArigesDataProvider {
     return this.http.put(apiUrl + '/api/ofertas/linoferta', oferta);
   }
  
+  deleteLineaOferta(apiUrl, numofert, numlinea): any {
+    return this.http.delete(apiUrl + '/api/ofertas/linoferta?numofert='+ numofert +'&numlinea='+ numlinea);
+  }
+
+  deleteOferta(apiUrl, numofert): any {
+    return this.http.delete(apiUrl + '/api/ofertas/caboferta?numofert='+ numofert);
+  }
 }

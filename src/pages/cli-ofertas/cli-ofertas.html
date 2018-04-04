@@ -21,16 +21,28 @@
               Crear Oferta
           </button>
     </ion-item>
-    <ion-item *ngFor="let oferta of ofertas" text-wrap (click)="goOferta(oferta)">
-      <div>
-        <strong>N.Oferta: </strong> {{oferta.numofert}}
-        <strong>Fecha: </strong> {{oferta.fecofert}}
-      </div>
-      <div>
-        <strong>Total: </strong> {{oferta.totalofe}}
-      </div>
-      <ion-icon name="log-in" item-end></ion-icon>
+    <ion-item-sliding *ngFor="let oferta of ofertas" text-wrap (click)="goOferta(oferta)">
+      <ion-item>
+          <div>
+              <strong>N.Oferta: </strong> {{oferta.numofert}}
+              <strong>Fecha: </strong> {{oferta.fecofert}}
+            </div>
+            <div>
+              <strong>Total: </strong> {{oferta.totalofe}}
+            </div>
+            <ion-icon name="log-in" item-end></ion-icon>
     </ion-item>
+    <ion-item-options>
+        <button color="light" class="grptitle" ion-button outline item-end round icon-left (click)="editarOferta(oferta)">
+            <ion-icon name="create"></ion-icon> 
+            Editar
+          </button>
+          <button color="danger" ion-button outline item-end round icon-left  (click)="borrarOferta(oferta)">
+            <ion-icon name="trash"></ion-icon> 
+            Borrar
+        </button>
+    </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>
 

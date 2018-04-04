@@ -56,8 +56,68 @@ loadData(): void {
 }
 
 
+ volverOfertasGeneral(): void {
+  this.navCtrl.setRoot('CliOfertasPage');
+ }
 
-showError(error): void {
+ crearLinea() : void {
+  let modalLinea = this.modalCtrl.create('ModalOfertaLineaPage');
+  modalLinea.present();
+ }
+
+ editarLinea(linea): void {
+   this.interData.setLineaOferta(linea);
+  let modalLinea = this.modalCtrl.create('ModalOfertaLineaPage');
+  modalLinea.present();
+ }
+
+ openModalCabecera(): void {
+  let modalCabecera = this.modalCtrl.create('ModalOfertaCabeceraPage');
+  modalCabecera.present();
+ }
+
+ borrarLineaOferta(linea): void {
+  this.confirmarBorrado(linea);
+ }
+
+ confirmarBorrado(linea): any {
+  let alert = this.alertCrtl.create({
+    title: "AVISO",
+    subTitle: "¿Está seguro que desea borrar el registro?",
+    buttons: [
+      {text: 'Aceptar',
+       handler: ()=> {
+        this.arigesData.deleteLineaOferta(this.settings.url, this.oferta.numofert, linea.numlinea)
+        .subscribe(
+          (data) => {
+            var num;
+           for(var i = 0; i < this.oferta.lineas.length; i++) {
+            num = this.oferta.lineas[i].numlinea
+             if(num == linea.numlinea) {
+              
+               this.oferta.lineas.splice(i, 1);
+               break;
+             }
+           }
+           this.interData.setOferta(this.oferta);
+          },
+          (error) => {
+            if (error.status == 404) {
+              this.showNoEncontrado();
+            } else {
+              this.showError(error);
+            }
+          }
+        );
+       }},
+      {text: 'cancelar',
+       handler: () => {return}}
+    ]
+  });
+  alert.present();
+}
+
+ showError(error): void {
   let alert = this.alertCrtl.create({
     title: "ERROR",
     subTitle: JSON.stringify(error, null, 4),
@@ -66,23 +126,12 @@ showError(error): void {
   alert.present();
 }
 
- volverOfertasGeneral(): void {
-  this.navCtrl.setRoot('CliOfertasPage');
- }
-
- crearLinea() : any {
-  let modalLinea = this.modalCtrl.create('ModalOfertaLineaPage');
-  modalLinea.present();
- }
-
- editarLinea(linea): any {
-   this.interData.setLineaOferta(linea);
-  let modalLinea = this.modalCtrl.create('ModalOfertaLineaPage');
-  modalLinea.present();
- }
-
- openModalCabecera() {
-  let modalCabecera = this.modalCtrl.create('ModalOfertaCabeceraPage');
-  modalCabecera.present();
- }
+showNoEncontrado(): void {
+  let alert = this.alertCrtl.create({
+    title: "AVISO",
+    subTitle: "No se ha encontrado ningún artículo con estos criterios",
+    buttons: ['OK']
+  });
+  alert.present();
+}
 }

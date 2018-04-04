@@ -5,63 +5,69 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <ion-navbar>
-        <ion-buttons end>
-            <button ion-button icon-only (click)="dismiss()">
-              <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
-            </button>
-          </ion-buttons>
-      <ion-title>LINEAS</ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  
-  <ion-content padding>
-    <ion-list>
-      <form   [formGroup]="linForm" no-lines>
-      <ion-item no-lines class="grptitle">
-                  <div *ngIf="linped.numlinea != 0">Linea (Edición)</div>
-                  <div *ngIf="linped.numlinea == 0">Linea (Creación)</div>
-                  <button color="light" ion-button outline item-end round icon-left (click)="guardarLinea()">
-                    <ion-icon name="checkmark-circle-outline"></ion-icon>
-                    Aceptar
-                  </button>
-      </ion-item>
-      <ion-item class="expand">
-          <ion-label  color="primary">Linea:</ion-label>
-          <ion-input  [(ngModel)]="datos.numlinea" [ngModelOptions]="{standalone: true}" disabled></ion-input>
-      </ion-item>
-      <ion-item class="expand">
-          <ion-label  color="primary">Articulo:</ion-label>
-          <ion-input type="text" [(ngModel)]="nomartic"  formControlName="nomartic" (keyup)='searchArticulos()'></ion-input>
-      </ion-item>
-      
-      <div *ngIf="encontrado" no-lines>
-          <ion-item *ngFor="let articulo of datos.articulos"  (click)="selectArticulo(articulo)">
-              <h4>{{articulo.nomartic}}</h4>
-              <ion-icon name="log-in" item-end></ion-icon>
-            </ion-item>
-      </div>
-      <ion-item class="expand">
-          <ion-label  color="primary">Precio:</ion-label>
-          <ion-input  [(ngModel)]="datos.precioar"  [ngModelOptions]="{standalone: true}" disabled></ion-input>
-      </ion-item>
-      <ion-item class="expand">
-          <ion-label  color="primary">Cantidad:</ion-label>
-          <ion-input type="number" [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()"></ion-input>
-      </ion-item>
-      <ion-item class="expand">
-          <ion-label  color="primary">Importe:</ion-label>
-          <ion-input [(ngModel)]="datos.importel" [ngModelOptions]="{standalone: true}" disabled></ion-input>
-      </ion-item>
-    </form>
-    </ion-list>
-  </ion-content>
-  
-  <ion-footer>
-      <ion-toolbar>
-        <ion-title>
-          <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
-        </ion-title>
-      </ion-toolbar>
-  </ion-footer>
+  <ion-navbar>
+      <ion-buttons end>
+          <button ion-button icon-only (click)="dismiss()">
+            <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+          </button>
+        </ion-buttons>
+    <ion-title>LINEAS</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <form   [formGroup]="linForm" no-lines>
+    <ion-item no-lines class="grptitle">
+                <div *ngIf="linped.numlinea != 0">Linea (Edición)</div>
+                <div *ngIf="linped.numlinea == 0">Linea (Creación)</div>
+                <button color="light" ion-button outline item-end round icon-left (click)="guardarLinea()">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  Aceptar
+                </button>
+    </ion-item>
+    <ion-item class="expand">
+        <ion-label  color="primary">Linea:</ion-label>
+        <ion-input  [(ngModel)]="datos.numlinea" [ngModelOptions]="{standalone: true}" disabled></ion-input>
+    </ion-item>
+    <ion-item class="expand">
+        <ion-label  color="primary">Articulo:</ion-label>
+        <ion-input type="text" [(ngModel)]="nomartic"  formControlName="nomartic" (keyup)='searchArticulos()'></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!linForm.controls.nomartic.valid && falta" no-lines>
+      <p style="color:red">Debe introducir un valor.</p>
+    </ion-item>
+    
+    <div *ngIf="encontrado" no-lines>
+        <ion-item *ngFor="let articulo of datos.articulos"  (click)="selectArticulo(articulo)">
+            <h4>{{articulo.nomartic}}</h4>
+            <ion-icon name="log-in" item-end></ion-icon>
+          </ion-item>
+    </div>
+    <ion-item class="expand">
+        <ion-label  color="primary">Precio:</ion-label>
+        <ion-input  [(ngModel)]="datos.precioar"  [ngModelOptions]="{standalone: true}" disabled></ion-input>
+    </ion-item>
+    <ion-item class="expand">
+        <ion-label  color="primary">Cantidad:</ion-label>
+        <ion-input type="number" [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!linForm.controls.cantidad.valid && falta" no-lines>
+      <p style="color:red">La cantidad es requerida y <br>tiene que ser mayor que cero.</p>
+    </ion-item>
+    <ion-item class="expand">
+        <ion-label  color="primary">Importe:</ion-label>
+        <ion-input [(ngModel)]="datos.importel" [ngModelOptions]="{standalone: true}" disabled></ion-input>
+    </ion-item>
+  </form>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+      <ion-title>
+        <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
+      </ion-title>
+    </ion-toolbar>
+</ion-footer>

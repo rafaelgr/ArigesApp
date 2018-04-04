@@ -60,8 +60,8 @@ datos = {
   linea: any = {};//variable para la edicion de lineas
   nomartic: any = "";
   cantidad: number = 0
-  searchArticulo: boolean;
   encontrado: boolean = false;
+  falta: boolean = false;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
@@ -70,7 +70,7 @@ datos = {
 
       this.linForm = formBuilder.group({
         nomartic: ['', Validators.compose([Validators.required])],
-        cantidad: ['', Validators.compose([Validators.required])]
+        cantidad: ['', Validators.compose([Validators.required, Validators.min(1)])]
       });
 
   }
@@ -108,14 +108,13 @@ datos = {
 
   searchArticulos(): any {
     if (!this.nomartic || this.nomartic.length < 3) {
-        this.searchArticulo = false;
         return;
     }
     let loading = this.loadingCtrl.create({
       content: 'Buscando articulos...'
     });
     loading.present();
-    this.searchArticulo = true;
+   
     this.arigesData.getArticulosCliente(
         this.settings.url,
         this.datos.cliente.codclien,
@@ -164,6 +163,7 @@ datos = {
       this.linped.codalmac = 1;
       this.linped.nomartic = articulo.nomartic;
       this.linped.precioar = articulo.precio.importe;
+      this.datos.precioar = articulo.precio.importe;
       this.linped.origpre = articulo.precio.origen;
       this.linped.dtoline1 = 0;
       this.linped.dtoline2 = 0;
@@ -171,7 +171,8 @@ datos = {
       //cargamos las variables de binding con los objetos seleccionados
       this.nomartic =  articulo.nomartic;
       this.datos.precioar = articulo.precio.importe;
-
+      
+    
       if(!this.cantidad) {
         this.cantidad = 0;
       }
@@ -180,6 +181,7 @@ datos = {
       this.datos.articulo = articulo;
       //ocultamos los resultados de la busqueda de articulos
       this.encontrado = false;
+      this.cambiaCantidad();
   }
 
   cambiaCantidad(): void {
@@ -205,19 +207,9 @@ datos = {
         },
         (error) => {
           if (error.status == 404) {
-            let alert = this.alertCrtl.create({
-              title: "AVISO",
-              subTitle: "No se ha podido crear",
-              buttons: ['OK']
-            });
-            alert.present();
+            this.showNoEncontrado();
           } else {
-            let alert = this.alertCrtl.create({
-              title: "ERROR",
-              subTitle: JSON.stringify(error, null, 4),
-              buttons: ['OK']
-            });
-            alert.present();
+            this.showError(error);
           }
         }
       );
@@ -226,30 +218,29 @@ datos = {
         this.arigesData.putLineaOferta(this.settings.url, this.linped)
         .subscribe(
           (data) => {
-            this.datos.oferta.lineas.splice(this.linea.numlinea-1, 1, data);//añadimos la linea recien creada al array de lineas de la oferta
+            var num;
+            for(var i = 0; i < this.datos.oferta.lineas.length; i++){
+              num = this.datos.oferta.lineas[i].numlinea
+              if( num == data.numlinea) {
+                this.datos.oferta.lineas.splice(i, 1, data);//añadimos la linea recien creada al array de lineas de la oferta
+              }
+            }
+           
             this.interData.setLineaOferta(null);//establecemos la linea en edición a null una vez editada
             this.dismiss();//volvemos a la página de edición
           },
           (error) => {
             if (error.status == 404) {
-              let alert = this.alertCrtl.create({
-                title: "AVISO",
-                subTitle: "No se ha podido Modificar",
-                buttons: ['OK']
-              });
-              alert.present();
+              this.showNoEncontrado();
             } else {
-              let alert = this.alertCrtl.create({
-                title: "ERROR",
-                subTitle: JSON.stringify(error, null, 4),
-                buttons: ['OK']
-              });
-              alert.present();
+              this.showError(error);
             }
           }
         );
       }
       
+    } else {
+      this.falta = true;
     }
   }
 
@@ -261,5 +252,23 @@ datos = {
   dismiss() {
     this.interData.setLineaOferta(null);//establecemos la linea en edición a null
     this.viewCtrl.dismiss();
+  }
+
+  showError(error): void {
+    let alert = this.alertCrtl.create({
+      title: "ERROR",
+      subTitle: JSON.stringify(error, null, 4),
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+  
+  showNoEncontrado(): void {
+    let alert = this.alertCrtl.create({
+      title: "AVISO",
+      subTitle: "No se ha encontrado ningún artículo con estos criterios",
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }

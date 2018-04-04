@@ -22,29 +22,27 @@ import * as numeral from 'numeral';
 })
 export class ModalOfertaCabeceraPage {
   datos: any = {
-    oferta: {},
+    oferta: { totalofe: 0},
     cliente: {},
     linea: null,
     articulo: null,
     cantidad: null,
     parnomcli: "",
-    nomagent: ""
+    nomagent: "",
   };
 
 
 
 
+  totalofe: number = 0;
   cabForm: FormGroup;
   settings: any = [];
   nomagent: any;
   fecha: string;
-  totalofe: number;
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     public formBuilder: FormBuilder, public localData: LocalDataProvider, public interData: InterDataProvider,
     public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
 
-
-      this.totalofe = 0;
 
     this.cabForm = formBuilder.group({
       fecha: ['', Validators.compose([Validators.required])]
@@ -78,6 +76,7 @@ export class ModalOfertaCabeceraPage {
     } else {
       var fecha_dos = this.datos.oferta.fecofert;//se carga fecha de base de datos por defecto en un método
       this.fecha = moment(fecha_dos, "DD/MM/YYYY").format("YYYY-MM-DD");
+      this.totalofe = this.datos.oferta.totalofe
     }
   }
 
@@ -89,24 +88,16 @@ export class ModalOfertaCabeceraPage {
           .subscribe(
             (data) => {
               var crear = true;
+              data.fecofert = moment(data.fecofert, "YYYY-MM-DD").format("DD/MM/YYYY");
+              data.fecentre = moment(data.fecentre, "YYYY-MM-DD").format("DD/MM/YYYY");
               this.interData.setOferta(data);
               this.dismiss(crear);
             },
             (error) => {
               if (error.status == 404) {
-                let alert = this.alertCrtl.create({
-                  title: "AVISO",
-                  subTitle: "No se ha podido crear",
-                  buttons: ['OK']
-                });
-                alert.present();
+                this.showNoEncontrado();
               } else {
-                let alert = this.alertCrtl.create({
-                  title: "ERROR",
-                  subTitle: JSON.stringify(error, null, 4),
-                  buttons: ['OK']
-                });
-                alert.present();
+                this.showError(error);
               }
             }
           );
@@ -122,19 +113,9 @@ export class ModalOfertaCabeceraPage {
             },
             (error) => {
               if (error.status == 404) {
-                let alert = this.alertCrtl.create({
-                  title: "AVISO",
-                  subTitle: "No se ha podido Modificar",
-                  buttons: ['OK']
-                });
-                alert.present();
+                this.showNoEncontrado();
               } else {
-                let alert = this.alertCrtl.create({
-                  title: "ERROR",
-                  subTitle: JSON.stringify(error, null, 4),
-                  buttons: ['OK']
-                });
-                alert.present();
+                this.showError(error);
               }
             }
           );
@@ -164,9 +145,30 @@ export class ModalOfertaCabeceraPage {
       proclien: this.datos.cliente.proclien,
       nifclien: this.datos.cliente.nifclien,
       codagent: this.datos.cliente.codagent,
-      coddirec: null
+      coddirec: null,
+      //¿se tienen que quitar?Mirar en el viejo
+      codtraba: 0,
+      codforpa: 0
     };
     return cabofert;
   }
+showError(error): void {
+    let alert = this.alertCrtl.create({
+      title: "ERROR",
+      subTitle: JSON.stringify(error, null, 4),
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+  
+  showNoEncontrado(): void {
+    let alert = this.alertCrtl.create({
+      title: "AVISO",
+      subTitle: "No se ha encontrado ningún artículo con estos criterios",
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+  
 
 }
