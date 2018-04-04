@@ -250,8 +250,9 @@ datos = {
 
 
   dismiss() {
+    var oferta = this.interData.getOferta();
     this.interData.setLineaOferta(null);//establecemos la linea en edición a null
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss(oferta);
   }
 
   showError(error): void {

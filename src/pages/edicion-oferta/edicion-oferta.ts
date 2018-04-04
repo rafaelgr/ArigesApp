@@ -62,6 +62,7 @@ loadData(): void {
 
  crearLinea() : void {
   let modalLinea = this.modalCtrl.create('ModalOfertaLineaPage');
+  
   modalLinea.present();
  }
 
