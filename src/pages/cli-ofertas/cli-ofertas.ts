@@ -19,14 +19,11 @@ export class CliOfertasPage {
   cliente: any = {};
   ofertas: any = [];
   modalCabecera: any;
-  editar: boolean;
-  borrar: boolean;
-
+ 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
     public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController, public modalCtrl: ModalController) {
-      this.editar = false;
-      this.borrar = false;
+      
 
   }
 
@@ -80,14 +77,10 @@ export class CliOfertasPage {
   }
 
   goOferta(oferta): void {
-    if(this.editar || this.borrar) {
-      this.editar = false;
-      this.borrar = false;
-      return;
-    } else {
+   
       this.interData.setOferta(oferta);
       this.navCtrl.push('CliOfertasDetallePage');
-    }
+    
   }
 
   borrarOferta(oferta): void {
@@ -96,7 +89,7 @@ export class CliOfertasPage {
   }
 
   editarOferta(oferta): void {
-    this.editar = true;
+  
     this.interData.setOferta(oferta);
     this.navCtrl.push('EdicionOfertaPage');
   }
@@ -115,7 +108,6 @@ export class CliOfertasPage {
   }
 
   confirmarBorrado(oferta): any {
-    this.borrar = true;
     let alert = this.alertCrtl.create({
       title: "AVISO",
       subTitle: "¿Está seguro que desea borrar el registro?",
@@ -145,7 +137,7 @@ export class CliOfertasPage {
                 );
          }},
         {text: 'cancelar',
-         handler: () => { this.borrar = false;return}}
+         handler: () => { return}}
       ]
     });
     alert.present();
