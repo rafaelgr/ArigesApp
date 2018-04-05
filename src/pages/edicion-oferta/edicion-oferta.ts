@@ -78,29 +78,39 @@ loadData(): void {
  }
 
  borrarLineaOferta(linea): void {
-  this.confirmarBorrado(linea);
- }
-
- confirmarBorrado(linea): any {
-  let alert = this.alertCrtl.create({
-    title: "AVISO",
-    subTitle: "¿Está seguro que desea borrar el registro?",
-    buttons: [
-      {text: 'Aceptar',
-       handler: ()=> {
-        this.arigesData.deleteLineaOferta(this.settings.url, this.oferta.numofert, linea.numlinea)
+  this.arigesData.deleteLineaOferta(this.settings.url, this.oferta.numofert, linea.numlinea)
         .subscribe(
           (data) => {
-            var num;
-           for(var i = 0; i < this.oferta.lineas.length; i++) {
-            num = this.oferta.lineas[i].numlinea
-             if(num == linea.numlinea) {
-              
-               this.oferta.lineas.splice(i, 1);
-               break;
-             }
-           }
-           this.interData.setOferta(this.oferta);
+
+            this.arigesData.getOfertas(this.settings.url, this.cliente.codclien)
+            .subscribe(
+              (datos) => {
+                //buscamos la oferta en la que estamos trabajando, le asignamos el total de la oferta recuperada a la 
+                ///oferta local y la formateamos
+                for(var i = 0; i < datos.length; i++) {
+                  if(this.oferta.numofert == datos[i].numofert) {
+                    this.oferta.totalofe = datos[i].totalofe;
+                    this.oferta.totalofe = numeral(this.oferta.totalofe).format('0,0.00 $');
+                    break;
+                  }
+                }
+                //eliminamos del array de lineas de la oferta local la linea elimninada
+                var num;
+                for(var j = 0; j < this.oferta.lineas.length; j++) {
+                  num = this.oferta.lineas[j].numlinea
+                   if(num == linea.numlinea) {
+                    
+      
+                     this.oferta.lineas.splice(j, 1);
+                     break;
+                   }
+                 }
+                 this.interData.setOferta(this.oferta);
+              },
+              (error) => {
+                this.showError(error);
+              }
+            );
           },
           (error) => {
             if (error.status == 404) {
@@ -110,6 +120,16 @@ loadData(): void {
             }
           }
         );
+ }
+
+ confirmarBorrado(linea): any {
+  let alert = this.alertCrtl.create({
+    title: "AVISO",
+    subTitle: "¿Está seguro que desea borrar el registro?",
+    buttons: [
+      {text: 'Aceptar',
+       handler: ()=> {
+        this.borrarLineaOferta(linea);
        }},
       {text: 'cancelar',
        handler: () => {return}}

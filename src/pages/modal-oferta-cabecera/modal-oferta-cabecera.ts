@@ -24,16 +24,14 @@ export class ModalOfertaCabeceraPage {
   datos: any = {
     oferta: { totalofe: 0},
     cliente: {},
-    linea: null,
-    articulo: null,
-    cantidad: null,
     parnomcli: "",
-    nomagent: "",
+    nomagent: ""
   };
 
 
 
 
+  observa: string = ""
   totalofe: number = 0;
   cabForm: FormGroup;
   settings: any = [];
@@ -76,7 +74,8 @@ export class ModalOfertaCabeceraPage {
     } else {
       var fecha_dos = this.datos.oferta.fecofert;//se carga fecha de base de datos por defecto en un método
       this.fecha = moment(fecha_dos, "DD/MM/YYYY").format("YYYY-MM-DD");
-      this.totalofe = this.datos.oferta.totalofe
+      this.totalofe = this.datos.oferta.totalofe;
+      this.observa = this.datos.oferta.observa01;
     }
   }
 
@@ -108,6 +107,7 @@ export class ModalOfertaCabeceraPage {
              var crear = false;
               this.datos.oferta.fecofert = moment(this.fecha, "YYYY-MM-DD").format("DD/MM/YYYY");
               this.datos.oferta.fecentre = moment(this.fecha, "YYYY-MM-DD").format("DD/MM/YYYY");
+              this.datos.oferta.observa01 = this.observa;
               this.interData.setOferta(this.datos.oferta);
               this.dismiss(crear);
             },
@@ -134,21 +134,42 @@ export class ModalOfertaCabeceraPage {
   }
 
   saveObjectMysql(): any {
-    var cabofert = {
-      fecofert: this.fecha,
-      fecentre: this.fecha,
-      codclien: this.datos.cliente.codclien,
-      nomclien: this.datos.cliente.nomclien,
-      domclien: this.datos.cliente.domclien,
-      codpobla: this.datos.cliente.codpobla,
-      pobclien: this.datos.cliente.pobclien,
-      proclien: this.datos.cliente.proclien,
-      nifclien: this.datos.cliente.nifclien,
-      codagent: this.datos.cliente.codagent,
-      coddirec: null,
-      //¿se tienen que quitar?Mirar en el viejo
-      codtraba: 0,
-      codforpa: 0
+    var cabofert = {};
+    if(!this.datos.oferta){
+      cabofert = {
+        fecofert: this.fecha,
+        fecentre: this.fecha,
+        codclien: this.datos.cliente.codclien,
+        nomclien: this.datos.cliente.nomclien,
+        domclien: this.datos.cliente.domclien,
+        codpobla: this.datos.cliente.codpobla,
+        pobclien: this.datos.cliente.pobclien,
+        proclien: this.datos.cliente.proclien,
+        nifclien: this.datos.cliente.nifclien,
+        codagent: this.datos.cliente.codagent,
+        coddirec: null,
+        codtraba: 0,
+        codforpa: 0,
+        observa01: this.observa
+      };
+    }else {
+      cabofert = {
+        fecofert: this.fecha,
+        fecentre: this.fecha,
+        numofert: this.datos.oferta.numofert,
+        codclien: this.datos.cliente.codclien,
+        nomclien: this.datos.cliente.nomclien,
+        domclien: this.datos.cliente.domclien,
+        codpobla: this.datos.cliente.codpobla,
+        pobclien: this.datos.cliente.pobclien,
+        proclien: this.datos.cliente.proclien,
+        nifclien: this.datos.cliente.nifclien,
+        codagent: this.datos.cliente.codagent,
+        coddirec: null,
+        codtraba: 0,
+        codforpa: 0,
+        observa01: this.observa
+    }
     };
     return cabofert;
   }

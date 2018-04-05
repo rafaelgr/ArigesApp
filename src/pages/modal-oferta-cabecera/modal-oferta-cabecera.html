@@ -43,6 +43,10 @@
         <ion-label color="primary">Total:</ion-label>
         <ion-input value="{{totalofe}}" disabled></ion-input>
     </ion-item>
+    <ion-item >
+      <ion-label color="primary" floating>Observaciones:</ion-label>
+      <ion-textarea value="{{observa}}" [ngModelOptions]="{standalone: true}" [(ngModel)]="observa"></ion-textarea>
+    </ion-item>
   </form>
   </ion-list>
 </ion-content>

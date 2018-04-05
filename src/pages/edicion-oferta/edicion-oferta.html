@@ -37,6 +37,9 @@
       <strong>Fecha: </strong>{{oferta.fecofert}}
       <strong>Total: </strong>{{oferta.totalofe}}
     </div>
+    <div>
+        <strong>Observaciones: </strong>{{oferta.observa01}}
+    </div>
   </ion-item>
   
 </ion-list>
@@ -69,7 +72,7 @@
             <ion-icon name="create"></ion-icon> 
             Editar
           </button>
-          <button color="danger" ion-button outline item-end round icon-left  (click)="borrarLineaOferta(linea)">
+          <button color="danger" ion-button outline item-end round icon-left  (click)="confirmarBorrado(linea)">
             <ion-icon name="trash"></ion-icon> 
             Borrar
         </button>

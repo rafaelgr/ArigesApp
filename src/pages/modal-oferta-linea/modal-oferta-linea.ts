@@ -53,7 +53,7 @@ datos = {
   },
   articulos:[],
   articulo: {},
-  oferta: {numofert: 0, lineas:[]}
+  oferta: {numofert: 0, totalofe: 0,lineas:[]}
 }
 
 
@@ -114,12 +114,12 @@ datos = {
       content: 'Buscando articulos...'
     });
     loading.present();
-   
+    
     this.arigesData.getArticulosCliente(
         this.settings.url,
         this.datos.cliente.codclien,
-        this.datos.cliente.codtarif,
         this.datos.cliente.codactiv,
+        this.datos.cliente.codtarif,
         this.nomartic)
         .subscribe(
           (data) => {
@@ -201,9 +201,32 @@ datos = {
       .subscribe(
         (data) => {
           if(this.datos.oferta.lineas == undefined) {this.datos.oferta.lineas = []}
-          this.datos.oferta.lineas.push(data);//añadimos la linea recien creada al array de lineas de la oferta
-          this.interData.setOferta(this.datos.oferta)//guardamos la oferta con la linea recién creada
-          this.dismiss();
+         
+          //recuperamos las ofertas de la base de datos
+          this.arigesData.getOfertas(this.settings.url, this.datos.cliente.codclien)
+          .subscribe(
+            (datos) => {
+              //buscamos la oferta con la que estamos trabajando, le asignamos el total de la oferta recuperada a la 
+              ///oferta local y la formateamos
+              for(var i = 0; i < datos.length; i++) {
+                if(data.numofert == datos[i].numofert) {
+                  this.datos.oferta.totalofe = datos[i].totalofe;
+                  this.datos.oferta.totalofe = numeral(this.datos.oferta.totalofe).format('0,0.00 $');
+                  break;
+                }
+              }
+              //formateamos los valores de la linea recién creada
+              this.formateaValores(data);
+
+              this.datos.oferta.lineas.push(data);//añadimos la linea recien creada al array de lineas de la oferta local
+
+              this.interData.setOferta(this.datos.oferta)//guardamos la oferta con la linea recién creada
+              this.dismiss();
+            },
+            (error) => {
+              this.showError(error);
+            }
+          );
         },
         (error) => {
           if (error.status == 404) {
@@ -218,16 +241,37 @@ datos = {
         this.arigesData.putLineaOferta(this.settings.url, this.linped)
         .subscribe(
           (data) => {
-            var num;
-            for(var i = 0; i < this.datos.oferta.lineas.length; i++){
-              num = this.datos.oferta.lineas[i].numlinea
-              if( num == data.numlinea) {
-                this.datos.oferta.lineas.splice(i, 1, data);//añadimos la linea recien creada al array de lineas de la oferta
+            this.arigesData.getOfertas(this.settings.url, this.datos.cliente.codclien)
+            .subscribe(
+              (datos) => {
+                //buscamos la oferta en la que estamos trabajando, le asignamos el total de la oferta recuperada a la 
+                ///oferta local y la formateamos
+                for(var i = 0; i < datos.length; i++) {
+                  if(data.numofert == datos[i].numofert) {
+                    this.datos.oferta.totalofe = datos[i].totalofe;
+                    this.datos.oferta.totalofe = numeral(this.datos.oferta.totalofe).format('0,0.00 $');
+                    break;
+                  }
+                }
+                //formateamos los valores de la linea recién creada
+                this.formateaValores(data);
+  
+                //buscamos la linea modificada en el array de lineas de la oferta local
+                var num;
+                for(var i = 0; i < this.datos.oferta.lineas.length; i++){
+                  num = this.datos.oferta.lineas[i].numlinea
+                  if( num == data.numlinea) {
+                    this.datos.oferta.lineas.splice(i, 1, data);//añadimos la linea recien modificada al array de lineas de la oferta
+                  }
+                }
+               
+                this.interData.setLineaOferta(null);//establecemos la linea en edición a null una vez editada
+                this.dismiss();//volvemos a la página de edición
+              },
+              (error) => {
+                this.showError(error);
               }
-            }
-           
-            this.interData.setLineaOferta(null);//establecemos la linea en edición a null una vez editada
-            this.dismiss();//volvemos a la página de edición
+            );
           },
           (error) => {
             if (error.status == 404) {
@@ -242,6 +286,13 @@ datos = {
     } else {
       this.falta = true;
     }
+  }
+
+  formateaValores(data): void {
+    data.dtoline1 = numeral(data.dtoline1).format('0,0.00');
+    data.dtoline2 = numeral(data.dtoline2).format('0,0.00');
+    data.precioar = numeral(data.precioar).format('0,0.00 $');
+    data.importel = numeral(data.importel).format('0,0.00 $');
   }
 
   round(value): number {
