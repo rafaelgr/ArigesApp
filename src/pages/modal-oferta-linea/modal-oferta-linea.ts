@@ -46,6 +46,10 @@ datos = {
   precioar: 0,
   cantidad: 0,
   importel: 0,
+  dtoline1: 0,
+  dtoline2: 0,
+  sobreresto: false,
+  pvp: 0,
   cliente: {
     codclien: "",
     codactiv: "",
@@ -94,7 +98,7 @@ datos = {
     this.datos.cliente = this.interData.getCliente();
     this.datos.oferta = this.interData.getOferta();
     this.linea = this.interData.getLineaOferta();
-    //si hay linea es edicion y cargamos el formulario con los valores de la linea
+    //si hay linea, es edicion y cargamos el formulario con los valores de la linea
     if(this.linea){
       this.datos.numlinea = this.linea.numlinea;
       this.nomartic = this.linea.nomartic;
@@ -162,15 +166,17 @@ datos = {
       this.linped.codartic = articulo.codartic;
       this.linped.codalmac = 1;
       this.linped.nomartic = articulo.nomartic;
-      this.linped.precioar = articulo.precio.importe;
-      this.datos.precioar = articulo.precio.importe;
+      this.linped.precioar = articulo.precio.pvp;
       this.linped.origpre = articulo.precio.origen;
-      this.linped.dtoline1 = 0;
-      this.linped.dtoline2 = 0;
+      this.linped.dtoline1 = articulo.precio.dto1;
+      this.linped.dtoline2 = articulo.precio.dto2;
 
       //cargamos las variables de binding con los objetos seleccionados
       this.nomartic =  articulo.nomartic;
-      this.datos.precioar = articulo.precio.importe;
+      this.datos.precioar = articulo.precio.pvp;
+      this.datos.dtoline1 = articulo.precio.dto1;
+      this.datos.dtoline2 = articulo.precio.dto2;
+      this.datos.sobreresto = articulo.precio.sobreResto;
       
     
       if(!this.cantidad) {
@@ -185,7 +191,15 @@ datos = {
   }
 
   cambiaCantidad(): void {
-    this.linped.importel = this.round(this.cantidad * this.linped.precioar);
+    var cant;
+    //calculamos los descuentos segundo descuento
+    if(!this.datos.sobreresto) {//sobreresto false se suman los decuentos y se aplican sobre el pvp
+      this.linped.importel = this.round(this.cantidad * (this.linped.precioar-(((this.datos.dtoline1+this.datos.dtoline2)/100)*this.linped.precioar)));
+    } else {//sobreresto true se aplica el primer descuento y luego el segunco sobte el resto
+      cant = this.linped.importel = this.round(this.cantidad * (this.linped.precioar-((this.datos.dtoline1/100)*this.linped.precioar)));
+      this.linped.importel = this.round(cant-((this.datos.dtoline2/100)*cant));
+    }
+
     this.linped.cantidad = this.cantidad;
     this.datos.importel = this.linped.importel;
 

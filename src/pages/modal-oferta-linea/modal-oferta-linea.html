@@ -46,15 +46,23 @@
           </ion-item>
     </div>
     <ion-item class="expand">
+      <ion-label  color="primary">Cantidad:</ion-label>
+      <ion-input type="number" [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()"></ion-input>
+    </ion-item>
+    <ion-item class="expand">
         <ion-label  color="primary">Precio:</ion-label>
         <ion-input  [(ngModel)]="datos.precioar"  [ngModelOptions]="{standalone: true}" disabled></ion-input>
     </ion-item>
-    <ion-item class="expand">
-        <ion-label  color="primary">Cantidad:</ion-label>
-        <ion-input type="number" [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()"></ion-input>
-    </ion-item>
     <ion-item *ngIf="!linForm.controls.cantidad.valid && falta" no-lines>
       <p style="color:red">La cantidad es requerida y <br>tiene que ser mayor que cero.</p>
+    </ion-item>
+    <ion-item class="expand">
+      <ion-label  color="primary">descuneto 1:</ion-label>
+      <ion-input  [(ngModel)]="datos.dtoline1" [ngModelOptions]="{standalone: true}" disabled></ion-input>
+    </ion-item>
+    <ion-item class="expand">
+      <ion-label  color="primary">Descuento 2</ion-label>
+      <ion-input  [(ngModel)]="datos.dtoline2" [ngModelOptions]="{standalone: true}" disabled></ion-input>
     </ion-item>
     <ion-item class="expand">
         <ion-label  color="primary">Importe:</ion-label>
