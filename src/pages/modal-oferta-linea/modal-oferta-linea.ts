@@ -30,7 +30,7 @@ export class ModalOfertaLineaPage {
     numofert: 0,
     numlinea: 0,
     codartic: 0,
-    codalmac: 1,
+    codalmac: 0,
     nomartic: "",
     cantidad: 0,
     precioar: 0,
@@ -100,6 +100,7 @@ datos = {
     this.linea = this.interData.getLineaOferta();
     //si hay linea, es edicion y cargamos el formulario con los valores de la linea
     if(this.linea){
+      this.linped.codalmac = this.settings.user.codalmac;
       this.datos.numlinea = this.linea.numlinea;
       this.nomartic = this.linea.nomartic;
       this.datos.precioar = this.linea.precioar;
@@ -164,7 +165,6 @@ datos = {
     //cargamos el objeto linea con los datos seleccionados
       this.linped.numofert = this.datos.oferta.numofert;
       this.linped.codartic = articulo.codartic;
-      this.linped.codalmac = 1;
       this.linped.nomartic = articulo.nomartic;
       this.linped.precioar = articulo.precio.pvp;
       this.linped.origpre = articulo.precio.origen;
@@ -209,8 +209,7 @@ datos = {
     if(this.linForm.valid){
       //alta
       if(this.linped.numlinea == 0){
-      
-
+      this.linped.codalmac = this.settings.user.codalmac;
       this.arigesData.postLineaOferta(this.settings.url, this.linped)
       .subscribe(
         (data) => {
