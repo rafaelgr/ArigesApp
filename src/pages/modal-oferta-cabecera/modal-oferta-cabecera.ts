@@ -63,7 +63,7 @@ export class ModalOfertaCabeceraPage {
   }
 
   loadData(): void {
-
+    var cadena;
     this.datos.oferta = this.interData.getOferta();
     this.datos.cliente = this.interData.getCliente();
     this.datos.parnomcli = this.datos.cliente.nomclien;
@@ -75,7 +75,10 @@ export class ModalOfertaCabeceraPage {
       var fecha_dos = this.datos.oferta.fecofert;//se carga fecha de base de datos por defecto en un método
       this.fecha = moment(fecha_dos, "DD/MM/YYYY").format("YYYY-MM-DD");
       this.totalofe = this.datos.oferta.totalofe;
-      this.observa = this.datos.oferta.observa01;
+      cadena = this.datos.oferta.observa01+" "+this.datos.oferta.observa02+" "
+      +this.datos.oferta.observa03+" "+this.datos.oferta.observa04+" "+this.datos.oferta.observa05;
+
+      this.observa = cadena.replace(/undefined/gi, '').trim(); 
     }
   }
 
@@ -107,7 +110,11 @@ export class ModalOfertaCabeceraPage {
              var crear = false;
               this.datos.oferta.fecofert = moment(this.fecha, "YYYY-MM-DD").format("DD/MM/YYYY");
               this.datos.oferta.fecentre = moment(this.fecha, "YYYY-MM-DD").format("DD/MM/YYYY");
-              this.datos.oferta.observa01 = this.observa;
+              this.datos.oferta.observa01 = data.observa01;
+              this.datos.oferta.observa02 = data.observa02;
+              this.datos.oferta.observa03 = data.observa03;
+              this.datos.oferta.observa04 = data.observa04;
+              this.datos.oferta.observa05 = data.observa05;
               this.interData.setOferta(this.datos.oferta);
               this.dismiss(crear);
             },
@@ -135,6 +142,12 @@ export class ModalOfertaCabeceraPage {
 
   saveObjectMysql(): any {
     var cabofert = {};
+    var ob = [];
+    var indice = 0;
+    for (var i = 0; i <= 4; i++) {
+      ob[i] = this.observa.substr(indice, 79);
+      indice += 80
+    }
     if(!this.datos.oferta){
       cabofert = {
         fecofert: this.fecha,
@@ -146,11 +159,19 @@ export class ModalOfertaCabeceraPage {
         pobclien: this.datos.cliente.pobclien,
         proclien: this.datos.cliente.proclien,
         nifclien: this.datos.cliente.nifclien,
+        telclien: this.datos.cliente.telclie1,
         codagent: this.datos.cliente.codagent,
         coddirec: null,
         codtraba: 0,
-        codforpa: 0,
-        observa01: this.observa
+        codforpa: this.datos.cliente.codforpa,
+        tipofact: this.datos.cliente.tipofact,
+        dtoppago: this.datos.cliente.dtoppago,
+        dtognral: this.datos.cliente.dtognral,
+        observa01: ob[0],
+        observa02: ob[1],
+        observa03: ob[2],
+        observa04: ob[3],
+        observa05: ob[4]
       };
     }else {
       cabofert = {
@@ -167,8 +188,15 @@ export class ModalOfertaCabeceraPage {
         codagent: this.datos.cliente.codagent,
         coddirec: null,
         codtraba: 0,
-        codforpa: 0,
-        observa01: this.observa
+        codforpa: this.datos.cliente.codforpa,
+        tipofact: this.datos.cliente.tipofact,
+        dtoppago: this.datos.cliente.dtoppago,
+        dtognral: this.datos.cliente.dtognral,
+        observa01: ob[0],
+        observa02: ob[1],
+        observa03: ob[2],
+        observa04: ob[3],
+        observa05: ob[4]
     }
     };
     return cabofert;
