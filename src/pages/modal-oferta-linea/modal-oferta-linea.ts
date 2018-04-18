@@ -26,21 +26,8 @@ export class ModalOfertaLineaPage {
   nomagent: any;
   fecha: string;
 
-  linped = {
-    numofert: 0,
-    numlinea: 0,
-    codartic: 0,
-    codalmac: 0,
-    nomartic: "",
-    cantidad: 0,
-    precioar: 0,
-    dtoline1: 0,
-    dtoline2: 0,
-    importel: 0,
-    origpre: "",
-    codprovex: 0
-};
-
+ 
+  
 datos = {
   numlinea: 0,
   precioar: 0,
@@ -48,6 +35,7 @@ datos = {
   importel: 0,
   dtoline1: 0,
   dtoline2: 0,
+  origpre: "",
   sobreresto: false,
   pvp: 0,
   cliente: {
@@ -56,7 +44,17 @@ datos = {
     codtarif: ""
   },
   articulos:[],
-  articulo: {},
+  articulo: {
+    codartic:0,
+    codalmac: 0,
+    nomartic:"",
+    precio:{
+      dto1:0,
+      dto2:0,
+      origen: 0,
+      pvp:0,
+    },
+  },
   oferta: {numofert: 0, totalofe: 0,lineas:[]}
 }
 
@@ -66,6 +64,7 @@ datos = {
   cantidad: number = 0
   encontrado: boolean = false;
   falta: boolean = false;
+  
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
@@ -100,15 +99,63 @@ datos = {
     this.linea = this.interData.getLineaOferta();
     //si hay linea, es edicion y cargamos el formulario con los valores de la linea
     if(this.linea){
-      this.linped.codalmac = this.settings.user.codalmac;
       this.datos.numlinea = this.linea.numlinea;
       this.nomartic = this.linea.nomartic;
       this.datos.precioar = this.linea.precioar;
       this.cantidad = this.linea.cantidad;
       this.datos.importel = this.linea.importel;
-      this.linped.numlinea = this.linea.numlinea;
-      this.searchArticulos();
+      this.datos.articulo.precio.dto1 = this.linea.dtoline1;
+      this.datos.articulo.precio.dto2 = this.linea.dtoline2;
+      this.datos.articulo.codalmac = this.linea.codalmac;
+      this.datos.articulo.codartic = this.linea.codartic;
+      this.datos.origpre = this.linea.origpre;
+      
+      //buscamos el articulo del cliente para recuperar el campo sobreresto
+      this.recuperaSobreresto();
+     
+
+      //formateamos los campos numericos con los que vamos a calcular
+      this.datos.importel = Number(this.datos.importel.toString().replace(/€/, '').replace(/,/, ".").trim());
+      this.datos.precioar = Number(this.datos.precioar.toString().replace(/€/, '').replace(/,/, ".").trim());
+      this.datos.articulo.precio.dto1 = Number(this.datos.articulo.precio.dto1.toString().replace(/,/, ".").trim());
+      this.datos.articulo.precio.dto2 = Number(this.datos.articulo.precio.dto2.toString().replace(/,/, ".").trim());
     }
+  }
+
+  recuperaSobreresto(): any{
+    this.arigesData.getArticulosCliente(
+      this.settings.url,
+      this.datos.cliente.codclien,
+      this.datos.cliente.codactiv,
+      this.datos.cliente.codtarif,
+      this.nomartic)
+      .subscribe(
+        (data) => {
+          this.datos.articulos = data;
+          //si no devuelve articulos sale del método
+          if(this.datos.articulos.length == 0) {
+            return;
+          }
+        },
+        (error) => {
+          if (error.status == 404) {
+            let alert = this.alertCrtl.create({
+              title: "AVISO",
+              subTitle: "No se ha podido Crear",
+              buttons: ['OK']
+            });
+            alert.present();
+          } else {
+            let alert = this.alertCrtl.create({
+              title: "ERROR",
+              subTitle: JSON.stringify(error, null, 4),
+              buttons: ['OK']
+            });
+            alert.present();
+          }
+        }
+      );
+    
   }
 
   searchArticulos(): any {
@@ -135,10 +182,6 @@ datos = {
             if(this.datos.articulos.length == 0) {
               return;
             }
-            //si se trata de una edicion cargamos los datos del articulo de la linea
-            if(this.linped.numlinea != 0 && this.datos.articulos.length == 1) {
-              this.selectArticulo(this.datos.articulos[0]);
-            }
           },
           (error) => {
             if (error.status == 404) {
@@ -161,22 +204,15 @@ datos = {
   }
 
   selectArticulo(articulo): void {
+    this.datos.articulo = articulo;
    
-    //cargamos el objeto linea con los datos seleccionados
-      this.linped.numofert = this.datos.oferta.numofert;
-      this.linped.codartic = articulo.codartic;
-      this.linped.nomartic = articulo.nomartic;
-      this.linped.precioar = articulo.precio.pvp;
-      this.linped.origpre = articulo.precio.origen;
-      this.linped.dtoline1 = articulo.precio.dto1;
-      this.linped.dtoline2 = articulo.precio.dto2;
-
       //cargamos las variables de binding con los objetos seleccionados
       this.nomartic =  articulo.nomartic;
       this.datos.precioar = articulo.precio.pvp;
       this.datos.dtoline1 = articulo.precio.dto1;
       this.datos.dtoline2 = articulo.precio.dto2;
       this.datos.sobreresto = articulo.precio.sobreResto;
+      this.datos.origpre = articulo.precio.origen;
       
     
       if(!this.cantidad) {
@@ -194,23 +230,23 @@ datos = {
     var cant;
     //calculamos los descuentos segundo descuento
     if(!this.datos.sobreresto) {//sobreresto false se suman los decuentos y se aplican sobre el pvp
-      this.linped.importel = this.round(this.cantidad * (this.linped.precioar-(((this.datos.dtoline1+this.datos.dtoline2)/100)*this.linped.precioar)));
+      this.datos.importel = this.round(this.cantidad * (this.datos.precioar-(((this.datos.dtoline1+this.datos.dtoline2)/100)*this.datos.precioar)));
     } else {//sobreresto true se aplica el primer descuento y luego el segunco sobte el resto
-      cant = this.linped.importel = this.round(this.cantidad * (this.linped.precioar-((this.datos.dtoline1/100)*this.linped.precioar)));
-      this.linped.importel = this.round(cant-((this.datos.dtoline2/100)*cant));
+      cant = this.datos.importel = this.round(this.cantidad * (this.datos.precioar-((this.datos.dtoline1/100)*this.datos.precioar)));
+      this.datos.importel = this.round(cant-((this.datos.dtoline2/100)*cant));
     }
 
-    this.linped.cantidad = this.cantidad;
-    this.datos.importel = this.linped.importel;
+    this.datos.cantidad = this.cantidad;
+    this.datos.importel = this.datos.importel;
 
   };
 
   guardarLinea() {
     if(this.linForm.valid){
       //alta
-      if(this.linped.numlinea == 0){
-      this.linped.codalmac = this.settings.user.codalmac;
-      this.arigesData.postLineaOferta(this.settings.url, this.linped)
+      if(this.datos.numlinea == 0){
+      this.datos.articulo.codalmac = this.settings.user.codalmac;
+      this.arigesData.postLineaOferta(this.settings.url, this.saveObjectMysql())
       .subscribe(
         (data) => {
           if(this.datos.oferta.lineas == undefined) {this.datos.oferta.lineas = []}
@@ -223,6 +259,7 @@ datos = {
               ///oferta local y la formateamos
               for(var i = 0; i < datos.length; i++) {
                 if(data.numofert == datos[i].numofert) {
+                  this.datos.oferta.numofert = datos[i].numofert;
                   this.datos.oferta.totalofe = datos[i].totalofe;
                   this.datos.oferta.totalofe = numeral(this.datos.oferta.totalofe).format('0,0.00 $');
                   break;
@@ -251,7 +288,7 @@ datos = {
       );
       } else {
         
-        this.arigesData.putLineaOferta(this.settings.url, this.linped)
+        this.arigesData.putLineaOferta(this.settings.url, this.saveObjectMysql())
         .subscribe(
           (data) => {
             this.arigesData.getOfertas(this.settings.url, this.datos.cliente.codclien)
@@ -335,5 +372,43 @@ datos = {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  saveObjectMysql(): any {
+    var linofert = {};
+    
+    if(!this.linea){
+      linofert = {
+        numofert: this.datos.oferta.numofert,
+        numlinea: 0,
+        codartic: this.datos.articulo.codartic,
+        codalmac: this.datos.articulo.codalmac,
+        nomartic: this.nomartic,
+        cantidad: this.cantidad,
+        precioar: this.datos.precioar,
+        dtoline1: this.datos.articulo.precio.dto1,
+        dtoline2: this.datos.articulo.precio.dto2,
+        importel: this.datos.importel,
+        origpre: this.datos.origpre,
+        codprovex: 0
+        
+      };
+    }else {
+      linofert = {
+        numofert: this.datos.oferta.numofert,
+        numlinea: this.linea.numlinea,
+        codartic: this.datos.articulo.codartic,
+        codalmac: this.datos.articulo.codalmac,
+        nomartic: this.nomartic,
+        cantidad: this.cantidad,
+        precioar: this.datos.precioar,
+        dtoline1: this.datos.articulo.precio.dto1,
+        dtoline2: this.datos.articulo.precio.dto2,
+        importel: this.datos.importel,
+        origpre: this.datos.origpre,
+        codprovex: 0
+    }
+    };
+    return linofert;
   }
 }

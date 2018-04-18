@@ -84,6 +84,7 @@ export class ArigesDataProvider {
   }
 
   getArticulosExt(apiUrl, parnom, parpro, parfam, codigo, obsole): any {
+    
     let params = {
       'parnom': parnom,
       'parpro': parpro,
