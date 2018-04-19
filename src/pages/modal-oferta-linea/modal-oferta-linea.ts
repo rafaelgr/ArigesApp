@@ -45,8 +45,9 @@ datos = {
   },
   articulos:[],
   articulo: {
-    codartic:0,
+    codartic: "",
     codalmac: 0,
+    codproveX: 0,
     nomartic:"",
     precio:{
       dto1:0,
@@ -97,6 +98,7 @@ datos = {
     this.datos.cliente = this.interData.getCliente();
     this.datos.oferta = this.interData.getOferta();
     this.linea = this.interData.getLineaOferta();
+    this.datos.sobreresto = this.settings.user.tipodtos;
     //si hay linea, es edicion y cargamos el formulario con los valores de la linea
     if(this.linea){
       this.datos.numlinea = this.linea.numlinea;
@@ -109,10 +111,8 @@ datos = {
       this.datos.articulo.codalmac = this.linea.codalmac;
       this.datos.articulo.codartic = this.linea.codartic;
       this.datos.origpre = this.linea.origpre;
+      this.datos.articulo.codproveX = this.linea.codproveX;
       
-      //buscamos el articulo del cliente para recuperar el campo sobreresto
-      this.recuperaSobreresto();
-     
 
       //formateamos los campos numericos con los que vamos a calcular
       this.datos.importel = Number(this.datos.importel.toString().replace(/€/, '').replace(/,/, ".").trim());
@@ -120,42 +120,6 @@ datos = {
       this.datos.articulo.precio.dto1 = Number(this.datos.articulo.precio.dto1.toString().replace(/,/, ".").trim());
       this.datos.articulo.precio.dto2 = Number(this.datos.articulo.precio.dto2.toString().replace(/,/, ".").trim());
     }
-  }
-
-  recuperaSobreresto(): any{
-    this.arigesData.getArticulosCliente(
-      this.settings.url,
-      this.datos.cliente.codclien,
-      this.datos.cliente.codactiv,
-      this.datos.cliente.codtarif,
-      this.nomartic)
-      .subscribe(
-        (data) => {
-          this.datos.articulos = data;
-          //si no devuelve articulos sale del método
-          if(this.datos.articulos.length == 0) {
-            return;
-          }
-        },
-        (error) => {
-          if (error.status == 404) {
-            let alert = this.alertCrtl.create({
-              title: "AVISO",
-              subTitle: "No se ha podido Crear",
-              buttons: ['OK']
-            });
-            alert.present();
-          } else {
-            let alert = this.alertCrtl.create({
-              title: "ERROR",
-              subTitle: JSON.stringify(error, null, 4),
-              buttons: ['OK']
-            });
-            alert.present();
-          }
-        }
-      );
-    
   }
 
   searchArticulos(): any {
@@ -206,13 +170,14 @@ datos = {
   selectArticulo(articulo): void {
     this.datos.articulo = articulo;
    
-      //cargamos las variables de binding con los objetos seleccionados
+      //cargamos las variables relacionadas con el articulo con el objeto seleccionado
       this.nomartic =  articulo.nomartic;
       this.datos.precioar = articulo.precio.pvp;
       this.datos.dtoline1 = articulo.precio.dto1;
       this.datos.dtoline2 = articulo.precio.dto2;
-      this.datos.sobreresto = articulo.precio.sobreResto;
       this.datos.origpre = articulo.precio.origen;
+      this.datos.articulo.codproveX = articulo.codprove;
+     
       
     
       if(!this.cantidad) {
@@ -245,7 +210,7 @@ datos = {
     if(this.linForm.valid){
       //alta
       if(this.datos.numlinea == 0){
-      this.datos.articulo.codalmac = this.settings.user.codalmac;
+      
       this.arigesData.postLineaOferta(this.settings.url, this.saveObjectMysql())
       .subscribe(
         (data) => {
@@ -382,7 +347,7 @@ datos = {
         numofert: this.datos.oferta.numofert,
         numlinea: 0,
         codartic: this.datos.articulo.codartic,
-        codalmac: this.datos.articulo.codalmac,
+        codalmac: this.settings.user.codalmac,
         nomartic: this.nomartic,
         cantidad: this.cantidad,
         precioar: this.datos.precioar,
@@ -390,7 +355,7 @@ datos = {
         dtoline2: this.datos.articulo.precio.dto2,
         importel: this.datos.importel,
         origpre: this.datos.origpre,
-        codprovex: 0
+        codproveX: this.datos.articulo.codproveX
         
       };
     }else {
@@ -398,7 +363,7 @@ datos = {
         numofert: this.datos.oferta.numofert,
         numlinea: this.linea.numlinea,
         codartic: this.datos.articulo.codartic,
-        codalmac: this.datos.articulo.codalmac,
+        codalmac: this.settings.user.codalmac,
         nomartic: this.nomartic,
         cantidad: this.cantidad,
         precioar: this.datos.precioar,
@@ -406,7 +371,7 @@ datos = {
         dtoline2: this.datos.articulo.precio.dto2,
         importel: this.datos.importel,
         origpre: this.datos.origpre,
-        codprovex: 0
+        codproveX: this.datos.articulo.codproveX
     }
     };
     return linofert;

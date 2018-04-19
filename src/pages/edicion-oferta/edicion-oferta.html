@@ -26,7 +26,7 @@
         Editar
     </button>
   </ion-item>
-  <ion-item >
+  <ion-item text-wrap>
     <div>
       <strong>Oferta Nº </strong>{{oferta.numofert}}
     </div>
@@ -37,11 +37,11 @@
       <strong>Fecha: </strong>{{oferta.fecofert}}
       <strong>Total: </strong>{{oferta.totalofe}}
     </div>
+    <div>
+      <strong>Observaciones: </strong><br>{{observa}}
+    </div>
   </ion-item>
-  <ion-item >
-    <ion-label  floating><strong class="black">Observaciones:</strong></ion-label>
-    <ion-textarea  value="{{observa}}" disabled></ion-textarea>
-  </ion-item>
+  
   
 </ion-list>
 <ion-list class="borde">

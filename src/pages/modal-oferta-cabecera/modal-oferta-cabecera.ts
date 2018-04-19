@@ -78,7 +78,10 @@ export class ModalOfertaCabeceraPage {
       cadena = this.datos.oferta.observa01+" "+this.datos.oferta.observa02+" "
       +this.datos.oferta.observa03+" "+this.datos.oferta.observa04+" "+this.datos.oferta.observa05;
 
-      this.observa = cadena.replace(/undefined/gi, '').trim(); 
+      this.observa = cadena.replace(/undefined | null/gi, '').trim(); 
+      if(this.observa == 'null' || this.observa == 'undefined') {
+        this.observa = '';
+      }
     }
   }
 

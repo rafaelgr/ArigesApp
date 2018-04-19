@@ -29,7 +29,7 @@
     </ion-item>
     <ion-item class="expand">
         <ion-label  color="primary">Linea:</ion-label>
-        <ion-input  [(ngModel)]="datos.numlinea" [ngModelOptions]="{standalone: true}" disabled></ion-input>
+        <ion-input  value="{{datos.numlinea}}"  disabled></ion-input>
     </ion-item>
     <ion-item class="expand">
         <ion-label  color="primary">Articulo:</ion-label>
@@ -46,27 +46,31 @@
           </ion-item>
     </div>
     <ion-item class="expand">
+      <ion-label  color="primary">Referencia:</ion-label>
+      <ion-input type="text" value="{{datos.articulo.codartic}}" disabled></ion-input>
+    </ion-item>
+    <ion-item class="expand">
       <ion-label  color="primary">Cantidad:</ion-label>
       <ion-input type="number" [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()"></ion-input>
     </ion-item>
     <ion-item class="expand">
         <ion-label  color="primary">Precio:</ion-label>
-        <ion-input  [(ngModel)]="datos.precioar"  [ngModelOptions]="{standalone: true}" disabled></ion-input>
+        <ion-input  value="{{datos.precioar}}"   disabled></ion-input>
     </ion-item>
     <ion-item *ngIf="!linForm.controls.cantidad.valid && falta" no-lines>
       <p style="color:red">La cantidad es requerida y <br>tiene que ser mayor que cero.</p>
     </ion-item>
     <ion-item class="expand">
-      <ion-label  color="primary">descuneto 1:</ion-label>
-      <ion-input  [(ngModel)]="datos.articulo.precio.dto1" [ngModelOptions]="{standalone: true}" disabled></ion-input>
+      <ion-label  color="primary">Descuento 1:</ion-label>
+      <ion-input  value="{{datos.articulo.precio.dto1}}"  disabled></ion-input>
     </ion-item>
     <ion-item class="expand">
       <ion-label  color="primary">Descuento 2</ion-label>
-      <ion-input  [(ngModel)]="datos.articulo.precio.dto1" [ngModelOptions]="{standalone: true}" disabled></ion-input>
+      <ion-input  value="{{datos.articulo.precio.dto2}}"  disabled></ion-input>
     </ion-item>
     <ion-item class="expand">
         <ion-label  color="primary">Importe:</ion-label>
-        <ion-input [(ngModel)]="datos.importel" [ngModelOptions]="{standalone: true}" disabled></ion-input>
+        <ion-input value="{{datos.importel}}"  disabled></ion-input>
     </ion-item>
   </form>
   </ion-list>
