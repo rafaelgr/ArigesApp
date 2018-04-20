@@ -53,12 +53,12 @@
       <ion-label  color="primary">Cantidad:</ion-label>
       <ion-input type="number" [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()"></ion-input>
     </ion-item>
+    <ion-item *ngIf="!linForm.controls.cantidad.valid && falta" no-lines>
+      <p style="color:red">La cantidad es requerida y <br>tiene que ser mayor que cero.</p>
+    </ion-item>
     <ion-item class="expand">
         <ion-label  color="primary">Precio:</ion-label>
         <ion-input  value="{{datos.precioar}}"   disabled></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!linForm.controls.cantidad.valid && falta" no-lines>
-      <p style="color:red">La cantidad es requerida y <br>tiene que ser mayor que cero.</p>
     </ion-item>
     <ion-item class="expand">
       <ion-label  color="primary">Descuento 1:</ion-label>
