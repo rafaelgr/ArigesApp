@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, AlertController, LoadingController } from 'ionic-angular';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
+import "rxjs/Rx";
+
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
@@ -65,13 +68,15 @@ datos = {
   cantidad: number = 0
   encontrado: boolean = false;
   falta: boolean = false;
-  
+  seleccionado: boolean = false;
+  nomartiControl: FormControl;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
      public formBuilder: FormBuilder, public localData: LocalDataProvider, public interData: InterDataProvider, 
      public arigesData: ArigesDataProvider, public alertCrtl: AlertController, public loadingCtrl: LoadingController) {
 
+      this.nomartiControl = new FormControl();
       this.linForm = formBuilder.group({
         nomartic: ['', Validators.compose([Validators.required])],
         cantidad: ['', Validators.compose([Validators.required, Validators.min(1)])]
@@ -87,6 +92,14 @@ datos = {
           this.navCtrl.setRoot('LoginPage');
         } else {
           this.loadData();
+          this.nomartiControl.valueChanges.debounceTime(700).subscribe( data => {
+            if (!data || data.length < 3 || this.seleccionado) {
+              return;
+            }
+            this.searchArticulos();
+          }
+
+          );
         }
       } else {
         this.navCtrl.setRoot('SettingsPage');
@@ -123,9 +136,7 @@ datos = {
   }
 
   searchArticulos(): any {
-    if (!this.nomartic || this.nomartic.length < 3) {
-        return;
-    }
+    
     let loading = this.loadingCtrl.create({
       content: 'Buscando articulos...'
     });
@@ -188,6 +199,8 @@ datos = {
       this.datos.articulo = articulo;
       //ocultamos los resultados de la busqueda de articulos
       this.encontrado = false;
+      //marcamos que se ha seleccionado un articulo para que el observable no se vuelva a ejecutar
+      this.seleccionado = true;
       this.cambiaCantidad();
   }
 
@@ -337,6 +350,10 @@ datos = {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  noSeleccionado(): void {
+    this.seleccionado = false;
   }
 
   saveObjectMysql(): any {

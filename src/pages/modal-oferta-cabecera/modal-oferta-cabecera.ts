@@ -37,10 +37,11 @@ export class ModalOfertaCabeceraPage {
   settings: any = [];
   nomagent: any;
   fecha: string;
+ 
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     public formBuilder: FormBuilder, public localData: LocalDataProvider, public interData: InterDataProvider,
     public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
-
 
     this.cabForm = formBuilder.group({
       fecha: ['', Validators.compose([Validators.required])]
