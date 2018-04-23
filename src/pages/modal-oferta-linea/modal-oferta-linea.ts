@@ -93,7 +93,7 @@ datos = {
         } else {
           this.loadData();
           this.nomartiControl.valueChanges.debounceTime(700).subscribe( data => {
-            if (!data || data.length < 3 || this.seleccionado) {
+            if (!data || data.length < 3 || !this.seleccionado) {
               return;
             }
             this.searchArticulos();
@@ -200,7 +200,7 @@ datos = {
       //ocultamos los resultados de la busqueda de articulos
       this.encontrado = false;
       //marcamos que se ha seleccionado un articulo para que el observable no se vuelva a ejecutar
-      this.seleccionado = true;
+      this.seleccionado = false;
       this.cambiaCantidad();
   }
 
@@ -353,7 +353,7 @@ datos = {
   }
 
   noSeleccionado(): void {
-    this.seleccionado = false;
+    this.seleccionado = true;
   }
 
   saveObjectMysql(): any {

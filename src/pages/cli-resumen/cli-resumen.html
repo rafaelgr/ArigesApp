@@ -17,62 +17,66 @@
     <ion-item no-lines class="grptitle">
       Indicadores
     </ion-item>
-    <ion-item text-wrap>
+    
+    <ion-grid>
       <ion-row>
-        <ion-col>
+        <ion-col col-4>
           <strong>Ofertas: </strong> {{indicadores.ofertas}}
         </ion-col>
-        <ion-col>
+        <ion-col col-4>
           <strong>Pedidos: </strong> {{indicadores.pedidos}}
         </ion-col>
-        <ion-col>
+        <ion-col col-4>
           <strong>Albaranes: </strong> {{indicadores.albaranes}}
         </ion-col>
       </ion-row>
-    </ion-item>
-    <ion-item text-wrap>
+     
       <ion-row>
-        <ion-col>
-          <strong>S.Pend.: </strong> {{indicadores.saldoPendiente}}
+        <ion-col col-auto col-sm>
+          <strong>Saldo: </strong> {{indicadores.saldoPendiente}}
         </ion-col>
-        <ion-col>
-          <strong>S.Vencido: </strong> {{indicadores.saldoVencido}}
+        <ion-col col-auto col-sm>
+          <strong>Saldo Vencido: </strong> {{indicadores.saldoVencido}}
         </ion-col>
       </ion-row>
-    </ion-item>
-    <ion-item text-wrap>
+    
       <ion-row>
-        <ion-col>
+        <ion-col col-12>
           <strong>Situación: </strong> {{cliente.situacio}}
         </ion-col>
       </ion-row>
-    </ion-item>
-    <ion-item text-wrap>
+   
       <ion-row>
-        <ion-col>
+        <ion-col col-12>
           <strong>Agente: </strong> {{cliente.nomagent}}
         </ion-col>
-        <ion-col>
+      </ion-row>
+    
+      <ion-row>
+        <ion-col col-12>
           <strong>F.Pago: </strong> {{cliente.nomforpa}}
         </ion-col>
       </ion-row>
-    </ion-item>
-    <ion-item text-wrap>
+    
       <ion-row>
-        <ion-col>
+        <ion-col col-auto col-sm>
           <strong>Limite de crédito: </strong> {{cliente.limiteCredito}}
         </ion-col>
-        <ion-col>
+        <ion-col col-auto col-sm>
           <strong>Tipo crédito: </strong> {{cliente.creditoPrivado}}
         </ion-col>
       </ion-row>
-    </ion-item>
-    <ion-item text-wrap>
-      <div>
+    
+    <ion-row>
+      <ion-col  col-12>
         <strong>Observaciones:</strong>
         <p>{{cliente.observac}}</p>
-      </div>
-    </ion-item>
+      </ion-col>
+    </ion-row>
+    
+    </ion-grid>
+ 
+    
   </ion-list>
   <ion-list>
     <ion-item no-lines class="grptitle">
