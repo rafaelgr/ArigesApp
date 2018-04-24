@@ -18,6 +18,13 @@ export class CliResumenPage {
   indicadores: any = {};
   ventaAnual: any = {};
   cobros: any = [];
+  // solo en pruebas
+  labels = [];
+  series = ['Media', 'Cliente'];
+  data = [
+      [],
+      []
+  ];
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
@@ -46,6 +53,7 @@ export class CliResumenPage {
 
   loadData(): void {
     this.cliente = this.interData.getCliente();
+    this.prepareLimCredito();
     this.arigesData.getIndicadores(this.settings.url, this.cliente.codclien, this.cliente.codmacta)
       .subscribe(
         (data) => {
@@ -59,6 +67,7 @@ export class CliResumenPage {
       .subscribe(
         (data) => {
           this.ventaAnual = data;
+          this.prepareVentaAnual();
         },
         (error) => {
           this.showError(error);
@@ -76,7 +85,13 @@ export class CliResumenPage {
   }
 
   goCobro(cobro): void {
+    
+  }
 
+  prepareVentaAnual(): void {
+    this.labels = this.ventaAnual.labels;
+    this.series = this.ventaAnual.series;
+    this.data = this.ventaAnual.data;
   }
 
   showError(error): void {
@@ -108,6 +123,10 @@ export class CliResumenPage {
     indicadores.saldoPendiente = numeral(indicadores.saldoPendiente).format('0,0.00 $');
     indicadores.saldoVencido = numeral(indicadores.saldoVencido).format('0,0.00 $');
     return indicadores;
+  }
+
+  prepareLimCredito(): any {
+    this.cliente.limiteCredito = numeral( this.cliente.limiteCredito).format('0,0.00 $');
   }
 
 }

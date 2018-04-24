@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
@@ -21,7 +21,8 @@ export class CliContactoPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
-    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
+    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController,
+     public modalCtrl: ModalController) {
       
   }
 
@@ -56,5 +57,11 @@ export class CliContactoPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  openMap(): void{
+    let modalMap = this.modalCtrl.create('ModalLocalizacionPage');
+    
+    modalMap.present();
   }
 }

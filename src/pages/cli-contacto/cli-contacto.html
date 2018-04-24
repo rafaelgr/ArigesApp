@@ -32,28 +32,39 @@
     <ion-item no-lines class="grptitle">
       Administración
     </ion-item>
-    <ion-item text-wrap>
+    <a ion-item text-wrap href="tel:{{cliente.telclie1}}">
       {{cliente.perclie1}} ({{cliente.telclie1}})
       <ion-icon name="call" item-end></ion-icon>
-    </ion-item>
-    <ion-item text-wrap>
+    </a>
+    <a ion-item href="mailto:{{cliente.maiclie1}}" text-wrap>
         {{cliente.maiclie1}}
         <ion-icon name="mail" item-end></ion-icon>
-    </ion-item>
+    </a>
   </ion-list>
   <ion-list>
       <ion-item no-lines class="grptitle">
         Comercial
       </ion-item>
-      <ion-item text-wrap>
+      <a ion-item text-wrap href="tel:{{cliente.telclie2}}">
         {{cliente.perclie2}} ({{cliente.telclie2}})
         <ion-icon name="call" item-end></ion-icon>
-      </ion-item>
-      <ion-item text-wrap>
+      </a>
+      <a ion-item text-wrap href="mailto:{{cliente.maiclie2}}">
           {{cliente.maiclie2}}
           <ion-icon name="mail" item-end></ion-icon>
-      </ion-item>
-    </ion-list>  
+      </a>
+    </ion-list>
+    <ion-list>
+        <ion-item no-lines class="grptitle">
+            Localización
+        </ion-item>
+        <ion-item no-lines>
+          <button ion-button outline item-end round icon-left (click)="openMap()">
+            <ion-icon name="search"></ion-icon>
+            Ver en el mapa
+          </button>
+        </ion-item>
+    </ion-list>
 </ion-content>
 
 <ion-footer>

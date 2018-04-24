@@ -63,7 +63,7 @@
           <strong>Limite de crédito: </strong> {{cliente.limiteCredito}}
         </ion-col>
         <ion-col col-auto col-sm>
-          <strong>Tipo crédito: </strong> {{cliente.creditoPrivado}}
+          <strong>Tipo crédito: </strong> {{cliente.nomCreditoPrivado}}
         </ion-col>
       </ion-row>
     
@@ -75,8 +75,14 @@
     </ion-row>
     
     </ion-grid>
- 
-    
+  </ion-list>
+  <ion-list>
+    <ion-item no-lines class="grptitle">
+        Facturación anual
+    </ion-item>
+    <ion-item>
+      <canvas #graficaFacturacion class="grafico" data="data" labels="labels" legend="true" series="series" options="{showTooltips: false}"></canvas>
+    </ion-item>
   </ion-list>
   <ion-list>
     <ion-item no-lines class="grptitle">
