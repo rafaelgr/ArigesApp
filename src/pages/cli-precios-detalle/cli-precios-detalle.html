@@ -16,7 +16,6 @@
   <ion-list>
     <ion-item no-lines class="grptitle" text-wrap>
       <div>
-          <strong>Artículo:</strong> 
           <p>{{articulo.nomartic}}</p>
       </div>
       <div>
@@ -27,12 +26,19 @@
     </ion-item>
     <ion-item text-wrap>
       <div>
-        <strong>Origen: </strong>{{articulo.precio.origen}}
-        <strong>Precio: </strong>{{articulo.precio.pvp}}
+        <strong>Origen: </strong>{{articulo.precio.origenDesc}}
       </div>
       <div>
+          <strong>Precio: </strong>{{articulo.precio.pvp}}
+      </div>
+      
+      <div>
         <strong>Dto1: </strong>{{articulo.precio.dto1}}
+      </div>
+      <div>
         <strong>Dto2: </strong>{{articulo.precio.dto2}}
+      </div>
+      <div>
         <strong>Importe: </strong>{{articulo.precio.importe}}
       </div>
     </ion-item>

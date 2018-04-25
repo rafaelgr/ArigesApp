@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
+import { IonicPage, NavController, NavParams, ViewController,  AlertController } from 'ionic-angular';
+
 
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
@@ -27,9 +27,9 @@ export class ModalLocalizacionPage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geoLocation: Geolocation, 
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
     public viewCtrl: ViewController, public localData: LocalDataProvider, public interData: InterDataProvider, 
-    public arigesData: ArigesDataProvider,) {
+    public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
   }
 
   ionViewDidLoad(){
@@ -90,6 +90,15 @@ export class ModalLocalizacionPage {
   dismiss() {
       this.viewCtrl.dismiss();
     
+  }
+
+  showError(error): void {
+    let alert = this.alertCrtl.create({
+      title: "ERROR",
+      subTitle: JSON.stringify(error, null, 4),
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 

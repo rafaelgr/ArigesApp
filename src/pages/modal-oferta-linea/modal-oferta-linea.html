@@ -28,10 +28,6 @@
                 </button>
     </ion-item>
     <ion-item class="expand">
-        <ion-label  color="primary">Linea:</ion-label>
-        <ion-input  value="{{datos.numlinea}}"  disabled></ion-input>
-    </ion-item>
-    <ion-item class="expand">
         <ion-label  color="primary">Articulo:</ion-label>
         <ion-input type="text" [(ngModel)]="nomartic" [formControl]="nomartiControl" formControlName="nomartic" (focus)="noSeleccionado()" ngDefaultControl></ion-input>
     </ion-item>
