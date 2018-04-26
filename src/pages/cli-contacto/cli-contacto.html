@@ -45,14 +45,18 @@
       <ion-item no-lines class="grptitle">
         Comercial
       </ion-item>
-      <a ion-item text-wrap href="tel:{{cliente.telclie2}}">
-        {{cliente.perclie2}} ({{cliente.telclie2}})
-        <ion-icon name="call" item-end></ion-icon>
-      </a>
-      <a ion-item text-wrap href="mailto:{{cliente.maiclie2}}">
+      <div *ngIf="cliente.telclie2 != null || cliente.telclie2 != undefined">
+        <a ion-item text-wrap href="tel:{{cliente.telclie2}}">
+          {{cliente.perclie2}} ({{cliente.telclie2}})
+          <ion-icon name="call" item-end></ion-icon>
+        </a>
+      </div>
+      <div *ngIf="cliente.maiclie2 != null || cliente.maiclie2 != undefined">
+        <a ion-item text-wrap href="mailto:{{cliente.maiclie2}}">
           {{cliente.maiclie2}}
           <ion-icon name="mail" item-end></ion-icon>
       </a>
+      </div>
     </ion-list>
     <ion-list>
         <ion-item no-lines class="grptitle">

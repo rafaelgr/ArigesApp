@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController,  AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 
 
 import { LocalDataProvider } from '../../providers/local-data/local-data';
@@ -26,13 +26,15 @@ export class ModalLocalizacionPage {
 
   @ViewChild('map') mapElement: ElementRef;
   map: any;
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public viewCtrl: ViewController, public localData: LocalDataProvider, public interData: InterDataProvider, 
     public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
+      
   }
 
-  ionViewDidLoad(){
+  ionViewWillEnter(){
     this.localData.getSettings().then(data => {
       if (data) {
         this.settings = JSON.parse(data);
@@ -52,9 +54,10 @@ export class ModalLocalizacionPage {
     this.loadMap();
   }
 
-  loadMap(){
+  loadMap(): void{
     
     var latLng = new google.maps.LatLng(0, 0);
+    var estado = 0;
 
     let mapOptions = {
       center: latLng,
@@ -73,16 +76,15 @@ export class ModalLocalizacionPage {
 
     geocoder.geocode({
       'address': address
-  }, function(results, status) {
+  }, (results, status) =>{
       if (status == google.maps.GeocoderStatus.OK) {
-          console.log('exito');
           map.setCenter(results[0].geometry.location);
           var marker = new google.maps.Marker({
               map: map,
               position: results[0].geometry.location
           });
       } else {
-          alert('Geocode was not successful for the following reason: ' + status);
+        this.showError(status)
       }
   });
   }
@@ -92,13 +94,25 @@ export class ModalLocalizacionPage {
     
   }
 
-  showError(error): void {
-    let alert = this.alertCrtl.create({
-      title: "ERROR",
-      subTitle: JSON.stringify(error, null, 4),
-      buttons: ['OK']
-    });
-    alert.present();
+  showError(status): void {
+    var titulo = 'No se ha podido geolocalizar la dirección'
+    if (status == 'ZERO_RESULTS') {
+      let alert = this.alertCrtl.create({
+        title: titulo,
+        subTitle: JSON.stringify(status, null, 4),
+        buttons: ['OK']
+      });
+      alert.present();
+    } else {
+      let alert = this.alertCrtl.create({
+        title: "Se ha producido el siguiente error",
+        subTitle: JSON.stringify(status, null, 4),
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+   
+    
   }
 
 
