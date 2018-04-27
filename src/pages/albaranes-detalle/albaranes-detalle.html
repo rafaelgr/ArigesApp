@@ -14,14 +14,25 @@
     <ion-item no-lines class="grptitle" text-wrap>
       <div>
         <strong>Albarán: </strong> {{alb.numalbar}}
+        <strong>Fecha: </strong>{{albaran.fechaalb}}
       </div>
+      <div>
+          <strong>Agente: </strong>{{albaran.nomagent}}
+      </div>
+      <div>
+          <strong>Cliente: </strong>{{albaran.nomclien}}
+      </div>
+      <div>
+            <strong>Observaciones: </strong>
+            <p>{{albaran.observa}}</p>     
+      </div>
+      
     </ion-item>
   </ion-list>
   <ion-list>
     <ion-item *ngFor="let linea of alb.lineas" text-wrap>
       <div>
-        <strong>Linea: </strong>{{linea.numlinea}}
-        <strong>Articulo: </strong>{{linea.nomartic}}
+        {{linea.nomartic}}
       </div>
       <div>
         <strong>Cantidad: </strong>{{linea.cantidad}}

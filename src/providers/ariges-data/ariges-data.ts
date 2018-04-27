@@ -141,6 +141,14 @@ export class ArigesDataProvider {
     });
   }
 
+  getProveedoresDescuentosRappeles(apiUrl, codprove): any {
+    return this.http.get(apiUrl + '/api/proveedores/descuentos-rappeles', {
+        params: {
+            "codprove": codprove
+        }
+    })
+}
+
   getFamilias(apiUrl, parnom): any {
     let params = {
       'parnom': parnom

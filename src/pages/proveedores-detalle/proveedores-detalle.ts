@@ -17,8 +17,9 @@ export class ProveedoresDetallePage {
   settings: any;
   cliente: any = {};
   proveedor = {
-    
+    codprove: ""
   };
+  descuentos: any = {};
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
@@ -47,6 +48,7 @@ export class ProveedoresDetallePage {
 
   loadData(): void {
     this.proveedor = this.interData.getProveedor();
+    this.descuentos = this.arigesData.getProveedoresDescuentosRappeles(this.settings.url ,this.proveedor.codprove);
   }
 
 

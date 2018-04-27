@@ -23,13 +23,15 @@
     <ion-item *ngFor="let pedido of pedidos" (click)="goPedido(pedido)" text-wrap>
       <div>
         <strong>Numero: </strong>{{pedido.numpedcl}}
-        <strong>Agente: </strong>{{pedido.nomagent}}
-      </div>
-      <div>
-        <strong>Cliente: </strong>{{pedido.nomclien}} ({{pedido.nomcomer}})
-      </div>
-      <div>
         <strong>Fecha: </strong>{{pedido.fecpedcl}}
+      </div>
+      <div>
+          <strong>Agente: </strong>{{pedido.nomagent}}
+      </div>
+      <div>
+        <strong>Cliente: </strong>{{pedido.nomclien}}
+      </div>
+      <div>
         <strong>Total: </strong>{{pedido.totalped}}
       </div>
       <ion-icon name="log-in" item-end></ion-icon>
