@@ -44,7 +44,7 @@ export class CliFacturasPage {
 
   loadData(): void {
     this.cliente = this.interData.getCliente();
-    this.arigesData.getFacturas(this.settings.url, this.cliente.codclien)
+    this.arigesData.getFacturasComentarios(this.settings.url, this.cliente.codclien)
       .subscribe(
         (data) => {
           this.facturas = this.prepareFacturas(data);

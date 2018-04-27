@@ -21,9 +21,14 @@
       <div *ngIf="linea.numalbar != -1">
         <ion-item no-lines class="grptitle" text-wrap>
           <div *ngIf="linea.numalbar != 0; else cero">
-              <strong>ALBARAN: </strong>{{linea.numalbar}}
+              <strong>ALBARAN: </strong>{{linea.numalbar}}<br>
+              <strong>Observaciones: </strong><div>{{linea.observa}}</div>
           </div>
-          <ng-template #cero><strong>SIN ALBARAN </strong></ng-template>
+          <ng-template #cero>
+
+            <strong>SIN ALBARAN </strong><br>
+            <strong>Observaciones: </strong><div>{{linea.observa}}</div>
+          </ng-template>
         </ion-item>
       </div>
       <div>

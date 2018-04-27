@@ -74,6 +74,11 @@ export class ArigesDataProvider {
     return this.http.get(apiUrl + '/api/facturas/cliente/' + codclien);
   }
 
+  getFacturasComentarios(apiUrl, codclien): any {
+    return this.http.get(apiUrl + '/api/facturas/cliente/comentarios/' + codclien);
+  }
+
+
   getArticulos(apiUrl, parnom): any {
     let params = {
       'parnom': parnom
