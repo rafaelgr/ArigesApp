@@ -132,6 +132,8 @@ datos = {
       this.datos.precioar = Number(this.datos.precioar.toString().replace(/€/, '').replace(/,/, ".").trim());
       this.datos.articulo.precio.dto1 = Number(this.datos.articulo.precio.dto1.toString().replace(/,/, ".").trim());
       this.datos.articulo.precio.dto2 = Number(this.datos.articulo.precio.dto2.toString().replace(/,/, ".").trim());
+
+      
     }
   }
 

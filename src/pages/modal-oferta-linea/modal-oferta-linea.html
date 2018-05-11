@@ -27,8 +27,8 @@
                   Aceptar
                 </button>
     </ion-item>
-    <ion-item class="expand">
-        <ion-label  color="primary">Articulo:</ion-label>
+    <ion-item >
+        <ion-label  color="cabecera" stacked>Articulo:</ion-label>
         <ion-input type="text" [(ngModel)]="nomartic" [formControl]="nomartiControl" formControlName="nomartic" (focus)="noSeleccionado()" ngDefaultControl></ion-input>
     </ion-item>
     <ion-item *ngIf="!linForm.controls.nomartic.valid && falta" no-lines>
@@ -41,31 +41,31 @@
             <ion-icon name="log-in" item-end></ion-icon>
           </ion-item>
     </div>
-    <ion-item class="expand">
-      <ion-label  color="primary">Referencia:</ion-label>
+    <ion-item >
+      <ion-label   color="cabecera" stacked>Referencia:</ion-label>
       <ion-input type="text" value="{{datos.articulo.codartic}}" disabled></ion-input>
     </ion-item>
-    <ion-item class="expand">
-      <ion-label  color="primary">Cantidad:</ion-label>
+    <ion-item >
+      <ion-label   color="cabecera" stacked>Cantidad:</ion-label>
       <ion-input type="number" [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()"></ion-input>
     </ion-item>
     <ion-item *ngIf="!linForm.controls.cantidad.valid && falta" no-lines>
       <p style="color:red">La cantidad es requerida y <br>tiene que ser mayor que cero.</p>
     </ion-item>
-    <ion-item class="expand">
-        <ion-label  color="primary">Precio:</ion-label>
+    <ion-item >
+        <ion-label   color="cabecera" stacked>Precio:</ion-label>
         <ion-input  value="{{datos.precioar}}"   disabled></ion-input>
     </ion-item>
-    <ion-item class="expand">
-      <ion-label  color="primary">Descuento 1:</ion-label>
+    <ion-item >
+      <ion-label   color="cabecera" stacked>Descuento 1:</ion-label>
       <ion-input  value="{{datos.articulo.precio.dto1}}"  disabled></ion-input>
     </ion-item>
-    <ion-item class="expand">
-      <ion-label  color="primary">Descuento 2</ion-label>
+    <ion-item >
+      <ion-label   color="cabecera" stacked>Descuento 2</ion-label>
       <ion-input  value="{{datos.articulo.precio.dto2}}"  disabled></ion-input>
     </ion-item>
-    <ion-item class="expand">
-        <ion-label  color="primary">Importe:</ion-label>
+    <ion-item >
+        <ion-label   color="cabecera" stacked>Importe:</ion-label>
         <ion-input value="{{datos.importel}}"  disabled></ion-input>
     </ion-item>
   </form>
