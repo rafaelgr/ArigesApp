@@ -13,9 +13,11 @@
 <ion-content padding>
   <ion-list>
     <ion-item text-wrap no-lines>
-      <ion-avatar item-start>
-        <img src="assets/imgs/albaranes.png">
-      </ion-avatar>
+        <ion-thumbnail item-start>
+            <div class="psb">
+                <img src="assets/imgs/albaranes.png">
+            </div>
+          </ion-thumbnail>
       <p>Estos son los albaranes disponibles</p>
     </ion-item>
   </ion-list>
@@ -31,7 +33,7 @@
       <div>
         <strong>Cliente: </strong>{{albaran.nomclien}}
       </div>
-      <ion-icon name="log-in" item-end></ion-icon>
+      <ion-icon name="log-in" item-end class="myGreen"></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>

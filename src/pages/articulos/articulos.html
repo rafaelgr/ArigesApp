@@ -9,13 +9,14 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
   <ion-list>
     <ion-item text-wrap no-lines>
-      <ion-avatar item-start>
-        <img src="assets/imgs/articulos.png">
-      </ion-avatar>
+        <ion-thumbnail item-start>
+            <div class="psb">
+                <img src="assets/imgs/articulos.png">
+            </div>
+          </ion-thumbnail>
       <p>Introduca los criterios que desee y pulse buscar</p>
     </ion-item>
     <form no-lines>
@@ -67,7 +68,7 @@
     </form>
     <ion-item no-lines>
       <button ion-button outline item-end round icon-left (click)="doSearch()">
-        <ion-icon name="search"></ion-icon>
+        <ion-icon name="search" class="myGreen"></ion-icon>
         Buscar
       </button>
     </ion-item>
@@ -75,7 +76,7 @@
   <ion-list>
     <ion-item *ngFor="let articulo of articulos" (click)="goArticulo(articulo)">
       <h4>{{articulo.nomartic}}</h4>
-      <ion-icon name="log-in" item-end></ion-icon>
+      <ion-icon name="log-in" item-end class="myGreen"></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>
