@@ -15,7 +15,10 @@
 <ion-content padding>
   <ion-list>
     <ion-item no-lines class="grptitle" text-wrap>
-      Albaran: {{albaran.numalbar}} Importe: {{albaran.totalalb}}
+      <strong>Albaran: </strong> {{albaran.numalbar}} <strong>Importe: </strong>{{albaran.totalalb}}
+      <div>
+          <strong>Observaciones: </strong><br>{{albaran.observa}}
+      </div>
     </ion-item>
     <ion-item *ngFor="let linea of albaran.lineas" text-wrap>
       <div>

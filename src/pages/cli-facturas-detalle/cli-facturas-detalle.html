@@ -15,7 +15,7 @@
 <ion-content padding>
   <ion-list>
     <ion-item no-lines class="grptitle" text-wrap>
-      Factura: {{factura.numfactu}} Importe: {{factura.totalfac}}
+      Factura: {{factura.numfactu}} Importe: {{factura.bases}}
     </ion-item>
     <ion-item *ngFor="let linea of factura.lineas" text-wrap>
       <div *ngIf="linea.numalbar != -1">

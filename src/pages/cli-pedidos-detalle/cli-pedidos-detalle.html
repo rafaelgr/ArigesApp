@@ -15,7 +15,12 @@
 <ion-content padding>
   <ion-list>
     <ion-item no-lines class="grptitle" text-wrap>
-      Pedido: {{pedido.numpedcl}} Importe: {{pedido.totalped}}
+      <div>
+         <strong> Pedido: </strong> {{pedido.numpedcl}} <strong>Importe: </strong>{{pedido.totalped}}
+      </div>
+      <div>
+          <strong>Observaciones: </strong><br>{{pedido.observa}}
+      </div>
     </ion-item>
     <ion-item *ngFor="let linea of pedido.lineas" text-wrap>
       <div>

@@ -77,14 +77,27 @@
     </ion-grid>
   </ion-item>
   </ion-list>
-  <!--<ion-list>
+  <ion-list>
     <ion-item no-lines class="grptitle">
         Facturación anual
     </ion-item>
-    <ion-item>
-      <canvas #graficaFacturacion class="grafico" data="data" labels="labels" legend="true" series="series" options="{showTooltips: false}"></canvas>
+    <ion-item no-lines *ngIf="misDatos.length > 0">
+      
+      <ion-grid style=" border: 1px solid grey;" no-padding>
+        
+        <div *ngFor="let dato of misDatos">
+          <ion-row [ngClass]="{'color': dato.anyo%2 > 0}">
+          <ion-col col-4 >
+            {{dato.anyo}}
+          </ion-col>
+          <ion-col  col-8 style="text-align:right;">
+              {{dato.valor}} €
+          </ion-col>
+        </ion-row>
+        </div>
+      </ion-grid>
     </ion-item>
-  </ion-list>-->
+  </ion-list>
   <ion-list>
     <ion-item no-lines class="grptitle">
       Cobros pendientes

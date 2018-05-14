@@ -16,15 +16,15 @@ export class CliResumenPage {
   settings: any;
   cliente: any = {};
   indicadores: any = {};
-  ventaAnual: any = {};
+  ventaAnual: any = {
+    
+  };
   cobros: any = [];
-  // solo en pruebas
-  labels = [];
-  series = ['Media', 'Cliente'];
-  data = [
-      [],
-      []
+  misDatos: any = [
+   
   ];
+  
+
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
@@ -89,9 +89,15 @@ export class CliResumenPage {
   }
 
   prepareVentaAnual(): void {
-    this.labels = this.ventaAnual.labels;
-    this.series = this.ventaAnual.series;
-    this.data = this.ventaAnual.data;
+   
+    this.misDatos = [];
+    for(var i = 0; i < this.ventaAnual.data[1].length; i++ ) {
+      var dato = {
+        anyo: this.ventaAnual.labels[i],
+        valor: this.ventaAnual.data[1][i]
+      }
+      this.misDatos.push(dato);
+    }
   }
 
   showError(error): void {
