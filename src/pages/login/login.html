@@ -13,9 +13,11 @@
 <ion-content padding>
   <ion-list>
     <ion-item text-wrap no-lines>
-      <ion-avatar item-start>
-        <img src="assets/imgs/login.png">
-      </ion-avatar>
+      <ion-thumbnail item-start>
+        <div class="psb">
+            <img src="assets/imgs/login.png" style="margin-left: 28%">
+        </div>
+      </ion-thumbnail>
       <p>Introduzca su usuario y contraseña y pulse aceptar o...</p>
     </ion-item>
     <form [formGroup]="loginForm" no-lines>
@@ -34,7 +36,7 @@
         <p style="color:red">Se necesita una contraseña.</p>
       </ion-item>         
     </form>
-    <ion-item no-lines>
+    <ion-item no-lines class="myGreen">
       <button ion-button outline item-end round icon-left (click)="doLogin()">
         <ion-icon name="checkmark"></ion-icon>
         Aceptar
@@ -43,12 +45,14 @@
   </ion-list>
   <ion-list>
     <ion-item text-wrap no-lines>
-      <ion-avatar item-start>
-        <img src="assets/imgs/ajustes.png">
-      </ion-avatar>
+      <ion-thumbnail item-start>
+        <div class="psb">
+            <img src="assets/imgs/ajustes.png">
+        </div>
+      </ion-thumbnail>
       <p>pulsar el boton para volver a configurar</p>
     </ion-item>
-    <ion-item no-lines>
+    <ion-item no-lines class="myGreen">
       <button ion-button outline item-end round icon-left (click)="goSettings()">
         <ion-icon name="settings"></ion-icon>
         Configurar

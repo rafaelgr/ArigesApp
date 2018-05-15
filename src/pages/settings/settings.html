@@ -14,9 +14,11 @@
 <ion-content padding>
   <ion-list>
     <ion-item text-wrap no-lines>
-      <ion-avatar item-start>
-        <img src="assets/imgs/ajustes.png">
-      </ion-avatar>
+      <ion-thumbnail item-start>
+        <div class="psb">
+            <img src="assets/imgs/ajustes.png">
+        </div>
+      </ion-thumbnail>
       <p>Introduzca los valores adecuados y haga clic en aceptar</p>
     </ion-item>
     <form [formGroup]="settingsForm">
@@ -28,7 +30,7 @@
         <p style="color:red">Introduzca una url válida.</p>
       </ion-item>
     </form>
-    <ion-item no-lines>
+    <ion-item no-lines class="myGreen">
       <button ion-button outline item-end round icon-left (click)="saveSettings()">
         <ion-icon name="checkmark"></ion-icon>
         Aceptar

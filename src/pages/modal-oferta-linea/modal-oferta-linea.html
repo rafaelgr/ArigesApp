@@ -11,7 +11,7 @@
             <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
           </button>
         </ion-buttons>
-    <ion-title>LINEAS</ion-title>
+    <ion-title>OFERTA LINEA</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -38,7 +38,7 @@
     <div *ngIf="encontrado" no-lines>
         <ion-item *ngFor="let articulo of datos.articulos"  (click)="selectArticulo(articulo)">
             <h4>{{articulo.nomartic}}</h4>
-            <ion-icon name="log-in" item-end></ion-icon>
+            <ion-icon name="log-in" class="myGreen" item-end></ion-icon>
           </ion-item>
     </div>
     <ion-item >
