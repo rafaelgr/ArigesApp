@@ -1,10 +1,6 @@
 page-home {
 
     
-
-    img {
-        width: 100%;
-    }
     ion-toolbar {
         text-align: center;
     }
@@ -12,7 +8,7 @@ page-home {
     ion-col {
         text-align: center;
         img {
-            width: 40%;
+            width: 20%;
         }
     }
     
@@ -20,7 +16,9 @@ page-home {
         text-align: center;
     }
 
-    
+    p {
+        font-size: 0.8em;
+    }
 
     .psb {
         padding: 5px;
@@ -29,7 +27,7 @@ page-home {
         border-radius: 30px;
         border-color: #718dba;
         border-width: 3px;
-        min-height: 150px;
+        min-height: 50px;
      }
 
      .home-hello {
@@ -50,6 +48,7 @@ page-home {
             margin-top: 0;
         }
     
+        
     }
     
 }

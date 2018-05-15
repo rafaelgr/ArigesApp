@@ -3,4 +3,17 @@ page-cli-ofertas-detalle {
         background-color: #718dba;
         color: white;
     }
+
+    ion-toolbar {
+        text-align: center;
+    }
+
+    ion-header {
+        text-align: center;
+    }
+    
+     ion-header ion-icon.back-button-icon.icon {
+        color: #718dba;
+    }
+    
 }
