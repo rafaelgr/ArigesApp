@@ -8,7 +8,7 @@
   <ion-navbar>
       <ion-buttons end>
           <button ion-button icon-only (click)="dismiss()">
-            <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+            <ion-icon class="myGreen" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
           </button>
         </ion-buttons>
     <ion-title>OFERTA LINEA</ion-title>
@@ -47,7 +47,7 @@
     </ion-item>
     <ion-item >
       <ion-label   color="cabecera" stacked>Cantidad:</ion-label>
-      <ion-input type="number" #focusInput [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()"></ion-input>
+      <ion-input type="number" #focusInput [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()" (change)="cambiaCantidad()"></ion-input>
     </ion-item>
     <ion-item *ngIf="!linForm.controls.cantidad.valid && falta" no-lines>
       <p style="color:red">La cantidad es requerida y <br>tiene que ser mayor que cero.</p>
