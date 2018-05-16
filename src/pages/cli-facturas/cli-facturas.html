@@ -19,8 +19,8 @@
     </ion-item>
     <ion-item *ngFor="let factura of facturas" text-wrap (click)="goFactura(factura)">
       <div>
-        <strong>N.Factura: </strong> {{factura.numfactu}}
-        <br><strong>Fecha: </strong> {{factura.fecfactu}}
+        <strong>Nº </strong> {{factura.numfactu}}
+        <strong>del </strong> {{factura.fecfactu}}
       </div>
       <div>
         <strong>Base: </strong> {{factura.bases}}

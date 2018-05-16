@@ -19,8 +19,8 @@
       </ion-item>
       <ion-item *ngFor="let pedido of pedidos" text-wrap (click)="goPedido(pedido)">
         <div>
-          <strong>N.Pedido: </strong> {{pedido.numpedcl}}
-          <strong>Fecha: </strong> {{pedido.fecpedcl}}
+          <strong>Nº </strong> {{pedido.numpedcl}}
+          <strong>del </strong> {{pedido.fecpedcl}}
         </div>
         <div>
           <strong>Total: </strong> {{pedido.totalped}}

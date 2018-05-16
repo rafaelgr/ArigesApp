@@ -40,7 +40,7 @@ page-modal-oferta-linea {
         color: #718dba;
     }
     
-    .item-md ion-thumbnail {
+    .item-md ion-thumbnail, .item-ios ion-thumbnail, .item-wp ion-thumbnail {
         min-width: 0px;
         min-height: 0px;
         width: 7rem;    

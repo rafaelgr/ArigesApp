@@ -91,13 +91,15 @@ export class CliResumenPage {
   prepareVentaAnual(): void {
    
     this.misDatos = [];
-    for(var i = 0; i < this.ventaAnual.data[1].length; i++ ) {
+    for(var i = this.ventaAnual.data[1].length-1; i >= 0; i-- ) {
+      this.ventaAnual.data[1][i] = numeral(this.ventaAnual.data[1][i]).format('0,0.00 $');
       var dato = {
         anyo: this.ventaAnual.labels[i],
         valor: this.ventaAnual.data[1][i]
       }
       this.misDatos.push(dato);
     }
+    console.log(this.misDatos);
   }
 
   showError(error): void {

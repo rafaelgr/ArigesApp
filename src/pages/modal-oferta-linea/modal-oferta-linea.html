@@ -29,7 +29,7 @@
     </ion-item>
     <ion-item >
         <ion-label  color="cabecera" stacked>Articulo:</ion-label>
-        <ion-input type="text" [(ngModel)]="nomartic" [formControl]="nomartiControl" formControlName="nomartic" (focus)="noSeleccionado()" ngDefaultControl></ion-input>
+        <ion-input type="text" #articulo [(ngModel)]="nomartic" [formControl]="nomartiControl" formControlName="nomartic" (focus)="noSeleccionado()" ngDefaultControl></ion-input>
     </ion-item>
     <ion-item *ngIf="!linForm.controls.nomartic.valid && falta" no-lines>
       <p style="color:red">Debe introducir un valor.</p>
@@ -47,7 +47,7 @@
     </ion-item>
     <ion-item >
       <ion-label   color="cabecera" stacked>Cantidad:</ion-label>
-      <ion-input type="number" [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()"></ion-input>
+      <ion-input type="number" #focusInput [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()"></ion-input>
     </ion-item>
     <ion-item *ngIf="!linForm.controls.cantidad.valid && falta" no-lines>
       <p style="color:red">La cantidad es requerida y <br>tiene que ser mayor que cero.</p>

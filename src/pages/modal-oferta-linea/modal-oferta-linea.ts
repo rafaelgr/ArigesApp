@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, AlertController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
@@ -70,6 +70,8 @@ datos = {
   falta: boolean = false;
   seleccionado: boolean = false;
   nomartiControl: FormControl;
+  @ViewChild('focusInput') myInput ;
+  @ViewChild('articulo') myArticulo ;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
@@ -85,6 +87,7 @@ datos = {
   }
 
   ionViewWillEnter() {
+    
     this.localData.getSettings().then(data => {
       if (data) {
         this.settings = JSON.parse(data);
@@ -112,6 +115,7 @@ datos = {
     this.datos.oferta = this.interData.getOferta();
     this.linea = this.interData.getLineaOferta();
     this.datos.sobreresto = this.settings.user.tipodtos;
+    
     //si hay linea, es edicion y cargamos el formulario con los valores de la linea
     if(this.linea){
       this.datos.numlinea = this.linea.numlinea;
@@ -134,6 +138,12 @@ datos = {
       this.datos.articulo.precio.dto2 = Number(this.datos.articulo.precio.dto2.toString().replace(/,/, ".").trim());
 
       
+    }else {
+      setTimeout(() => {
+        
+        this.myArticulo.setFocus();
+      },1000);
+  
     }
   }
 
@@ -155,6 +165,7 @@ datos = {
             loading.dismiss();
             this.encontrado = true;
             this.datos.articulos = data;
+            
             //si no devuelve articulos sale del método
             if(this.datos.articulos.length == 0) {
               return;
@@ -190,7 +201,7 @@ datos = {
       this.datos.dtoline2 = articulo.precio.dto2;
       this.datos.origpre = articulo.precio.origen;
       this.datos.articulo.codproveX = articulo.codprove;
-     
+      this.myInput.setFocus();
       
     
       if(!this.cantidad) {
