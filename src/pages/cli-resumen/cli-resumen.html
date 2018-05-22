@@ -18,16 +18,29 @@
       Indicadores
     </ion-item>
     <ion-item text-wrap>
-    <ion-grid class="letra">
-      <ion-row >
-        <ion-col col-4>
+    <ion-grid >
+      <ion-row (click)="goPage({ title: 'Ofertas', component: 'CliOfertasPage' })">
+        <ion-col col-11 >
           <strong>Ofertas: </strong> {{indicadores.ofertas}}
         </ion-col>
-        <ion-col col-4>
+        <ion-col col-1>    
+                  <ion-icon class="myGreen" name="log-in"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="goPage({ title: 'Pedidos', component: 'CliPedidosPage' })">
+        <ion-col col-11>
           <strong>Pedidos: </strong> {{indicadores.pedidos}}
         </ion-col>
-        <ion-col col-4>
+        <ion-col col-1>    
+            <ion-icon class="myGreen" name="log-in"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="goPage({ title: 'Albaranes', component: 'CliAlbaranesPage' })">
+        <ion-col col-11>
           <strong>Albaranes: </strong> {{indicadores.albaranes}}
+        </ion-col>
+        <ion-col col-1>    
+            <ion-icon class="myGreen" name="log-in"></ion-icon>
         </ion-col>
       </ion-row>
      
@@ -102,7 +115,7 @@
 
   <ion-list>
     <ion-item no-lines class="grptitle">
-        Facturación anual
+        Evolución de ventas
     </ion-item>
     <ion-item no-lines *ngIf="misDatos.length > 0">
       

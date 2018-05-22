@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{cliente.nomclien}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome()" class="myGreen" end>
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item no-lines class="grptitle" text-wrap>
+      <div>
+        <strong>Nº </strong> {{cobro.numfact}}
+        <strong>del </strong>{{cobro.fechafact}}
+      </div>
+      <div>
+          <strong>Nº vencimiento: </strong>{{cobro.numorden}} <strong>Feha: </strong> {{cobro.fechavenci}}
+      </div>
+      <div>
+          <strong>Forma pago: </strong>{{cobro.nomforpa}} <strong>Importe: </strong> {{cobro.total}}
+      </div>
+      <div>
+        <strong>Cliente: </strong> {{cliente.nomclien}}
+      </div>
+      <div>
+            <strong>Observaciones: </strong>
+            <p>{{cobro.observa}}</p>     
+      </div>
+      
+    </ion-item>
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select [(ngModel)]="gender">
+        <ion-option value="f">Female</ion-option>
+        <ion-option value="m">Male</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -175,6 +175,8 @@ export class ArigesDataProvider {
     return this.http.get(apiUrl + '/api/albaranes');
   }
 
+  
+
   getAlbaranDetalle(apiUrl, codtipom, numalbar): any {
     let params = {
       'codtipom': codtipom,
@@ -182,6 +184,16 @@ export class ArigesDataProvider {
     };
     return this.http.get(apiUrl + '/api/albaranes/detalle',{
       params: params
+    });
+  }
+
+
+  getCobrosUsuario(apiUrl, codusu): any {
+    let params = {
+      'codusu': codusu
+    };
+    return this.http.get(apiUrl + '/api/cobros/usuario', {
+      params : params
     });
   }
 

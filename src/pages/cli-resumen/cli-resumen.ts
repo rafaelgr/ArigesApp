@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
+import { CliMenuPage } from '../cli-menu/cli-menu';
 import * as moment from 'moment';
 import * as numeral from 'numeral';
 
@@ -23,13 +24,13 @@ export class CliResumenPage {
   misDatos: any = [
    
   ];
-  
-
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
-    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
-      
+    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController, 
+    public menu: MenuController, public cliMenu: CliMenuPage) {
+
+     
   }
 
   ionViewWillEnter() {
@@ -85,7 +86,7 @@ export class CliResumenPage {
   }
 
   goCobro(cobro): void {
-    
+    this.navCtrl.push('CobrosDetallePage', { cobro : cobro});
   }
 
   prepareVentaAnual(): void {
@@ -135,6 +136,11 @@ export class CliResumenPage {
 
   prepareLimCredito(): any {
     this.cliente.limiteCredito = numeral( this.cliente.limiteCredito).format('0,0.00 $');
+  }
+
+  goPage(page) {
+    // navigate to the new page if it is not the current page
+    this.cliMenu.openPage(page);
   }
 
 }
