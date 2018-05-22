@@ -38,7 +38,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Gender</ion-label>
-      <ion-select [(ngModel)]="gender">
+      <ion-select [(ngModel)]="gender" [selectOptions]="selectOptions">
         <ion-option value="f">Female</ion-option>
         <ion-option value="m">Male</ion-option>
       </ion-select>
