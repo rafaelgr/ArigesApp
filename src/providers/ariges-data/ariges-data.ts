@@ -197,6 +197,10 @@ export class ArigesDataProvider {
     });
   }
 
+  getFormasPago(apiUrl): any {
+    return this.http.get(apiUrl + '/api/fpago');
+  }
+
   postCabeceraOferta(apiUrl, oferta): any {
     return this.http.post(apiUrl + '/api/ofertas/caboferta', oferta);
   }
@@ -208,6 +212,10 @@ export class ArigesDataProvider {
 
   postLineaOferta(apiUrl, oferta): any {
     return this.http.post(apiUrl + '/api/ofertas/linoferta', oferta);
+  }
+
+  postPagoParcial(apiUrl, cobroParcial) : any {
+    return this.http.post(apiUrl + '/api/cobros/parciales', cobroParcial);
   }
 
   putLineaOferta(apiUrl, oferta): any {
