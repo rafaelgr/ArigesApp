@@ -18,7 +18,7 @@
   <ion-list>
     <ion-item no-lines class="grptitle" text-wrap>
       <div>
-        <strong>Nº </strong> {{cobro.numfact}}
+        <strong>Nº Factura</strong> {{cobro.numfact}}
         <strong>del </strong>{{cobro.fechafact}}
       </div>
       <div>
@@ -40,14 +40,19 @@
   <ion-list>
     <form [formGroup]="pagoForm" no-lines>
         <ion-item>
-            <ion-label>Forma de pago</ion-label>
-            <ion-select #combo [(ngModel)]="fPago" [ngModelOptions]="{ standalone: true }"  okText="Aceptar" cancelText="Cancelar">
-              <ion-option  *ngFor="let formaPago of formasPago" [value]="formaPago.tipForpa" >{{formaPago.nomforpa}}</ion-option>
+            <ion-label  color="cabecera" stacked>Forma de pago</ion-label>
+            <ion-select [(ngModel)]="fPago" [ngModelOptions]="{ standalone: true }"  okText="Aceptar" cancelText="Cancelar">
+              <ion-option  *ngFor="let formaPago of formasPago" [value]="formaPago.tipoformaPago" >{{formaPago.descformapago}}</ion-option>
             </ion-select>
           </ion-item>
           <ion-item>
-            <ion-label>Cantidad:</ion-label>
+            <ion-label  color="cabecera" stacked>Cantidad:</ion-label>
             <ion-input type="number"  [(ngModel)]="cantidad" formControlName="cantidad"></ion-input>
+          </ion-item>
+          
+          <ion-item >
+            <ion-label color="cabecera" stacked>Observaciones:</ion-label>
+            <ion-textarea maxlength ="400" value="{{observa}}" [ngModelOptions]="{standalone: true}" [(ngModel)]="observa"></ion-textarea>
           </ion-item>
           <ion-item class="myGreen" no-lines>
               <button  ion-button outline item-end round icon-left (click)="guardarPago()">

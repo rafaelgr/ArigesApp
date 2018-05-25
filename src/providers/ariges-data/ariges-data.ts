@@ -192,13 +192,13 @@ export class ArigesDataProvider {
     let params = {
       'codusu': codusu
     };
-    return this.http.get(apiUrl + '/api/cobros/usuario', {
+    return this.http.get(apiUrl + '/api/cobros/parciales/usuario', {
       params : params
     });
   }
 
-  getFormasPago(apiUrl): any {
-    return this.http.get(apiUrl + '/api/fpago');
+  getTiposFormasPago(apiUrl): any {
+    return this.http.get(apiUrl + '/api/fpago/tiposFormasPago');
   }
 
   postCabeceraOferta(apiUrl, oferta): any {
@@ -214,8 +214,8 @@ export class ArigesDataProvider {
     return this.http.post(apiUrl + '/api/ofertas/linoferta', oferta);
   }
 
-  postPagoParcial(apiUrl, cobroParcial) : any {
-    return this.http.post(apiUrl + '/api/cobros/parciales', cobroParcial);
+  postCobroParcial(apiUrl, cobroParcial) : any {
+    return this.http.post(apiUrl + '/api/cobros/nuevo/parcial', cobroParcial);
   }
 
   putLineaOferta(apiUrl, oferta): any {

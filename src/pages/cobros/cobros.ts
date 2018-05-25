@@ -48,7 +48,7 @@ export class CobrosPage {
   }
 
   loadData(): void {
-    this.arigesData.getCobrosUsuario(this.settings.url, this.settings.user.codusu)
+    this.arigesData.getCobrosUsuario(this.settings.url, this.settings.user.login)
       .subscribe(
         (data) => {
           this.cobros = this.prepareCobros(data);
@@ -61,22 +61,15 @@ export class CobrosPage {
 
 
   prepareCobros(data): any {
-    /*// formateo de los datos numéricos
+    // formateo de los datos numéricos y las fechas
     for (var i = 0; i < data.length; i++) {
-      // formateamos las cabeceras
-      data[i].fecpedcl = moment(data[i].fecpedcl).format('DD/MM/YYYY');
-      if (data[i].totalped) {
-        data[i].totalped = numeral(data[i].totalped).format('0,0.00 $');
-      }
-      // ahora hay que procesar las líneas
-      for (var i2 = 0; i2 < data[i].lineas.length; i2++) {
-        data[i].lineas[i2].dtoline1 = numeral(data[i].lineas[i2].dtoline1).format('0,0.00');
-        data[i].lineas[i2].dtoline2 = numeral(data[i].lineas[i2].dtoline2).format('0,0.00');
-        data[i].lineas[i2].precioar = numeral(data[i].lineas[i2].precioar).format('0,0.00 $');
-        data[i].lineas[i2].importel = numeral(data[i].lineas[i2].importel).format('0,0.00 $');
-      }
+      
+      data[i].fechafact = moment(data[i].fechafact).format('DD/MM/YYYY');
+      data[i].fechavenci = moment(data[i].fechavenci).format('DD/MM/YYYY');
+      data[i].total = numeral(data[i].total).format('0,0.00 €');
+      data[i].total = numeral(data[i].impcobrado).format('0,0.00 €');
     }
-    return data;*/
+    return data;
   }
 
 
