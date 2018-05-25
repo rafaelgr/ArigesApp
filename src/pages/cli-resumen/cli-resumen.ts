@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, MenuController, ModalController} from 'ionic-angular';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
@@ -25,10 +25,12 @@ export class CliResumenPage {
    
   ];
 
+  modalCobros: any;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
     public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController, 
-    public menu: MenuController, public cliMenu: CliMenuPage) {
+    public menu: MenuController, public cliMenu: CliMenuPage, public modalCtrl: ModalController) {
 
      
   }
@@ -86,7 +88,8 @@ export class CliResumenPage {
   }
 
   goCobro(cobro): void {
-    this.navCtrl.push('CobrosDetallePage', { cobro : cobro});
+    this.modalCobros = this.modalCtrl.create('CobrosDetallePage', { cobro : cobro});
+    this.modalCobros.present();
   }
 
   prepareVentaAnual(): void {

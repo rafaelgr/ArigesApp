@@ -218,6 +218,10 @@ export class ArigesDataProvider {
     return this.http.post(apiUrl + '/api/cobros/nuevo/parcial', cobroParcial);
   }
 
+  putCobroParcial(apiUrl, cobroParcial): any {
+    return this.http.put(apiUrl + '/api/cobros/cobroparcial', cobroParcial);
+  }
+
   putLineaOferta(apiUrl, oferta): any {
     return this.http.put(apiUrl + '/api/ofertas/linoferta', oferta);
   }

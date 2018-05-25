@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
@@ -24,34 +24,35 @@ export class CobrosDetallePage {
   cobro = {
     numserie: "",
     codfaccl: "",
+    codforpa: 0,
     fechafact: "",
     numorden: 0,
     tipoFormaPago: 0,
     fecha: "",
-    impCobrado: 0,
+    impcobrado: 0,
     codusu: "",
     total: 0,
-    observa: ""
+    observa: "",
+    nomclien: ""
   };
 
   formasPago: any = [];
   fPago: any;
   cantidad: number;
-  observa: string;
+ 
   pagoForm: FormGroup;
   mayor: boolean = false;
+  desdeMenu: boolean = false;
 
   
   
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
-    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController, public formBuilder: FormBuilder) {
+    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController, 
+    public formBuilder: FormBuilder, public viewCtrl: ViewController) {
 
       this.cantidad = 0;
-      
 
-      setTimeout(() => { this.fPago = 0; }, 1000)
-      
       this.pagoForm = formBuilder.group({
         cantidad: ['', Validators.compose([Validators.required, Validators.min(1)])]
       });
@@ -69,14 +70,22 @@ export class CobrosDetallePage {
   }
 
   loadData() :void {
-    this.cliente = this.interData.getCliente();
+    this.desdeMenu =  this.navParams.get('desdeMenu');
     this.cobro = this.navParams.get('cobro');
+
+    if(this.desdeMenu != true) {
+      this.cliente = this.interData.getCliente();
+      this.cobro.nomclien = this.cliente.nomclien;
+      setTimeout(() => { this.fPago = 0; }, 500)
+    }else {
+      this.cantidad = Number(this.cobro.impcobrado.toString().replace(/€/, '').replace(/,/, ".").trim());
+      setTimeout(() => {  this.fPago = this.cobro.codforpa; }, 500)
+     
+    }
     this.arigesData.getTiposFormasPago(this.settings.url)
       .subscribe(
         (data) => {
           this.formasPago = data;
-          this.cantidad = numeral(this.cantidad).format('0,0.00 $');
-          
         },
         (error) => {
           this.showError(error);
@@ -92,16 +101,25 @@ export class CobrosDetallePage {
       var total = Number(this.cobro.total.toString().replace(/€/, '').replace(/,/, ".").trim());
       this.mayor = false;
       if(this.cantidad < total) {
-        this.arigesData.postCobroParcial(this.settings.url, this.saveObjectMysql())
-      .subscribe(
-        (datos) => {
-
-        },
-        
-        (error) => {
-          
-            this.showError(error);
-        });
+        if( this.desdeMenu != true){
+          this.arigesData.postCobroParcial(this.settings.url, this.saveObjectMysql())
+            .subscribe(
+              (datos) => {
+                this.viewCtrl.dismiss();
+              },
+              (error) => {
+                this.showError(error);
+            });
+        }else {
+          this.arigesData.putCobroParcial(this.settings.url, this.saveObjectMysql())
+            .subscribe(
+              (datos) => {
+                this.viewCtrl.dismiss();
+              },
+              (error) => {
+                this.showError(error);
+            });
+        }
       }else {
         this.cantidadNoValida();
       }
@@ -131,6 +149,11 @@ export class CobrosDetallePage {
     alert.present();
   }
 
+  dismiss() {
+   
+    this.viewCtrl.dismiss();
+  }
+
   saveObjectMysql(): any {
     var cobroParcial = {}
 
@@ -144,7 +167,7 @@ export class CobrosDetallePage {
       fecha: new Date(),
       impCobrado: this.cantidad,
       codusu: this.settings.user.login,
-      observa: this.observa
+      observa: this.cobro.observa
     }
     return cobroParcial;
   }

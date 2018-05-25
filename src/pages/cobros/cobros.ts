@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, ModalController } from 'ionic-angular';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { FormGroup, Validators } from '@angular/forms';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
@@ -22,10 +22,11 @@ import * as numeral from 'numeral';
 export class CobrosPage {
   settings: any;
   cobros: any[];
+  modalCobros: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public arigesData: ArigesDataProvider,
     public localData: LocalDataProvider, public alertCrtl: AlertController,
-    public interData: InterDataProvider, public loadingCtrl: LoadingController) {
+    public interData: InterDataProvider, public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
   }
 
   ionViewWillEnter() {
@@ -67,7 +68,7 @@ export class CobrosPage {
       data[i].fechafact = moment(data[i].fechafact).format('DD/MM/YYYY');
       data[i].fechavenci = moment(data[i].fechavenci).format('DD/MM/YYYY');
       data[i].total = numeral(data[i].total).format('0,0.00 €');
-      data[i].total = numeral(data[i].impcobrado).format('0,0.00 €');
+      data[i].impcobrado = numeral(data[i].impcobrado).format('0,0.00 €');
     }
     return data;
   }
@@ -81,6 +82,14 @@ export class CobrosPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  goCobro(cobro): any {
+    this.modalCobros = this.modalCtrl.create('CobrosDetallePage', { cobro : cobro, desdeMenu: true});
+    this.modalCobros.onDidDismiss(() => {
+      this.ionViewWillEnter()
+    });
+    this.modalCobros.present();
   }
 
   showNoEncontrado(): void {

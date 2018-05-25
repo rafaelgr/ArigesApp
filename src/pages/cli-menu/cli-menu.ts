@@ -23,7 +23,8 @@ export class CliMenuPage {
         { title: 'Facturas', component: 'CliFacturasPage' },
         { title: 'Precios', component: 'CliPreciosPage' },
         { title: 'Precios especiales', component: 'CliPreciosEspecialesPage' },
-        { title: 'Descuentos especiales', component: 'CliDescuentosEspecialesPage' }
+        { title: 'Descuentos especiales', component: 'CliDescuentosEspecialesPage' },
+        { title: 'Visitas de agente', component: 'CliVisitasAgentePage' }
       ];
       this.cliente = this.navParams.get('cliente');
   }
