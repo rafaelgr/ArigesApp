@@ -188,11 +188,25 @@ export class ArigesDataProvider {
   }
 
 
+  getCobroParcial(apiUrl, numserie, numfactu, fecfactu, numorden): any {
+    let params = {
+      'numserie': numserie,
+      'numfactu': numfactu,
+      'fecfactu': fecfactu,
+      'numorden': numorden
+    };
+    return this.http.get(apiUrl + '/api/cobros/parciales/cobro/devolver', {
+      params : params
+    });
+  }
+
+  
+
   getCobrosUsuario(apiUrl, codusu): any {
     let params = {
       'codusu': codusu
     };
-    return this.http.get(apiUrl + '/api/cobros/parciales/usuario', {
+    return this.http.get(apiUrl + '/api/cobros/parciales/cobro/devolver/usuario', {
       params : params
     });
   }

@@ -23,8 +23,8 @@
     </ion-item>
   </ion-list>
   <ion-list>
-    <ion-item-sliding *ngFor="let cobro of cobros"  text-wrap>
-      <ion-item>
+    <ion-item *ngFor="let cobro of cobros"  text-wrap (click)="goCobro(cobro)">
+      
       <div>
         <strong>Nº </strong>{{cobro.numfact}}
         <strong>del </strong>{{cobro.fechafact}}
@@ -34,7 +34,8 @@
           <strong>del </strong>{{cobro.fechavenci}}
       </div>
       <div>
-        <strong>Forma pago: </strong>{{cobro.nomforpa}}
+        <strong>Importe: </strong>{{cobro.impcobrado}}
+        <br><strong>Forma pago: </strong>{{cobro.nomforpa}}
       </div>
       <div>
         <strong>Cliente: </strong> {{cobro.nomclien}}
@@ -43,14 +44,9 @@
         <strong>Observaciones: </strong>{{cobro.observa}}
       </div>
       <ion-icon name="log-in" item-end class="myGreen"></ion-icon>
-      </ion-item>
-      <ion-item-options>
-          <button color="light" class="grptitle" ion-button outline item-end round icon-left (click)="goCobro(cobro)">
-              <ion-icon name="create"></ion-icon> 
-              Editar
-          </button>
-      </ion-item-options>
-    </ion-item-sliding>
+      
+      
+    </ion-item>
   </ion-list>
 </ion-content>
 

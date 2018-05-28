@@ -88,8 +88,24 @@ export class CliResumenPage {
   }
 
   goCobro(cobro): void {
-    this.modalCobros = this.modalCtrl.create('CobrosDetallePage', { cobro : cobro});
-    this.modalCobros.present();
+    var fecfactu = moment(cobro.fechafact, 'DD/MM/YYYY').format('YYYY-MM-DD');
+    this.arigesData.getCobroParcial(this.settings.url, cobro.numserie, cobro.codfaccl, fecfactu, cobro.numorden)
+    .subscribe(
+      (data) => {
+        if(data.length > 0) {
+          var cobros = this.prepareCobros(data);
+          this.modalCobros = this.modalCtrl.create('CobrosDetallePage', { cobro : cobros[0], desdeMenu: true});
+          this.modalCobros.present();
+        }else {
+          this.modalCobros = this.modalCtrl.create('CobrosDetallePage', { cobro : cobro});
+          this.modalCobros.present();
+        }
+       
+      },
+      (error) => {
+        this.showError(error);
+      }
+    );
   }
 
   prepareVentaAnual(): void {

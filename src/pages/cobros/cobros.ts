@@ -67,8 +67,8 @@ export class CobrosPage {
       
       data[i].fechafact = moment(data[i].fechafact).format('DD/MM/YYYY');
       data[i].fechavenci = moment(data[i].fechavenci).format('DD/MM/YYYY');
-      data[i].total = numeral(data[i].total).format('0,0.00 €');
-      data[i].impcobrado = numeral(data[i].impcobrado).format('0,0.00 €');
+      data[i].total = numeral(data[i].total).format('0,0.00 $');
+      data[i].impcobrado = numeral(data[i].impcobrado).format('0,0.00 $');
     }
     return data;
   }
