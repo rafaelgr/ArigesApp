@@ -219,6 +219,15 @@ export class ArigesDataProvider {
     return this.http.post(apiUrl + '/api/ofertas/caboferta', oferta);
   }
 
+  getVisitas(apiUrl, tipo): any {
+    let params = {
+      'tipo': tipo
+    };
+    return this.http.get(apiUrl + '/api/acciones/', {
+      params: params
+    });
+  }
+
   putCabeceraOferta(apiUrl, oferta): any {
     return this.http.put(apiUrl + '/api/ofertas/caboferta', oferta);
   }
