@@ -215,13 +215,33 @@ export class ArigesDataProvider {
     return this.http.get(apiUrl + '/api/fpago/tiposFormasPago');
   }
 
+  getTipoAccion(apiUrl, tipo): any {
+    let params = {
+      'tipo': tipo
+    };
+    return this.http.get(apiUrl + '/api/acciones/tipos', { 
+      params: params}
+    );
+  }
+
+  getUnTipoAccion(apiUrl, tipo): any {
+    let params = {
+      'tipo': tipo
+    };
+    return this.http.get(apiUrl + '/api/acciones/tipos/uno', { 
+      params: params}
+    );
+  }
+
   postCabeceraOferta(apiUrl, oferta): any {
     return this.http.post(apiUrl + '/api/ofertas/caboferta', oferta);
   }
 
-  getVisitas(apiUrl, tipo): any {
+  getVisitas(apiUrl, tipo, login, codclien): any {
     let params = {
-      'tipo': tipo
+      'tipo': tipo,
+      'login': login,
+      'codclien': codclien
     };
     return this.http.get(apiUrl + '/api/acciones/', {
       params: params
@@ -239,6 +259,14 @@ export class ArigesDataProvider {
 
   postCobroParcial(apiUrl, cobroParcial) : any {
     return this.http.post(apiUrl + '/api/cobros/nuevo/parcial', cobroParcial);
+  }
+
+  postVisita(apiUrl, visita) : any {
+    return this.http.post(apiUrl + '/api/acciones/', visita);
+  }
+
+  putVisita(apiUrl, visita) : any {
+    return this.http.put(apiUrl + '/api/acciones/', visita);
   }
 
   putCobroParcial(apiUrl, cobroParcial): any {

@@ -6,12 +6,6 @@ import { InterDataProvider } from '../../providers/inter-data/inter-data';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import * as numeral from 'numeral';
-/**
- * Generated class for the CobrosDetallePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({

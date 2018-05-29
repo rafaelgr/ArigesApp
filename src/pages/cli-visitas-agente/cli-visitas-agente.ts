@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
-import { ModalController } from 'ionic-angular';
 import { ModalOfertaCabeceraPage } from '../modal-oferta-cabecera/modal-oferta-cabecera'
 import * as moment from 'moment';
 import * as numeral from 'numeral';
@@ -19,9 +18,11 @@ export class CliVisitasAgentePage {
   visitas: any = [];
   modalCabecera: any;
   tipo: number = 21;
+  modalVisitas: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
-    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController, public modalCtrl: ModalController) {
+    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController, 
+    public modalCtrl: ModalController) {
       
 
   }
@@ -47,7 +48,7 @@ export class CliVisitasAgentePage {
 
   loadData(): void {
     this.cliente = this.interData.getCliente();
-    this.arigesData.getVisitas(this.settings.url, this.tipo)
+    this.arigesData.getVisitas(this.settings.url, this.tipo, this.settings.user.login, this.cliente.codclien)
       .subscribe(
         (data) => {
           console.log(data);
@@ -71,6 +72,19 @@ export class CliVisitasAgentePage {
     }
     return visitas;
   }
+
+  openModalVisita(visita): any {
+    if(visita){
+      this.modalVisitas = this.modalCtrl.create('ModalVisitasAgentePage', { visita : visita, edicion: true});
+    } else {
+      this.modalVisitas = this.modalCtrl.create('ModalVisitasAgentePage', { edicion: false});
+    }
+    this.modalVisitas.onDidDismiss(() => {
+      this.ionViewWillEnter()
+    });
+    this.modalVisitas.present();
+  }
+
 
   showError(error): void {
     let alert = this.alertCrtl.create({
