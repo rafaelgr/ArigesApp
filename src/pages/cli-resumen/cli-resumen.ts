@@ -92,15 +92,19 @@ export class CliResumenPage {
     this.arigesData.getCobroParcial(this.settings.url, cobro.numserie, cobro.codfaccl, fecfactu, cobro.numorden)
     .subscribe(
       (data) => {
+        var opciones = {};
+        var cobros = this.prepareCobros(data);
         if(data.length > 0) {
-          var cobros = this.prepareCobros(data);
-          this.modalCobros = this.modalCtrl.create('CobrosDetallePage', { cobro : cobros[0], desdeMenu: true});
-          this.modalCobros.present();
+          if(data[0].codusu == this.settings.user.login) {
+            opciones = { cobro : cobros[0], desdeMenu: true, mismoUsuario: true }
+          } else {
+            opciones = { cobro : cobros[0], desdeMenu: true, mismoUsuario: false }
+          }
         }else {
-          this.modalCobros = this.modalCtrl.create('CobrosDetallePage', { cobro : cobro});
-          this.modalCobros.present();
+          opciones = { cobro : cobro, desdeMenu: false, mismoUsuario: true }
         }
-       
+        this.modalCobros = this.modalCtrl.create('CobrosDetallePage', opciones);
+        this.modalCobros.present();
       },
       (error) => {
         this.showError(error);

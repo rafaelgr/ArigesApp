@@ -5,7 +5,10 @@
               <ion-icon class="myGreen" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
             </button>
           </ion-buttons>
-      <ion-title>COBROS</ion-title>
+      <ion-title>
+          <div *ngIf="desdeMenu == true">COBROS (Edición)</div>
+          <div *ngIf="desdeMenu != true">COBROS (Creación)</div>
+      </ion-title>
     </ion-navbar>
   </ion-header>
 
@@ -14,6 +17,9 @@
 <ion-content padding>
   <ion-list>
     <ion-item no-lines class="grptitle" text-wrap>
+        <div *ngIf="!mismoUsuario">
+            <strong>Usuario: </strong> {{cobro.codusu}}
+          </div>
       <div>
         <strong>Nº Factura</strong> {{cobro.numfact}}
         <strong>del </strong>{{cobro.fechafact}}
@@ -39,18 +45,24 @@
     <form [formGroup]="pagoForm" no-lines>
         <ion-item>
             <ion-label  color="cabecera" stacked>Forma de pago</ion-label>
-            <ion-select [(ngModel)]="fPago" [ngModelOptions]="{ standalone: true }"  okText="Aceptar" cancelText="Cancelar">
+            <ion-select [(ngModel)]="fPago" [ngModelOptions]="{ standalone: true }"  okText="Aceptar" cancelText="Cancelar" disabled *ngIf="!mismoUsuario">
               <ion-option  *ngFor="let formaPago of formasPago" [value]="formaPago.tipoformapago" >{{formaPago.descformapago}}</ion-option>
             </ion-select>
+
+            <ion-select [(ngModel)]="fPago" [ngModelOptions]="{ standalone: true }"  okText="Aceptar" cancelText="Cancelar" *ngIf="mismoUsuario">
+                <ion-option  *ngFor="let formaPago of formasPago" [value]="formaPago.tipoformapago" >{{formaPago.descformapago}}</ion-option>
+              </ion-select>
           </ion-item>
           <ion-item>
             <ion-label  color="cabecera" stacked>Cantidad:</ion-label>
-            <ion-input type="number"  [(ngModel)]="cantidad" formControlName="cantidad"></ion-input>
+            <ion-input type="number"  [(ngModel)]="cantidad" formControlName="cantidad" #input disabled *ngIf="!mismoUsuario"></ion-input>
+            <ion-input type="number"  [(ngModel)]="cantidad" formControlName="cantidad" #input *ngIf="mismoUsuario"></ion-input>
           </ion-item>
           
           <ion-item >
             <ion-label color="cabecera" stacked>Observaciones:</ion-label>
-            <ion-textarea maxlength ="400"  [(ngModel)]="cobro.observa" [ngModelOptions]="{standalone: true}" ></ion-textarea>
+            <ion-textarea maxlength ="400"  [(ngModel)]="cobro.observa" [ngModelOptions]="{standalone: true}" disabled *ngIf="!mismoUsuario"></ion-textarea>
+            <ion-textarea maxlength ="400"  [(ngModel)]="cobro.observa" [ngModelOptions]="{standalone: true}" *ngIf="mismoUsuario"></ion-textarea>
           </ion-item>
           <ion-item class="myGreen" no-lines>
               <button  ion-button outline item-end round icon-left (click)="guardarPago()">

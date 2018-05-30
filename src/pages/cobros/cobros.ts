@@ -52,7 +52,12 @@ export class CobrosPage {
     this.arigesData.getCobrosUsuario(this.settings.url, this.settings.user.login)
       .subscribe(
         (data) => {
-          this.cobros = this.prepareCobros(data);
+          if(data.length > 0) {
+            this.cobros = this.prepareCobros(data);
+          } else {
+            this.showNoEncontrado();
+          }
+          
         },
         (error) => {
           this.showError(error);
@@ -95,7 +100,7 @@ export class CobrosPage {
   showNoEncontrado(): void {
     let alert = this.alertCrtl.create({
       title: "AVISO",
-      subTitle: "No se ha encontrado ningún artículo con estos criterios",
+      subTitle: "No se ha encontrado cobros para este usuario",
       buttons: ['OK']
     });
     alert.present();

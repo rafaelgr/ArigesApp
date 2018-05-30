@@ -21,16 +21,16 @@
                 Nueva
             </button>
       </ion-item>
-      <ion-item *ngFor="let visita of visitas" text-wrap>
+      <ion-item *ngFor="let visita of visitas" text-wrap (click)="openModalVisita(visita)">
         
             <div>
-                <strong>Fecha </strong> {{visita.fecha}} <strong>a las </strong> {{visita.hora}} <strong>horas </strong> <strong>y</strong> {{visita.minutos}} <strong> minutos </strong>
-                <br><strong>Nombre </strong> {{visita.denominacion}}
+                <strong>Fecha: </strong> {{visita.fecha}} <strong>a las </strong> {{visita.hora}}<strong>:</strong>{{visita.minutos}} <strong>horas </strong>
+                <br><strong>Nombre: </strong> {{visita.denominacion}}
             </div>
               <div>
-                <strong>Observaciones </strong> {{visita.observaciones}}
+                <strong>Observaciones: </strong> {{visita.observaciones}}
               </div>
-              <ion-icon name="log-in" item-end class="myGreen" (click)="openModalVisita(visita)"></ion-icon>
+              <ion-icon name="log-in" item-end class="myGreen"></ion-icon>
      
       
       </ion-item>

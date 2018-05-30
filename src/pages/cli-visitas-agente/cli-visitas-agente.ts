@@ -51,8 +51,12 @@ export class CliVisitasAgentePage {
     this.arigesData.getVisitas(this.settings.url, this.tipo, this.settings.user.login, this.cliente.codclien)
       .subscribe(
         (data) => {
-          console.log(data);
-          this.visitas = this.prepareVisitas(data);
+          if(data.length > 0) {
+            this.visitas = this.prepareVisitas(data);
+          } else {
+            this.showNoEncontrado();
+          }
+          
         },
         (error) => {
           this.showError(error);
@@ -98,7 +102,7 @@ export class CliVisitasAgentePage {
   showNoEncontrado(): void {
     let alert = this.alertCrtl.create({
       title: "AVISO",
-      subTitle: "No se ha encontrado ningún artículo con estos criterios",
+      subTitle: "No se ha encontrado ningúna visita para este usuario y cliente",
       buttons: ['OK']
     });
     alert.present();

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef} from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
@@ -37,6 +37,8 @@ export class CobrosDetallePage {
   pagoForm: FormGroup;
   mayor: boolean = false;
   desdeMenu: boolean = false;
+  mismoUsuario: boolean = false;
+  @ViewChild('input') myInput;
 
   
   
@@ -45,6 +47,7 @@ export class CobrosDetallePage {
     public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController, 
     public formBuilder: FormBuilder, public viewCtrl: ViewController) {
 
+      
       this.cantidad = 0;
 
       this.pagoForm = formBuilder.group({
@@ -66,6 +69,12 @@ export class CobrosDetallePage {
   loadData() :void {
     this.desdeMenu =  this.navParams.get('desdeMenu');
     this.cobro = this.navParams.get('cobro');
+    this.mismoUsuario = this.navParams.get('mismoUsuario');
+    
+    setTimeout(() => {
+        
+      this.myInput.setFocus();
+    },1000);
 
     if(this.desdeMenu != true) {
       this.cliente = this.interData.getCliente();

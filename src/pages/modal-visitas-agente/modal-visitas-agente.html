@@ -5,7 +5,10 @@
             <ion-icon class="myGreen" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
           </button>
         </ion-buttons>
-    <ion-title>VISITAS</ion-title>
+    <ion-title>
+        <div *ngIf="edicion">VISITAS (Edición)</div>
+        <div *ngIf="!edicion">VISITAS (Creación)</div>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -17,13 +20,8 @@
     
     <div>
       <strong>{{cliente.nomclien}} </strong>
-      <br><strong>Fecha: </strong> {{visita.fecha}} <strong>a las {{visita.hora}} </strong> <strong>horas y</strong> {{visita.minutos}} <strong> minutos </strong>
-    </div>
-    <div>
-          <strong>Observaciones: </strong>
-          <p></p>     
-    </div>
-    
+      <br><strong>Fecha: </strong> {{visita.fecha}} <strong>a las </strong>{{visita.hora}}<strong>:</strong>{{visita.minutos}} <strong> horas</strong>
+    </div>    
   </ion-item>
 </ion-list>
 <ion-list>

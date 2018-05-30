@@ -22,6 +22,9 @@ export class ModalVisitasAgentePage {
   visita = {
     usuario: "",
     fechora: "",
+    fecha:"",
+    hora: 0,
+    minutos: 0,
     codclien: 0,
     agente: 0,
     codtraba: "",
@@ -34,12 +37,11 @@ export class ModalVisitasAgentePage {
 
   formasPago: any = [];
   tipos: any = [];
-  tipo: any
+ 
   tipoAccion: any;
+  fecha: any;
   
  
-  visitaForm: FormGroup;
-  mayor: boolean = false;
   edicion: boolean = false;
 
   
@@ -49,7 +51,8 @@ export class ModalVisitasAgentePage {
     public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController, 
     public formBuilder: FormBuilder, public viewCtrl: ViewController) {
 
-      this.tipo = 21;
+      
+      this.tipoAccion = 21;
 
   }
 
@@ -66,10 +69,13 @@ export class ModalVisitasAgentePage {
 
   loadData() :void {
     this.edicion =  this.navParams.get('edicion');
-    
     this.cliente = this.interData.getCliente();
     if(this.edicion != true) {
-      
+       this.fecha = new Date();
+       this.visita.fecha = moment(this.fecha).format('DD/MM/YYYY');
+       this.visita.hora = this.fecha.getHours();
+       this.visita.minutos = this.fecha.getMinutes();
+       this.recuperarMedio();
       
       setTimeout(() => { this.tipoAccion = 21; }, 500)
     }else {
@@ -77,7 +83,7 @@ export class ModalVisitasAgentePage {
       setTimeout(() => {  this.tipoAccion = this.visita.tipo; }, 500)
      
     }
-    this.arigesData.getTipoAccion(this.settings.url, this.tipo)
+    this.arigesData.getTipoAccion(this.settings.url, this.tipoAccion)
       .subscribe(
         (data) => {
           this.tipos = data;
@@ -157,22 +163,22 @@ export class ModalVisitasAgentePage {
   saveObjectMysql(): any {
 
     var visitaObje = {};
-          var fecha;
+          
           if(this.edicion){
-            fecha = moment(new Date(this.visita.fechora)).format('YYYY-MM-DD HH:mm:ss');
+            this.fecha = moment(new Date(this.visita.fechora)).format('YYYY-MM-DD HH:mm:ss');
             visitaObje = {
               usuario: this.visita.usuario, 
-              fechora: fecha, 
+              fechora: this.fecha, 
               codclien: this.visita.codclien,
               tipo: this.tipoAccion,
               medio: this.visita.medio,
               observaciones: this.visita.observaciones
             }
           } else {
-            fecha = new Date;
+            this.fecha = moment(this.fecha).format('YYYY-MM-DD HH:mm:ss');
             visitaObje = {
               usuario: this.settings.user.login,
-              fechora: fecha,
+              fechora: this.fecha,
               codclien: this.cliente.codclien,
               agente: this.cliente.codagent,
               codtraba: this.settings.user.codtraba,
