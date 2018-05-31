@@ -17,78 +17,81 @@
     <ion-item no-lines class="grptitle">
       Indicadores
     </ion-item>
-    <ion-item text-wrap>
-    <ion-grid >
-      <ion-row (click)="goPage({ title: 'Ofertas', component: 'CliOfertasPage' })">
-        <ion-col col-11 >
+    <ion-item   (click)="goPage({ title: 'Ofertas', component: 'CliOfertasPage' })">
+      <div >
           <strong>Ofertas: </strong> {{indicadores.ofertas}}
-        </ion-col>
-        <ion-col col-1>    
-                  <ion-icon class="myGreen" name="log-in"></ion-icon>
-        </ion-col>
-      </ion-row>
-      <ion-row (click)="goPage({ title: 'Pedidos', component: 'CliPedidosPage' })">
-        <ion-col col-11>
+      </div>
+                  <ion-icon class="myGreen" name="log-in" item-end></ion-icon>
+    </ion-item>
+    
+      
+      <ion-item (click)="goPage({ title: 'Pedidos', component: 'CliPedidosPage' })">
+        <div >
           <strong>Pedidos: </strong> {{indicadores.pedidos}}
-        </ion-col>
-        <ion-col col-1>    
-            <ion-icon class="myGreen" name="log-in"></ion-icon>
-        </ion-col>
-      </ion-row>
-      <ion-row (click)="goPage({ title: 'Albaranes', component: 'CliAlbaranesPage' })">
-        <ion-col col-11>
+        </div>
+           
+            <ion-icon class="myGreen" name="log-in" item-end></ion-icon>
+        
+      </ion-item>
+      <ion-item (click)="goPage({ title: 'Albaranes', component: 'CliAlbaranesPage' })">
+        <div >
           <strong>Albaranes: </strong> {{indicadores.albaranes}}
-        </ion-col>
-        <ion-col col-1>    
-            <ion-icon class="myGreen" name="log-in"></ion-icon>
-        </ion-col>
-      </ion-row>
-     
-      <ion-row>
-        <ion-col col-auto col-sm>
+        </div>
+           
+            <ion-icon class="myGreen" name="log-in" item-end></ion-icon>
+        
+      </ion-item>
+      
+      
+      <ion-item>
+        <div>
           <strong>Saldo: </strong> {{indicadores.saldoPendiente}}
-        </ion-col>
-        <ion-col col-auto col-sm>
+        </div>
+      </ion-item>
+      <ion-item>
+        <div>
           <strong>Saldo Vencido: </strong> {{indicadores.saldoVencido}}
-        </ion-col>
-      </ion-row>
+        </div>
+      </ion-item>
     
-      <ion-row>
-        <ion-col col-12>
+      <ion-item>
+        <div>
           <strong>Situación: </strong> {{cliente.situacio}}
-        </ion-col>
-      </ion-row>
+        </div>
+      </ion-item>
    
-      <ion-row>
-        <ion-col col-12>
+      <ion-item>
+        <div>
           <strong>Agente: </strong> {{cliente.nomagent}}
-        </ion-col>
-      </ion-row>
+        </div>
+      </ion-item>
     
-      <ion-row>
-        <ion-col col-12>
+      <ion-item>
+        <div>
           <strong>F.Pago: </strong> {{cliente.nomforpa}}
-        </ion-col>
-      </ion-row>
+        </div>
+      </ion-item>
     
-      <ion-row>
-        <ion-col col-auto col-sm>
+      <ion-item>
+        <div>
           <strong>Limite de crédito: </strong> {{cliente.limiteCredito}}
-        </ion-col>
-        <ion-col col-auto col-sm>
+        </div>
+      </ion-item>
+      <ion-item>
+        <div>
           <strong>Tipo crédito: </strong> {{cliente.nomCreditoPrivado}}
-        </ion-col>
-      </ion-row>
+        </div>
+      </ion-item>
     
-    <ion-row>
-      <ion-col  col-12>
+    <ion-item text-wrap>
+      <div>
         <strong>Observaciones:</strong>
         <p>{{cliente.observac}}</p>
-      </ion-col>
-    </ion-row>
+      </div>
+    </ion-item>
     
-    </ion-grid>
-  </ion-item>
+    
+  
   </ion-list>
  
   <ion-list>

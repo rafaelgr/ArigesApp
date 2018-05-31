@@ -65,7 +65,7 @@ export class CliFacturasPage {
       data[i].totalfac = numeral(data[i].totalfac).format('0,0.00 $');
       data[i].bases = numeral(data[i].bases).format('0,0.00 $');
       data[i].cuotas = numeral(data[i].cuotas).format('0,0.00 $');
-      data[i].numfactu = data[i].letraser+'-'+data[i].numfactu;
+      data[i].numfactu = data[i].letraser+data[i].numfactu;
       // ahora hay que procesar las líneas
     
       for (var i2 = 0; i2 < data[i].lineas.length; i2++) {

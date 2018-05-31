@@ -47,8 +47,6 @@ export class CobrosDetallePage {
     public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController, 
     public formBuilder: FormBuilder, public viewCtrl: ViewController) {
 
-      
-      this.cantidad = 0;
 
       this.pagoForm = formBuilder.group({
         cantidad: ['', Validators.compose([Validators.required, Validators.min(1)])]
