@@ -62,7 +62,7 @@ export class CliPreciosEspecialesPage {
   prepareArticulos(data): any {
     for (var i = 0; i < data.length; i++) {
       data[i].precioac = numeral(data[i].precioac).format('0,0.00 $');
-      data[i].dtoespe = numeral(data[i].dtoespe).format('0,0');
+      data[i].dtoespe = numeral(data[i].dtoespe).format('0,0.00');
     }
     return data;
   }

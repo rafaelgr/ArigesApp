@@ -5,7 +5,7 @@
       </button>
       <ion-title>{{cliente.nomclien}}</ion-title>
       <ion-buttons end>
-        <button ion-button icon-only (click)="goHome()" end>
+        <button ion-button icon-only (click)="goHome()" class="myGreen" end>
           <ion-icon name="home"></ion-icon>
         </button>
       </ion-buttons>
@@ -19,7 +19,7 @@
       </ion-item>
       <ion-item *ngFor="let articulo of articulos" text-wrap>
         <div>
-          <strong>Nombre: </strong> {{articulo.nomartic}}
+          {{articulo.nomartic}}
           <strong>Codigo: </strong> {{articulo.codartic}}
         </div>
         <div>

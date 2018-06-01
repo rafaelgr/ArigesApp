@@ -1,0 +1,81 @@
+<!--
+  Generated template for the ModalOfertaLineaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+      <ion-buttons end>
+          <button ion-button icon-only (click)="dismiss()">
+            <ion-icon class="myGreen" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+          </button>
+        </ion-buttons>
+    <ion-title>OFERTA LINEA</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <form   [formGroup]="linForm" no-lines>
+    <ion-item no-lines class="grptitle">
+                <div *ngIf="datos.numlinea != 0">Linea (Edición)</div>
+                <div *ngIf="datos.numlinea == 0">Linea (Creación)</div>
+                <button color="light" ion-button outline item-end round icon-left (click)="guardarLinea()">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  Aceptar
+                </button>
+    </ion-item>
+    <ion-item >
+        <ion-label  color="cabecera" stacked>Articulo:</ion-label>
+        <ion-input type="text" #articulo [(ngModel)]="nomartic" [formControl]="nomartiControl" formControlName="nomartic" (focus)="noSeleccionado()" ngDefaultControl></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!linForm.controls.nomartic.valid && falta" no-lines>
+      <p style="color:red">Debe introducir un valor.</p>
+    </ion-item>
+    
+    <div *ngIf="encontrado" no-lines>
+        <ion-item *ngFor="let articulo of datos.articulos"  (click)="selectArticulo(articulo)">
+            <h4>{{articulo.nomartic}}</h4>
+            <ion-icon name="log-in" class="myGreen" item-end></ion-icon>
+          </ion-item>
+    </div>
+    <ion-item >
+      <ion-label   color="cabecera" stacked>Referencia:</ion-label>
+      <ion-input type="text" value="{{datos.articulo.codartic}}" disabled></ion-input>
+    </ion-item>
+    <ion-item >
+      <ion-label   color="cabecera" stacked>Cantidad:</ion-label>
+      <ion-input type="number" #focusInput [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()" (change)="cambiaCantidad()"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!linForm.controls.cantidad.valid && falta" no-lines>
+      <p style="color:red">La cantidad es requerida y <br>tiene que ser mayor que cero.</p>
+    </ion-item>
+    <ion-item >
+        <ion-label   color="cabecera" stacked>Precio:</ion-label>
+        <ion-input  value="{{datos.precioar}}"   disabled></ion-input>
+    </ion-item>
+    <ion-item >
+      <ion-label   color="cabecera" stacked>Descuento 1:</ion-label>
+      <ion-input  value="{{datos.articulo.precio.dto1}}"  disabled></ion-input>
+    </ion-item>
+    <ion-item >
+      <ion-label   color="cabecera" stacked>Descuento 2</ion-label>
+      <ion-input  value="{{datos.articulo.precio.dto2}}"  disabled></ion-input>
+    </ion-item>
+    <ion-item >
+        <ion-label   color="cabecera" stacked>Importe:</ion-label>
+        <ion-input value="{{datos.importel}}"  disabled></ion-input>
+    </ion-item>
+  </form>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+      <ion-title>
+        <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
+      </ion-title>
+    </ion-toolbar>
+</ion-footer>

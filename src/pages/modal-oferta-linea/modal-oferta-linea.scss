@@ -1,0 +1,51 @@
+page-modal-oferta-linea {
+    .grptitle {
+        background-color: #718dba;
+        color: white;
+    }
+
+    .mas {
+        margin-left: 55%;
+        margin-top: 0;
+    }
+
+    form {
+        border: 1px solid black;
+    }
+
+    ion-toolbar {
+        text-align: center;
+    }
+
+    ion-header {
+        text-align: center;
+    }
+    ion-toolbar {
+        text-align: center;
+    }
+    
+    .psb {
+        padding: 5px;
+        border: solid;
+        border-radius: 30px;
+        border-color: #718dba;
+        border-width: 3px;
+        text-align: center;
+     }
+     
+          ion-header ion-icon.back-button-icon.icon {
+        color: #718dba;
+    }
+    
+    .item-md ion-thumbnail, .item-ios ion-thumbnail, .item-wp ion-thumbnail {
+        min-width: 0px;
+        min-height: 0px;
+        width: 7rem;    
+        img {
+            width: 60%;    
+            height: 60%;
+            margin-left: 20%
+        }
+    }
+
+}

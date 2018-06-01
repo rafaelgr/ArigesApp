@@ -2,7 +2,7 @@
   <ion-navbar>
     <ion-title>LOGIN</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="goHome()">
+      <button ion-button icon-only (click)="goHome()" class="myGreen">
         <ion-icon name="home"></ion-icon>
       </button>
     </ion-buttons>
@@ -13,10 +13,12 @@
 <ion-content padding>
   <ion-list>
     <ion-item text-wrap no-lines>
-      <ion-avatar item-start>
-        <img src="assets/imgs/login.png">
-      </ion-avatar>
-      <p>Introduzca su usuario y contraseña y pulse aceptar</p>
+      <ion-thumbnail item-start>
+        <div class="psb">
+            <img src="assets/imgs/login.png" style="margin-left: 28%">
+        </div>
+      </ion-thumbnail>
+      <p>Introduzca su usuario y contraseña y pulse aceptar o...</p>
     </ion-item>
     <form [formGroup]="loginForm" no-lines>
       <ion-item>
@@ -34,10 +36,26 @@
         <p style="color:red">Se necesita una contraseña.</p>
       </ion-item>         
     </form>
-    <ion-item no-lines>
+    <ion-item no-lines class="myGreen">
       <button ion-button outline item-end round icon-left (click)="doLogin()">
         <ion-icon name="checkmark"></ion-icon>
         Aceptar
+      </button>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item text-wrap no-lines>
+      <ion-thumbnail item-start>
+        <div class="psb">
+            <img src="assets/imgs/ajustes.png">
+        </div>
+      </ion-thumbnail>
+      <p>pulsar el boton para volver a configurar</p>
+    </ion-item>
+    <ion-item no-lines class="myGreen">
+      <button ion-button outline item-end round icon-left (click)="goSettings()">
+        <ion-icon name="settings"></ion-icon>
+        Configurar
       </button>
     </ion-item>
   </ion-list>

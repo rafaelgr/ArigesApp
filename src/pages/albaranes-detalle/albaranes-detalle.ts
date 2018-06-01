@@ -56,7 +56,7 @@ export class AlbaranesDetallePage {
         },
         (error) => {
           this.showError(error);
-        });
+      });
 
   }
 

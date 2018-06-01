@@ -5,7 +5,7 @@
     </button>
     <ion-title>{{cliente.nomclien}}</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="goHome()" end>
+      <button ion-button icon-only (click)="goHome()" class="myGreen" end>
         <ion-icon name="home"></ion-icon>
       </button>
     </ion-buttons>
@@ -15,21 +15,25 @@
 <ion-content padding>
   <ion-list>
     <ion-item no-lines class="grptitle" text-wrap>
-      Pedido: {{pedido.numpedcl}} Importe: {{pedido.totalped}}
+      <div>
+         <strong> Pedido: </strong> {{pedido.numpedcl}} <strong>Importe: </strong>{{pedido.totalped}}
+      </div>
+      <div>
+          <strong>Observaciones: </strong><br>{{pedido.observa}}
+      </div>
     </ion-item>
     <ion-item *ngFor="let linea of pedido.lineas" text-wrap>
       <div>
-        <strong>Lin: </strong>{{linea.numlinea}}
-        <strong>Art: </strong>{{linea.nomartic}}
+        {{linea.nomartic}}
       </div>
       <div>
-        <strong>Cant: </strong>{{linea.cantidad}}
-        <strong>Prec: </strong>{{linea.precioar}}
+        <strong>Cantidad: </strong>{{linea.cantidad}}
+        <strong>Precio: </strong>{{linea.precioar}}
       </div>
       <div>
         <strong>Dto1: </strong>{{linea.dtoline1}}
         <strong>Dto2: </strong>{{linea.dtoline2}}
-        <strong>Tot: </strong>{{linea.importel}}
+        <strong>Total: </strong>{{linea.importel}}
       </div>
     </ion-item>
   </ion-list>

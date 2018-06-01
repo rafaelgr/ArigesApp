@@ -1,0 +1,25 @@
+page-modal-visitas-agente {
+    .grptitle {
+        background-color: #718dba;
+        color: white !important;
+    }
+    p {
+        color: white !important;
+    }
+
+    ion-toolbar {
+        text-align: center;
+    }
+
+    ion-header {
+        text-align: center;
+    }
+    
+     ion-header ion-icon.back-button-icon.icon {
+        color: #718dba;
+    }
+
+    .select-md {
+        padding: 13px 28px 13px 16px;
+    }
+}

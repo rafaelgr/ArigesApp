@@ -70,4 +70,8 @@ export class LoginPage {
   goHome(): void {
     this.navCtrl.setRoot('HomePage');
   }
+
+  goSettings(): void {
+    this.navCtrl.setRoot('SettingsPage');
+  }
 }

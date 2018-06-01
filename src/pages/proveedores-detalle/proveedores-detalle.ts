@@ -17,8 +17,9 @@ export class ProveedoresDetallePage {
   settings: any;
   cliente: any = {};
   proveedor = {
-    
+    codprove: ""
   };
+  descuentos: any = [];
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
@@ -47,6 +48,26 @@ export class ProveedoresDetallePage {
 
   loadData(): void {
     this.proveedor = this.interData.getProveedor();
+    this.arigesData.getProveedoresDescuentosRappeles(this.settings.url ,this.proveedor.codprove)
+    .subscribe(
+      (data) => {
+        for (var i=0; i < data.length; i++){
+          data[i].fechadto = moment(data[i].fechadto).format('DD/MM/YYYY');
+          data[i].dtoline1 = numeral(data[i].dtoline1).format('0,0');
+          data[i].dtoline2 = numeral(data[i].dtoline2).format('0,0');
+          data[i].rap1 = numeral(data[i].rap1).format('0,0');
+          data[i].rap2 = numeral(data[i].rap2).format('0,0');
+      }
+        this.descuentos = data;
+      },
+      (error) => {
+        if (error.status == 404) {
+         this.descuentos.length = 0;
+        } else {
+          this.showError(error);
+        }
+      }
+    );;
   }
 
 
@@ -55,6 +76,15 @@ export class ProveedoresDetallePage {
     let alert = this.alertCrtl.create({
       title: "ERROR",
       subTitle: JSON.stringify(error, null, 4),
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  showNoEncontrado(): void {
+    let alert = this.alertCrtl.create({
+      title: "AVISO",
+      subTitle: "No se ha encontrado ningún artículo con estos criterios",
       buttons: ['OK']
     });
     alert.present();

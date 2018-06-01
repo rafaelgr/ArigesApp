@@ -3,4 +3,29 @@ page-cli-resumen {
         background-color: #718dba;
         color: white;
     }
+
+    .row {
+        padding: 5px;
+        border-bottom: 1px solid  rgba(0, 0, 0, 0.12);
+    }
+
+
+    .grafico {
+        height: 100%;
+        width: 100%;
+        display: block;
+    }
+    
+    
+
+    .color {
+        background: #c0c5cc;
+       
+    }
+
+    .letra {
+        font-size: 1.7rem;
+    }
+
+    
 }

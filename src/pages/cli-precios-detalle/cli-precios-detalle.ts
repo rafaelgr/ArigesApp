@@ -57,6 +57,14 @@ export class CliPreciosDetallePage {
   loadData(): void {
     this.cliente = this.interData.getCliente();
     this.articulo = this.interData.getArticulo();
+    this.preparePrecios();
+  }
+
+  preparePrecios(): void{
+    this.articulo.precio.dto1 = numeral(this.articulo.precio.dto1).format('0,0.00');
+    this.articulo.precio.dto2 = numeral(this.articulo.precio.dto2).format('0,0.00');
+    this.articulo.precio.pvp = numeral(this.articulo.precio.pvp).format('0,0.00 $');
+    this.articulo.precio.importe = numeral(this.articulo.precio.importe).format('0,0.00 $');
   }
 
 

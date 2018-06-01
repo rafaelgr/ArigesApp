@@ -5,7 +5,7 @@
       </button>
       <ion-title>{{cliente.nomclien}}</ion-title>
       <ion-buttons end>
-        <button ion-button icon-only (click)="goHome()" end>
+        <button ion-button icon-only (click)="goHome()" class="myGreen" end>
           <ion-icon name="home"></ion-icon>
         </button>
       </ion-buttons>
@@ -15,9 +15,11 @@
   <ion-content padding>
     <ion-list>
       <ion-item text-wrap no-lines>
-        <ion-avatar item-start>
-          <img src="assets/imgs/articulos.png">
-        </ion-avatar>
+        <ion-thumbnail item-start>
+          <div class="psb">
+              <img src="assets/imgs/articulos.png">
+          </div>
+        </ion-thumbnail>
         <p>Introduca parte del nombre del articulo del que quiere conocer el precio para este cliente y pulse buscar</p>
       </ion-item>
       <form [formGroup]="buscarArtForm" no-lines>
@@ -29,7 +31,7 @@
           <p style="color:red">Debe introducir un valor.</p>
         </ion-item>
       </form>
-      <ion-item no-lines>
+      <ion-item no-lines class="myGreen">
         <button ion-button outline item-end round icon-left (click)="doSearch()">
           <ion-icon name="search"></ion-icon>
           Buscar
@@ -44,7 +46,7 @@
             <strong>PVP: </strong> {{articulo.precio.importe}}
             <strong>Stock: </strong> {{articulo.stock}}
         </div>
-        <ion-icon name="log-in" item-end></ion-icon>
+        <ion-icon name="log-in" class="myGreen" item-end></ion-icon>
       </ion-item>
     </ion-list>
   </ion-content>

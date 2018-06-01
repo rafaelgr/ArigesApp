@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+
 import 'rxjs/add/operator/map';
 
 
@@ -74,6 +74,11 @@ export class ArigesDataProvider {
     return this.http.get(apiUrl + '/api/facturas/cliente/' + codclien);
   }
 
+  getFacturasComentarios(apiUrl, codclien): any {
+    return this.http.get(apiUrl + '/api/facturas/cliente/comentarios/' + codclien);
+  }
+
+
   getArticulos(apiUrl, parnom): any {
     let params = {
       'parnom': parnom
@@ -84,6 +89,7 @@ export class ArigesDataProvider {
   }
 
   getArticulosExt(apiUrl, parnom, parpro, parfam, codigo, obsole): any {
+    
     let params = {
       'parnom': parnom,
       'parpro': parpro,
@@ -135,6 +141,14 @@ export class ArigesDataProvider {
     });
   }
 
+  getProveedoresDescuentosRappeles(apiUrl, codprove): any {
+    return this.http.get(apiUrl + '/api/proveedores/descuentos-rappeles', {
+        params: {
+            "codprove": codprove
+        }
+    })
+}
+
   getFamilias(apiUrl, parnom): any {
     let params = {
       'parnom': parnom
@@ -161,6 +175,8 @@ export class ArigesDataProvider {
     return this.http.get(apiUrl + '/api/albaranes');
   }
 
+  
+
   getAlbaranDetalle(apiUrl, codtipom, numalbar): any {
     let params = {
       'codtipom': codtipom,
@@ -170,5 +186,102 @@ export class ArigesDataProvider {
       params: params
     });
   }
+
+
+  getCobroParcial(apiUrl, numserie, numfactu, fecfactu, numorden): any {
+    let params = {
+      'numserie': numserie,
+      'numfactu': numfactu,
+      'fecfactu': fecfactu,
+      'numorden': numorden
+    };
+    return this.http.get(apiUrl + '/api/cobros/parciales/cobro/devolver', {
+      params : params
+    });
+  }
+
+  
+
+  getCobrosUsuario(apiUrl, codusu): any {
+    let params = {
+      'codusu': codusu
+    };
+    return this.http.get(apiUrl + '/api/cobros/parciales/cobro/devolver/usuario', {
+      params : params
+    });
+  }
+
+  getTiposFormasPago(apiUrl): any {
+    return this.http.get(apiUrl + '/api/fpago/tiposFormasPago');
+  }
+
+  getTipoAccion(apiUrl, tipo): any {
+    let params = {
+      'tipo': tipo
+    };
+    return this.http.get(apiUrl + '/api/acciones/tipos', { 
+      params: params}
+    );
+  }
+
+  getUnTipoAccion(apiUrl, tipo): any {
+    let params = {
+      'tipo': tipo
+    };
+    return this.http.get(apiUrl + '/api/acciones/tipos/uno', { 
+      params: params}
+    );
+  }
+
+  postCabeceraOferta(apiUrl, oferta): any {
+    return this.http.post(apiUrl + '/api/ofertas/caboferta', oferta);
+  }
+
+  getVisitas(apiUrl, tipo, login, codclien): any {
+    let params = {
+      'tipo': tipo,
+      'login': login,
+      'codclien': codclien
+    };
+    return this.http.get(apiUrl + '/api/acciones/', {
+      params: params
+    });
+  }
+
+  putCabeceraOferta(apiUrl, oferta): any {
+    return this.http.put(apiUrl + '/api/ofertas/caboferta', oferta);
+  }
  
+
+  postLineaOferta(apiUrl, oferta): any {
+    return this.http.post(apiUrl + '/api/ofertas/linoferta', oferta);
+  }
+
+  postCobroParcial(apiUrl, cobroParcial) : any {
+    return this.http.post(apiUrl + '/api/cobros/nuevo/parcial', cobroParcial);
+  }
+
+  postVisita(apiUrl, visita) : any {
+    return this.http.post(apiUrl + '/api/acciones/', visita);
+  }
+
+  putVisita(apiUrl, visita) : any {
+    return this.http.put(apiUrl + '/api/acciones/', visita);
+  }
+
+  putCobroParcial(apiUrl, cobroParcial): any {
+    return this.http.put(apiUrl + '/api/cobros/cobroparcial', cobroParcial);
+  }
+
+  putLineaOferta(apiUrl, oferta): any {
+    return this.http.put(apiUrl + '/api/ofertas/linoferta', oferta);
+  }
+ 
+  deleteLineaOferta(apiUrl, numofert, numlinea): any {
+    return this.http.delete(apiUrl + '/api/ofertas/linoferta?numofert='+ numofert +'&numlinea='+ numlinea);
+  }
+
+  deleteOferta(apiUrl, numofert): any {
+    return this.http.delete(apiUrl + '/api/ofertas/caboferta?numofert='+ numofert);
+  }
 }

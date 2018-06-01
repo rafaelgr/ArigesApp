@@ -15,3 +15,16 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+.back-button-text-ios {
+    visibility: hidden;
+}
+
+.myGreen, .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default,
+.bar-button-default-wp, .bar-button-clear-wp-default, .bar-button-wp-default, 
+.bar-button-default-ios, .bar-button-default.bar-button-ios-default,
+ .bar-button-clear-ios-default{
+    color: #718dba;
+}
+
+ 
+

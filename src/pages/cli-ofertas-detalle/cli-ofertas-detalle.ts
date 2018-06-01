@@ -17,6 +17,7 @@ export class CliOfertasDetallePage {
   settings: any;
   cliente: any = {};
   oferta: any = {};
+  observa: string;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
@@ -45,8 +46,15 @@ export class CliOfertasDetallePage {
   }
 
   loadData(): void {
+    var cadena;
     this.cliente = this.interData.getCliente();
     this.oferta = this.interData.getOferta();
+
+    cadena = this.oferta.observa01+" "+this.oferta.observa02+" "
+      +this.oferta.observa03+" "+this.oferta.observa04+" "+this.oferta.observa05;
+
+      this.observa = cadena.replace(/undefined|null/gi, '').trim(); 
+
   }
 
 

@@ -1,13 +1,54 @@
 page-home {
 
-    ion-col {
-        text-align: center;
-    }
-
-    img {
-        width: 40%;
-    }
+    
     ion-toolbar {
         text-align: center;
     }
+
+    ion-col {
+        text-align: center;
+        img {
+            width: 20%;
+        }
+    }
+    
+    ion-header {
+        text-align: center;
+    }
+
+    p {
+        font-size: 0.8em;
+    }
+
+    .psb {
+        padding: 5px;
+        padding-top: 15px;
+        border: solid;
+        border-radius: 30px;
+        border-color: #718dba;
+        border-width: 3px;
+        min-height: 50px;
+     }
+
+     .home-hello {
+        position: relative;
+    
+        .hello-title {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+            border: 0;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 10px;
+        }
+    
+        h1 {
+            margin-top: 0;
+        }
+    
+        
+    }
+    
 }

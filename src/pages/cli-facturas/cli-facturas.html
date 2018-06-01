@@ -5,7 +5,7 @@
     </button>
     <ion-title>{{cliente.nomclien}}</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="goHome()" end>
+      <button ion-button icon-only (click)="goHome()" class="myGreen" end>
         <ion-icon name="home"></ion-icon>
       </button>
     </ion-buttons>
@@ -19,8 +19,9 @@
     </ion-item>
     <ion-item *ngFor="let factura of facturas" text-wrap (click)="goFactura(factura)">
       <div>
-        <strong>N.Factura: </strong> {{factura.numfactu}}
-        <strong>Fecha: </strong> {{factura.fecfactu}}
+      <div>
+        <strong>Nº </strong> {{factura.numfactu}}
+        <strong>del </strong> {{factura.fecfactu}}
       </div>
       <div>
         <strong>Base: </strong> {{factura.bases}}
@@ -29,7 +30,8 @@
       <div>
         <strong>Total: </strong> {{factura.totalfac}}
       </div>
-      <ion-icon name="log-in" item-end></ion-icon>
+    </div>
+      <ion-icon name="log-in" class="myGreen" item-end></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>

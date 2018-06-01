@@ -2,7 +2,7 @@
   <ion-navbar>
     <ion-title>PEDIDOS (DETALLE)</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="goHome()">
+      <button ion-button icon-only (click)="goHome()" class="myGreen">
         <ion-icon name="home"></ion-icon>
       </button>
     </ion-buttons>
@@ -12,21 +12,28 @@
 <ion-content padding>
   <ion-list>
     <ion-item no-lines class="grptitle" text-wrap>
+        <div>
+            <strong>Nº </strong>{{pedido.numpedcl}}
+            <strong>del </strong>{{pedido.fecpedcl}}
+        </div>
       <div>
         <strong>Agente: </strong>{{pedido.nomagent}}
+      </div>
+      <div>
         <strong>Cliente: </strong>{{pedido.nomclien}}
       </div>
       <div>
-        <strong>Fecha: </strong>{{pedido.fecpedcl}}
         <strong>Total: </strong>{{pedido.totalped}}
+      </div>
+      <div>
+          <strong>Observaciones: </strong><br>{{pedido.observa}}
       </div>
     </ion-item>
   </ion-list>
   <ion-list>
     <ion-item *ngFor="let linea of pedido.lineas" text-wrap>
       <div>
-        <strong>Linea: </strong>{{linea.numlinea}}
-        <strong>Articulo: </strong>{{linea.nomartic}}
+        {{linea.nomartic}}
       </div>
       <div>
         <strong>Cantidad: </strong>{{linea.cantidad}}

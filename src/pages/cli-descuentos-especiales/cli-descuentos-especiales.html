@@ -5,7 +5,7 @@
       </button>
       <ion-title>{{cliente.nomclien}}</ion-title>
       <ion-buttons end>
-        <button ion-button icon-only (click)="goHome()" end>
+        <button ion-button icon-only (click)="goHome()" class="myGreen" end>
           <ion-icon name="home"></ion-icon>
         </button>
       </ion-buttons>
@@ -21,7 +21,7 @@
         <div>
           <strong>Codigo: </strong> {{descuento.codfamia}}
           <strong>Familia: </strong> {{descuento.nomfamia}}
-          <strong>Fecha: </strong> {{descuento.fechadto}}
+          <br><strong>Fecha: </strong> {{descuento.fechadto}}
         </div>
         <div>
           <strong>Dto1: </strong> {{descuento.dtoline1}}

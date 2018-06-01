@@ -1,0 +1,22 @@
+page-cli-visitas-agente {
+    .grptitle {
+        background-color: #718dba;
+        color: white;
+    }
+    .mas {
+        margin-left: 65%;
+        margin-top: 0;
+    }
+
+    ion-header {
+        text-align: center;
+    }
+    ion-toolbar {
+        text-align: center;
+    }
+    
+    
+          ion-header ion-icon.back-button-icon.icon {
+        color: #718dba;
+    }
+}

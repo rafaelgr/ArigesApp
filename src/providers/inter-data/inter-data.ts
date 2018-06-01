@@ -9,6 +9,7 @@ export class InterDataProvider {
   factura: any;
   articulo: any;
   proveedor: any;
+  lineaOferta: any;
 
   constructor() {
 
@@ -68,5 +69,13 @@ export class InterDataProvider {
 
   getProveedor(): any {
     return this.proveedor;
+  }
+
+  setLineaOferta(lineaOferta): void {
+    this.lineaOferta = lineaOferta;
+  }
+
+  getLineaOferta(): any {
+    return this.lineaOferta;
   }
 }

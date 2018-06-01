@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>COBROS </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome()" class="myGreen">
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item text-wrap no-lines>
+        <ion-thumbnail item-start>
+            <div class="psb">
+                <img src="assets/imgs/cobros.png">
+            </div>
+          </ion-thumbnail>
+      <p>Estos son los cobros disponibles</p>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let cobro of cobros"  text-wrap (click)="goCobro(cobro)">
+      
+      <div>
+        <strong>Nº </strong>{{cobro.numfact}}
+        <strong>del </strong>{{cobro.fechafact}}
+      </div>
+      <div>
+          <strong>Nº vencimiento: </strong>{{cobro.numorden}}
+          <strong>del </strong>{{cobro.fechavenci}}
+      </div>
+      <div>
+        <strong>Importe: </strong>{{cobro.impcobrado}}
+        <br><strong>Forma pago: </strong>{{cobro.nomforpa}}
+      </div>
+      <div>
+        <strong>Cliente: </strong> {{cobro.nomclien}}
+      </div>
+      <div>
+        <strong>Observaciones: </strong>{{cobro.observa}}
+      </div>
+      <ion-icon name="log-in" item-end class="myGreen"></ion-icon>
+      
+      
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

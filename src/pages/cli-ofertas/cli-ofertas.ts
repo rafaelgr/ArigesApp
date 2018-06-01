@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
+import { ModalController } from 'ionic-angular';
+import { ModalOfertaCabeceraPage } from '../modal-oferta-cabecera/modal-oferta-cabecera'
 import * as moment from 'moment';
 import * as numeral from 'numeral';
 
@@ -16,10 +18,12 @@ export class CliOfertasPage {
   settings: any;
   cliente: any = {};
   ofertas: any = [];
-
+  modalCabecera: any;
+ 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
-    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
+    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController, public modalCtrl: ModalController) {
+      
 
   }
 
@@ -73,8 +77,70 @@ export class CliOfertasPage {
   }
 
   goOferta(oferta): void {
+   
+      this.interData.setOferta(oferta);
+      this.navCtrl.push('CliOfertasDetallePage');
+    
+  }
+
+  borrarOferta(oferta): void {
+    this.confirmarBorrado(oferta);
+    
+  }
+
+  editarOferta(oferta): void {
+  
     this.interData.setOferta(oferta);
-    this.navCtrl.push('CliOfertasDetallePage');
+    this.navCtrl.push('EdicionOfertaPage');
+  }
+
+
+  openModalCabecera(): void  {
+    this.modalCabecera = this.modalCtrl.create('ModalOfertaCabeceraPage');
+    this.interData.setOferta(null);//si se crea una oferta yhecemos la oferta local nula
+    this.modalCabecera.onDidDismiss(crear => {
+      if(crear){
+        this.navCtrl.push('EdicionOfertaPage');
+       }
+   
+    });
+    this.modalCabecera.present();
+  }
+
+  confirmarBorrado(oferta): any {
+    let alert = this.alertCrtl.create({
+      title: "AVISO",
+      subTitle: "¿Está seguro que desea borrar el registro?",
+      buttons: [
+        {text: 'Aceptar',
+         handler: ()=> {
+          this.arigesData.deleteOferta(this.settings.url, oferta.numofert)
+                .subscribe(
+                  (data) => {
+                    var num;
+                    for(var i = 0; i < this.ofertas.length; i++) {
+                     num = this.ofertas[i].numofert
+                      if(num == data) {
+                       
+                        this.ofertas.splice(i, 1);
+                        break;
+                      }
+                    }
+                  },
+                  (error) => {
+                    if (error.status == 404) {
+                      this.showNoEncontrado();
+                    } else {
+                      this.showError(error);
+                    }
+                  }
+                );
+         }},
+        {text: 'cancelar',
+         handler: () => { return}}
+      ]
+    });
+    alert.present();
   }
 
   showError(error): void {
@@ -85,6 +151,14 @@ export class CliOfertasPage {
     });
     alert.present();
   }
-
+  
+  showNoEncontrado(): void {
+    let alert = this.alertCrtl.create({
+      title: "AVISO",
+      subTitle: "No se ha encontrado ningún artículo con estos criterios",
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
 }

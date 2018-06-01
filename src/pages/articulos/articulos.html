@@ -2,20 +2,21 @@
   <ion-navbar>
     <ion-title>ARTICULOS (BUSCAR)</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="goHome()">
+      <button ion-button icon-only (click)="goHome()" class="myGreen">
         <ion-icon name="home"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
   <ion-list>
     <ion-item text-wrap no-lines>
-      <ion-avatar item-start>
-        <img src="assets/imgs/articulos.png">
-      </ion-avatar>
+        <ion-thumbnail item-start>
+            <div class="psb">
+                <img src="assets/imgs/articulos.png">
+            </div>
+          </ion-thumbnail>
       <p>Introduca los criterios que desee y pulse buscar</p>
     </ion-item>
     <form no-lines>
@@ -65,7 +66,7 @@
         <ion-checkbox [(ngModel)]="obsole" name="obsole"></ion-checkbox>
       </ion-item>
     </form>
-    <ion-item no-lines>
+    <ion-item no-lines  class="myGreen">
       <button ion-button outline item-end round icon-left (click)="doSearch()">
         <ion-icon name="search"></ion-icon>
         Buscar
@@ -75,7 +76,7 @@
   <ion-list>
     <ion-item *ngFor="let articulo of articulos" (click)="goArticulo(articulo)">
       <h4>{{articulo.nomartic}}</h4>
-      <ion-icon name="log-in" item-end></ion-icon>
+      <ion-icon name="log-in" item-end class="myGreen"></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>
