@@ -114,6 +114,22 @@ export class ArigesDataProvider {
     });
   }
 
+  getArticulosClienteExt(apiUrl, codclien, codactiv, codtarif, parnom, parpro, parfam, codigo, obsole): any {
+    let params = {
+      'codclien': codclien,
+      'codactiv': codactiv,
+      'codtarif': codtarif,
+      'parnom': parnom,
+      'parpro': parpro,
+      'parfam': parfam,
+      'codigo': codigo,
+      'obsole': obsole
+    };
+    return this.http.get(apiUrl + '/api/articulos/cliente/ext', {
+      params: params
+    });
+  }
+
   getArticulosPreciosEspeciales(apiUrl, codclien): any {
     let params = {
       'codclien': codclien

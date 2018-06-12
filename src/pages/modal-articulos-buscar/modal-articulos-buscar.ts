@@ -28,6 +28,7 @@ export class ModalArticulosBuscarPage {
   parpro: string = "";
   parfam: string = "";
   codigo: string = "";
+  cliente: any = {};
   showProveedores: boolean = false;
   proveedores: any[];
   showFamilias: boolean = false;
@@ -51,7 +52,7 @@ export class ModalArticulosBuscarPage {
         if (!this.settings.user) {
           this.navCtrl.setRoot('LoginPage');
         } else {
-
+          this.loadData();
         }
       } else {
         this.navCtrl.setRoot('SettingsPage');
@@ -63,14 +64,26 @@ export class ModalArticulosBuscarPage {
     this.navCtrl.setRoot('HomePage');
   }
 
+  loadData():void {
+    this.cliente = this.interData.getCliente();
+  }
+
   doSearch(): void {
     this.submitAttempt = true;
     let loading = this.loadingCtrl.create({
       content: 'Buscando...'
     });
     loading.present();
-    this.arigesData.getArticulosExt(this.settings.url, this.parnom, this.parpro,
-      this.parfam, this.codigo, this.obsole)
+    this.arigesData.getArticulosClienteExt(
+      this.settings.url, 
+      this.cliente.codclien,
+      this.cliente.codactiv,
+      this.cliente.codtarif, 
+      this.parnom, 
+      this.parpro,
+      this.parfam, 
+      this.codigo, 
+      this.obsole)
       .subscribe(
         (data) => {
           loading.dismiss();
