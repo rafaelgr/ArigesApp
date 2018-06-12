@@ -1,18 +1,91 @@
-<!--
-  Generated template for the ModalArticulosBuscarPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>modal-articulos-buscar</ion-title>
+      <ion-buttons end>
+          <button ion-button icon-only (click)="dismiss()">
+            <ion-icon class="myGreen" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+          </button>
+        </ion-buttons>
+    <ion-title>ARTICULOS (BUSCAR)</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item text-wrap no-lines>
+        <ion-thumbnail item-start>
+            <div class="psb">
+                <img src="assets/imgs/articulos.png">
+            </div>
+          </ion-thumbnail>
+      <p>Introduca los criterios que desee y pulse buscar</p>
+    </ion-item>
+    <form no-lines>
+      <ion-item>
+        <ion-label stacked>Nombre del articulo</ion-label>
+        <ion-input type="text" [(ngModel)]="parnom" name="parnom"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>
+          Proveedor (al menos tres caracteres)
+          <ion-icon name="search"></ion-icon>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="parpro" name="parpro" (ionChange)="onChangeProveedor()"></ion-input>
+      </ion-item>
+      <ion-list *ngIf="showProveedores">
+        <ion-item style="font-size: 0.8em;" *ngFor="let proveedor of proveedores" (click)="selectProveedor(proveedor)">
+          {{proveedor.nomprove}}
+          <ion-icon name="checkmark-circle-outline" item-end></ion-icon>
+        </ion-item>
+      </ion-list>
 
+      <ion-item>
+        <ion-label stacked>
+          Familia (al menos tres caracteres)
+          <ion-icon name="search"></ion-icon>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="parfam" name="parfam" (ionChange)="onChangeFamilia()"></ion-input>
+      </ion-item>
+      <ion-list *ngIf="showFamilias">
+        <ion-item style="font-size: 0.8em;" *ngFor="let familia of familias" (click)="selectFamilia(familia)">
+          {{familia.nomfamia}}
+          <ion-icon name="checkmark-circle-outline" item-end></ion-icon>
+        </ion-item>
+      </ion-list>
+
+      <ion-item>
+        <ion-label stacked>
+          Código de artículo
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="codigo" name="codigo"></ion-input>
+      </ion-item>
+
+      <ion-item no-lines>
+        <ion-label stacked>
+          Incluir artículos obsoletos
+        </ion-label>
+        <ion-checkbox [(ngModel)]="obsole" name="obsole"></ion-checkbox>
+      </ion-item>
+    </form>
+    <ion-item no-lines  class="myGreen">
+      <button ion-button outline item-end round icon-left (click)="doSearch()">
+        <ion-icon name="search"></ion-icon>
+        Buscar
+      </button>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let articulo of articulos" (click)="goArticulo(articulo)">
+      <h4>{{articulo.nomartic}}</h4>
+      <ion-icon name="log-in" item-end class="myGreen"></ion-icon>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2018</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -30,7 +30,7 @@
     <ion-item>
         <ion-label  color="cabecera" stacked>Articulo:</ion-label>
         <ion-input type="text" #articulo [(ngModel)]="nomartic" [formControl]="nomartiControl" formControlName="nomartic" (focus)="noSeleccionado()" disabled ngDefaultControl></ion-input>
-        <ion-icon name="search" class="myGreen" item-end></ion-icon>
+        <ion-icon name="search" class="myGreen" item-end (click)="openModalBuscarArticulos()"></ion-icon>
     </ion-item>
     <ion-item *ngIf="!linForm.controls.nomartic.valid && falta" no-lines>
       <p style="color:red">Debe introducir un valor.</p>

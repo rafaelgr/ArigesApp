@@ -70,12 +70,13 @@ datos = {
   falta: boolean = false;
   seleccionado: boolean = false;
   nomartiControl: FormControl;
+  modalBuscarArticulos: any;
   @ViewChild('focusInput') myInput ;
   @ViewChild('articulo') myArticulo ;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
-     public formBuilder: FormBuilder, public localData: LocalDataProvider, public interData: InterDataProvider, 
+     public formBuilder: FormBuilder, public localData: LocalDataProvider, public interData: InterDataProvider,public modalCtrl: ModalController,
      public arigesData: ArigesDataProvider, public alertCrtl: AlertController, public loadingCtrl: LoadingController) {
 
       this.nomartiControl = new FormControl();
@@ -367,6 +368,17 @@ datos = {
 
   noSeleccionado(): void {
     this.seleccionado = true;
+  }
+
+  openModalBuscarArticulos(): void  {
+    this.modalBuscarArticulos = this.modalCtrl.create('ModalArticulosBuscarPage');
+    
+    this.modalBuscarArticulos.onDidDismiss( () => {
+      var articulo = this.interData.getArticulo();
+      this.selectArticulo(articulo);
+   
+    });
+    this.modalBuscarArticulos.present();
   }
 
   saveObjectMysql(): any {

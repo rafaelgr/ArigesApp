@@ -36,7 +36,7 @@ export class ModalArticulosBuscarPage {
   articulos: any[];
   obsole: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public arigesData: ArigesDataProvider,
+  constructor(public navCtrl: NavController, public navParams: NavParams, public arigesData: ArigesDataProvider, public viewCtrl: ViewController, 
     public localData: LocalDataProvider, public formBuilder: FormBuilder, public alertCrtl: AlertController,
     public interData: InterDataProvider, public loadingCtrl: LoadingController) {
     this.buscarArtForm = formBuilder.group({
@@ -106,7 +106,7 @@ export class ModalArticulosBuscarPage {
 
   goArticulo(articulo): void {
     this.interData.setArticulo(articulo);
-    this.navCtrl.push('ArticulosDetallePage');
+    this.viewCtrl.dismiss();
   }
 
   onChangeProveedor(): void {
@@ -185,5 +185,9 @@ export class ModalArticulosBuscarPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 }
