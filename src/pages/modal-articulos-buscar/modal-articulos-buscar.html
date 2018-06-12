@@ -66,6 +66,14 @@
         </ion-label>
         <ion-checkbox [(ngModel)]="obsole" name="obsole"></ion-checkbox>
       </ion-item>
+
+      <ion-item no-lines>
+        <ion-label stacked>
+          Solo rotación
+        </ion-label>
+        <ion-checkbox [(ngModel)]="rotacion" name="rotacion"></ion-checkbox>
+      </ion-item>
+
     </form>
     <ion-item no-lines  class="myGreen">
       <button ion-button outline item-end round icon-left (click)="doSearch()">

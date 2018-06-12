@@ -36,6 +36,7 @@ export class ModalArticulosBuscarPage {
   submitAttempt: boolean = false;
   articulos: any[];
   obsole: any;
+  rotacion: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public arigesData: ArigesDataProvider, public viewCtrl: ViewController, 
     public localData: LocalDataProvider, public formBuilder: FormBuilder, public alertCrtl: AlertController,
@@ -83,7 +84,8 @@ export class ModalArticulosBuscarPage {
       this.parpro,
       this.parfam, 
       this.codigo, 
-      this.obsole)
+      this.obsole,
+      this.rotacion)
       .subscribe(
         (data) => {
           loading.dismiss();
