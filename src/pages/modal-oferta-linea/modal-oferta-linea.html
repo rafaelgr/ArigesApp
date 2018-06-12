@@ -27,9 +27,10 @@
                   Aceptar
                 </button>
     </ion-item>
-    <ion-item >
+    <ion-item>
         <ion-label  color="cabecera" stacked>Articulo:</ion-label>
-        <ion-input type="text" #articulo [(ngModel)]="nomartic" [formControl]="nomartiControl" formControlName="nomartic" (focus)="noSeleccionado()" ngDefaultControl></ion-input>
+        <ion-input type="text" #articulo [(ngModel)]="nomartic" [formControl]="nomartiControl" formControlName="nomartic" (focus)="noSeleccionado()" disabled ngDefaultControl></ion-input>
+        <ion-icon name="search" class="myGreen" item-end></ion-icon>
     </ion-item>
     <ion-item *ngIf="!linForm.controls.nomartic.valid && falta" no-lines>
       <p style="color:red">Debe introducir un valor.</p>
@@ -38,7 +39,7 @@
     <div *ngIf="encontrado" no-lines>
         <ion-item *ngFor="let articulo of datos.articulos"  (click)="selectArticulo(articulo)">
             <h4>{{articulo.nomartic}}</h4>
-            <ion-icon name="log-in" class="myGreen" item-end></ion-icon>
+            <ion-icon name="search" class="myGreen" item-end></ion-icon>
           </ion-item>
     </div>
     <ion-item >
