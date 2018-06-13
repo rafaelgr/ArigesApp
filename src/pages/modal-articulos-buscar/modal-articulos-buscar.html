@@ -22,7 +22,7 @@
     </ion-item>
     <form [formGroup]="buscarArtForm" no-lines>
       <ion-item>
-        <ion-label stacked>Nombre del articulo (* para sustituir caracteres )</ion-label>
+        <ion-label stacked>Nombre del articulo</ion-label>
         <ion-input type="text" [(ngModel)]="parnom" formControlName="parnom"></ion-input>
       </ion-item>
       <ion-item *ngIf="!buscarArtForm.controls.parnom.valid  && submitAttempt" no-lines>
