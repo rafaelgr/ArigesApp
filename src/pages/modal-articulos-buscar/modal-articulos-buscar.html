@@ -20,17 +20,20 @@
           </ion-thumbnail>
       <p>Introduca los criterios que desee y pulse buscar</p>
     </ion-item>
-    <form no-lines>
+    <form [formGroup]="buscarArtForm" no-lines>
       <ion-item>
-        <ion-label stacked>Nombre del articulo</ion-label>
-        <ion-input type="text" [(ngModel)]="parnom" name="parnom"></ion-input>
+        <ion-label stacked>Nombre del articulo (* para sustituir caracteres )</ion-label>
+        <ion-input type="text" [(ngModel)]="parnom" formControlName="parnom"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!buscarArtForm.controls.parnom.valid  && submitAttempt" no-lines>
+        <p style="color:red">Debe introducir un valor.</p>
       </ion-item>
       <ion-item>
         <ion-label stacked>
           Proveedor (al menos tres caracteres)
           <ion-icon name="search"></ion-icon>
         </ion-label>
-        <ion-input type="text" [(ngModel)]="parpro" name="parpro" (ionChange)="onChangeProveedor()"></ion-input>
+        <ion-input type="text" [(ngModel)]="parpro"  [ngModelOptions]="{ standalone: true }" (ionChange)="onChangeProveedor()"></ion-input>
       </ion-item>
       <ion-list *ngIf="showProveedores">
         <ion-item style="font-size: 0.8em;" *ngFor="let proveedor of proveedores" (click)="selectProveedor(proveedor)">
@@ -44,7 +47,7 @@
           Familia (al menos tres caracteres)
           <ion-icon name="search"></ion-icon>
         </ion-label>
-        <ion-input type="text" [(ngModel)]="parfam" name="parfam" (ionChange)="onChangeFamilia()"></ion-input>
+        <ion-input type="text" [(ngModel)]="parfam"  [ngModelOptions]="{ standalone: true }"  (ionChange)="onChangeFamilia()"></ion-input>
       </ion-item>
       <ion-list *ngIf="showFamilias">
         <ion-item style="font-size: 0.8em;" *ngFor="let familia of familias" (click)="selectFamilia(familia)">
@@ -57,21 +60,21 @@
         <ion-label stacked>
           Código de artículo
         </ion-label>
-        <ion-input type="text" [(ngModel)]="codigo" name="codigo"></ion-input>
+        <ion-input type="text" [(ngModel)]="codigo" [ngModelOptions]="{ standalone: true }"></ion-input>
       </ion-item>
 
       <ion-item no-lines>
         <ion-label stacked>
           Incluir artículos obsoletos
         </ion-label>
-        <ion-checkbox [(ngModel)]="obsole" name="obsole"></ion-checkbox>
+        <ion-checkbox [(ngModel)]="obsole" [ngModelOptions]="{ standalone: true }"></ion-checkbox>
       </ion-item>
 
       <ion-item no-lines>
         <ion-label stacked>
           Solo rotación
         </ion-label>
-        <ion-checkbox [(ngModel)]="rotacion" name="rotacion"></ion-checkbox>
+        <ion-checkbox [(ngModel)]="rotacion" [ngModelOptions]="{ standalone: true }"></ion-checkbox>
       </ion-item>
 
     </form>

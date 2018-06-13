@@ -207,7 +207,7 @@ datos = {
       
     
       if(!this.cantidad) {
-        this.cantidad = 0;
+        this.cantidad = 1;
       }
       
    

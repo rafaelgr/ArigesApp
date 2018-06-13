@@ -27,10 +27,16 @@
                   Aceptar
                 </button>
     </ion-item>
-    <ion-item>
+    <ion-item no-lines>
         <ion-label  color="cabecera" stacked>Articulo:</ion-label>
-        <ion-input type="text" #articulo [(ngModel)]="nomartic" [formControl]="nomartiControl" formControlName="nomartic" (focus)="noSeleccionado()" disabled  ngDefaultControl></ion-input>
-        <ion-icon name="search" class="myGreen" item-end (click)="openModalBuscarArticulos()"></ion-icon>
+        <ion-input type="text" #articulo [(ngModel)]="nomartic" [formControl]="nomartiControl" formControlName="nomartic" placeholder="Pulse buscar para seleccionar un articulo" (focus)="noSeleccionado()" disabled  ngDefaultControl></ion-input>
+        
+    </ion-item>
+    <ion-item no-lines class="myGreen">
+      <button ion-button outline item-end round icon-left (click)="openModalBuscarArticulos()">
+        <ion-icon name="search"></ion-icon>
+        Buscar
+      </button>
     </ion-item>
     <ion-item *ngIf="!linForm.controls.nomartic.valid && falta" no-lines>
       <p style="color:red">Debe introducir un valor.</p>

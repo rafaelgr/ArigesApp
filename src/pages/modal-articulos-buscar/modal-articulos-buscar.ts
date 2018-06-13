@@ -73,6 +73,7 @@ export class ModalArticulosBuscarPage {
 
   doSearch(): void {
     this.submitAttempt = true;
+    if (this.buscarArtForm.valid) {
     this.parnom = this.parnom.replace('*', '%');
     let loading = this.loadingCtrl.create({
       content: 'Buscando...'
@@ -103,6 +104,7 @@ export class ModalArticulosBuscarPage {
           }
         }
       );
+    }
   }
 
   prepareArticulos(data): any {

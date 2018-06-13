@@ -25,7 +25,8 @@ export class ArticulosPage {
   familias: any[];
   submitAttempt: boolean = false;
   articulos: any[];
-  obsole: any;
+  obsole: boolean;
+  rotacion: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public arigesData: ArigesDataProvider,
     public localData: LocalDataProvider, public formBuilder: FormBuilder, public alertCrtl: AlertController,
@@ -42,7 +43,7 @@ export class ArticulosPage {
         if (!this.settings.user) {
           this.navCtrl.setRoot('LoginPage');
         } else {
-
+          this.loadData();
         }
       } else {
         this.navCtrl.setRoot('SettingsPage');
@@ -56,12 +57,13 @@ export class ArticulosPage {
 
   doSearch(): void {
     this.submitAttempt = true;
+    if (this.buscarArtForm.valid) {
     let loading = this.loadingCtrl.create({
       content: 'Buscando...'
     });
     loading.present();
     this.arigesData.getArticulosExt(this.settings.url, this.parnom, this.parpro,
-      this.parfam, this.codigo, this.obsole)
+      this.parfam, this.codigo, this.obsole, this.rotacion)
       .subscribe(
         (data) => {
           loading.dismiss();
@@ -76,8 +78,13 @@ export class ArticulosPage {
           }
         }
       );
+    }
   }
 
+  loadData():void {
+    this.obsole = false;
+    this.rotacion = false;
+  }
   prepareArticulos(data): any {
     // formatear datos
     for (var i = 0; i < data.length; i++) {
