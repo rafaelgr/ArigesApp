@@ -35,8 +35,8 @@ export class ModalArticulosBuscarPage {
   familias: any[];
   submitAttempt: boolean = false;
   articulos: any[];
-  obsole: any;
-  rotacion: any;
+  obsole: boolean;
+  rotacion: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public arigesData: ArigesDataProvider, public viewCtrl: ViewController, 
     public localData: LocalDataProvider, public formBuilder: FormBuilder, public alertCrtl: AlertController,
@@ -67,10 +67,13 @@ export class ModalArticulosBuscarPage {
 
   loadData():void {
     this.cliente = this.interData.getCliente();
+    this.obsole = false;
+    this.rotacion = false;
   }
 
   doSearch(): void {
     this.submitAttempt = true;
+    this.parnom = this.parnom.replace('*', '%');
     let loading = this.loadingCtrl.create({
       content: 'Buscando...'
     });
@@ -121,7 +124,7 @@ export class ModalArticulosBuscarPage {
 
   goArticulo(articulo): void {
     this.interData.setArticulo(articulo);
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss(true);
   }
 
   onChangeProveedor(): void {

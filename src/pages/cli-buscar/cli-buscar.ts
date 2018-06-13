@@ -47,7 +47,7 @@ export class CliBuscarPage {
   doSearch(): void {
     this.submitAttempt = true;
     if (this.buscarCliForm.valid) {
-      this.arigesData.getClientes(this.settings.url, this.settings.user.codagent, this.nomParcial)
+      this.arigesData.getClientes(this.settings.url, this.settings.user.codagent1, this.nomParcial)
         .subscribe(
           (data) => {
             this.clientes = data;

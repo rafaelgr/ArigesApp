@@ -65,10 +65,11 @@ datos = {
 
   linea: any = {};//variable para la edicion de lineas
   nomartic: any = "";
-  cantidad: number = 0
+  cantidad: number;
   encontrado: boolean = false;
   falta: boolean = false;
-  seleccionado: boolean = false;
+  seleccionado: boolean = false;//booleana relacionada en la antigua busqueda de articulos
+  
   nomartiControl: FormControl;
   modalBuscarArticulos: any;
   @ViewChild('focusInput') myInput ;
@@ -373,10 +374,12 @@ datos = {
   openModalBuscarArticulos(): void  {
     this.modalBuscarArticulos = this.modalCtrl.create('ModalArticulosBuscarPage');
     
-    this.modalBuscarArticulos.onDidDismiss( () => {
-      var articulo = this.interData.getArticulo();
-      this.selectArticulo(articulo);
-   
+    this.modalBuscarArticulos.onDidDismiss( (seleccionado) => {
+      var articulo;
+      if(seleccionado) {
+        articulo = this.interData.getArticulo();
+        this.selectArticulo(articulo);
+      }
     });
     this.modalBuscarArticulos.present();
   }
