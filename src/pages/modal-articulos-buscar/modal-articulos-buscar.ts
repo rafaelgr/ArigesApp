@@ -74,7 +74,14 @@ export class ModalArticulosBuscarPage {
   doSearch(): void {
     this.submitAttempt = true;
     if (this.buscarArtForm.valid) {
-    this.parnom = this.parnom.replace('*', '%');
+     var str = this.parnom
+ 
+    for(var i = 0; i < str.length; i++) {
+ 
+      str = str.replace('*', '%');
+ 
+    }
+ 
     let loading = this.loadingCtrl.create({
       content: 'Buscando...'
     });
@@ -84,7 +91,7 @@ export class ModalArticulosBuscarPage {
       this.cliente.codclien,
       this.cliente.codactiv,
       this.cliente.codtarif, 
-      this.parnom, 
+      str, 
       this.parpro,
       this.parfam, 
       this.codigo, 
@@ -94,6 +101,9 @@ export class ModalArticulosBuscarPage {
         (data) => {
           loading.dismiss();
           this.articulos = this.prepareArticulos(data);
+          if(data.length == 0) {
+              this.showNoEncontrado();
+          }
         },
         (error) => {
           loading.dismiss();
