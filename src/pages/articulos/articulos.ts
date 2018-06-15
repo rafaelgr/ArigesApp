@@ -58,20 +58,34 @@ export class ArticulosPage {
   doSearch(): void {
     this.submitAttempt = true;
     if (this.buscarArtForm.valid) {
+      var str = this.parnom
+ 
+    for(var i = 0; i < str.length; i++) {
+ 
+      str = str.replace('*', '%');
+ 
+    }
     let loading = this.loadingCtrl.create({
       content: 'Buscando...'
     });
     loading.present();
-    this.arigesData.getArticulosExt(this.settings.url, this.parnom, this.parpro,
+    this.arigesData.getArticulosExt(this.settings.url, str, this.parpro,
       this.parfam, this.codigo, this.obsole, this.rotacion)
       .subscribe(
         (data) => {
           loading.dismiss();
-          this.articulos = this.prepareArticulos(data);
+          if(data.length == 0) {
+            this.articulos = data;
+            this.showNoEncontrado();
+            
+          } else {
+            this.articulos = this.prepareArticulos(data);
+          }
         },
         (error) => {
           loading.dismiss();
           if (error.status == 404) {
+            this.articulos = [];
             this.showNoEncontrado();
           } else {
             this.showError(error);

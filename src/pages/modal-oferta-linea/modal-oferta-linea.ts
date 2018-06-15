@@ -206,9 +206,7 @@ datos = {
       this.myInput.setFocus();
       
     
-      if(!this.cantidad) {
-        this.cantidad = 1;
-      }
+      
       
    
       this.datos.articulo = articulo;
@@ -229,8 +227,13 @@ datos = {
       this.datos.importel = this.round(cant-((this.datos.dtoline2/100)*cant));
     }
 
-    this.datos.cantidad = this.cantidad;
-    this.datos.importel = this.datos.importel;
+    if(!this.cantidad) {
+      this.datos.cantidad = this.cantidad;
+      this.datos.importel = 0;
+    }else {
+      this.datos.cantidad = this.cantidad;
+      this.datos.importel = this.datos.importel;
+    }
 
   };
 
@@ -250,10 +253,10 @@ datos = {
             (datos) => {
               //buscamos la oferta con la que estamos trabajando, le asignamos el total de la oferta recuperada a la 
               ///oferta local y la formateamos
-              for(var i = 0; i < datos.length; i++) {
-                if(data.numofert == datos[i].numofert) {
-                  this.datos.oferta.numofert = datos[i].numofert;
-                  this.datos.oferta.totalofe = datos[i].totalofe;
+              for(var j = 0; j < datos.length; j++) {
+                if(data.numofert == datos[j].numofert) {
+                  this.datos.oferta.numofert = datos[j].numofert;
+                  this.datos.oferta.totalofe = datos[j].totalofe;
                   this.datos.oferta.totalofe = numeral(this.datos.oferta.totalofe).format('0,0.00 $');
                   break;
                 }
@@ -289,9 +292,9 @@ datos = {
               (datos) => {
                 //buscamos la oferta en la que estamos trabajando, le asignamos el total de la oferta recuperada a la 
                 ///oferta local y la formateamos
-                for(var i = 0; i < datos.length; i++) {
-                  if(data.numofert == datos[i].numofert) {
-                    this.datos.oferta.totalofe = datos[i].totalofe;
+                for(var k = 0; k < datos.length; k++) {
+                  if(data.numofert == datos[k].numofert) {
+                    this.datos.oferta.totalofe = datos[k].totalofe;
                     this.datos.oferta.totalofe = numeral(this.datos.oferta.totalofe).format('0,0.00 $');
                     break;
                   }
