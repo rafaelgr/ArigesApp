@@ -74,14 +74,18 @@ export class ArticulosPage {
       .subscribe(
         (data) => {
           loading.dismiss();
-          this.articulos = this.prepareArticulos(data);
           if(data.length == 0) {
+            this.articulos = data;
             this.showNoEncontrado();
+            
+          } else {
+            this.articulos = this.prepareArticulos(data);
           }
         },
         (error) => {
           loading.dismiss();
           if (error.status == 404) {
+            this.articulos = [];
             this.showNoEncontrado();
           } else {
             this.showError(error);

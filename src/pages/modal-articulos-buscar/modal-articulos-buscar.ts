@@ -103,11 +103,13 @@ export class ModalArticulosBuscarPage {
           this.articulos = this.prepareArticulos(data);
           if(data.length == 0) {
               this.showNoEncontrado();
+              this.articulos = data;
           }
         },
         (error) => {
           loading.dismiss();
           if (error.status == 404) {
+            this.articulos = [];
             this.showNoEncontrado();
           } else {
             this.showError(error);
