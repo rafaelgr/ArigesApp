@@ -55,13 +55,21 @@ export class CliPreciosPage {
   doSearch(): void {
     this.submitAttempt = true;
     if (this.buscarArtForm.valid) {
+      var str = this.nomParcial
+ 
+      for(var i = 0; i < str.length; i++) {
+ 
+        str = str.replace('*', '%');
+   
+      }
+
       let loading = this.loadingCtrl.create({
         content: 'Buscando...'
       });
       loading.present();
       this.arigesData.getArticulosCliente(this.settings.url,
         this.cliente.codclien, this.cliente.codactiv, this.cliente.codtarif,
-        this.nomParcial)
+        str)
         .subscribe(
           (data) => {
             loading.dismiss();

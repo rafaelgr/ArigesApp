@@ -54,7 +54,7 @@
     </ion-item>
     <ion-item >
       <ion-label   color="cabecera" stacked>Cantidad:</ion-label>
-      <ion-input type="number" #focusInput [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()" (change)="cambiaCantidad()"></ion-input>
+      <ion-input type="number" #focusInput [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()" (ionChange)="cambiaCantidad()"></ion-input>
     </ion-item>
     <ion-item *ngIf="!linForm.controls.cantidad.valid && falta" no-lines>
       <p style="color:red">La cantidad es requerida y <br>tiene que ser mayor que cero.</p>
