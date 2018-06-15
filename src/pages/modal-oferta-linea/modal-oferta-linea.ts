@@ -292,9 +292,9 @@ datos = {
               (datos) => {
                 //buscamos la oferta en la que estamos trabajando, le asignamos el total de la oferta recuperada a la 
                 ///oferta local y la formateamos
-                for(var i = 0; i < datos.length; i++) {
-                  if(data.numofert == datos[i].numofert) {
-                    this.datos.oferta.totalofe = datos[i].totalofe;
+                for(var k = 0; k < datos.length; k++) {
+                  if(data.numofert == datos[k].numofert) {
+                    this.datos.oferta.totalofe = datos[k].totalofe;
                     this.datos.oferta.totalofe = numeral(this.datos.oferta.totalofe).format('0,0.00 $');
                     break;
                   }
