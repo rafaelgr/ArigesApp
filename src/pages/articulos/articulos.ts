@@ -69,7 +69,7 @@ export class ArticulosPage {
       content: 'Buscando...'
     });
     loading.present();
-    this.arigesData.getArticulosExt(this.settings.url, str, this.parpro,
+    this.arigesData.getArticulosExtBis(this.settings.url, str, this.parpro,
       this.parfam, this.codigo, this.obsole, this.rotacion)
       .subscribe(
         (data) => {
@@ -110,6 +110,9 @@ export class ArticulosPage {
         data[i].rotacion = "NO";
       } else {
         data[i].rotacion = "SI";
+      }
+      for(var j= 0; j < data[i].almacenes.length; j++) {
+        data[i].almacenes[j].stockalm = numeral(data[i].almacenes[j].stockalm).format('0,0');
       }
     }
     return data;

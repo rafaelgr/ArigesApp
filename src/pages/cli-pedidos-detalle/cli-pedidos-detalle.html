@@ -23,6 +23,9 @@
       </div>
     </ion-item>
     <ion-item *ngFor="let linea of pedido.lineas" text-wrap>
+        <div>
+            <strong>Referencia: </strong>{{linea.codartic}}
+        </div>
       <div>
         {{linea.nomartic}}
       </div>

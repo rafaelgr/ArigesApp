@@ -21,6 +21,9 @@
       </div>
     </ion-item>
     <ion-item *ngFor="let linea of albaran.lineas" text-wrap>
+        <div>
+            <strong>Referencia: </strong>{{linea.codartic}}
+        </div>
       <div>
         {{linea.nomartic}}
       </div>

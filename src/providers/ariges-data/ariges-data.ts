@@ -36,6 +36,16 @@ export class ArigesDataProvider {
     });
   }
 
+  getClientesExt(apiUrl, agente, parnom): any {
+    let params = {
+      'parnom': parnom,
+      'agente': agente
+    };
+    return this.http.get(apiUrl + '/api/clientes/clientes-agente/ext', {
+      params: params
+    });
+  }
+
   getIndicadores(apiUrl, codclien, codmacta): any {
     let params = {
       'codclien': codclien,
@@ -99,6 +109,21 @@ export class ArigesDataProvider {
       'rotacion': rotacion
     };
     return this.http.get(apiUrl + '/api/articulos/ext', {
+      params: params
+    });
+  }
+
+  getArticulosExtBis(apiUrl, parnom, parpro, parfam, codigo, obsole, rotacion): any {
+    
+    let params = {
+      'parnom': parnom,
+      'parpro': parpro,
+      'parfam': parfam,
+      'codigo': codigo,
+      'obsole': obsole, 
+      'rotacion': rotacion
+    };
+    return this.http.get(apiUrl + '/api/articulos/ext/bis', {
       params: params
     });
   }

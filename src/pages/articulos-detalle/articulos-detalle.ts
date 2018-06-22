@@ -16,12 +16,19 @@ export class ArticulosDetallePage {
 
   settings: any;
   cliente: any = {};
-  articulo = {};
+  articulo = {
+    almacenes: [
+      
+    ]
+  };
+
+ 
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
     public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController,
     private screenOrientation: ScreenOrientation) {
+      
   }
 
   ionViewWillEnter() {
@@ -45,6 +52,9 @@ export class ArticulosDetallePage {
 
   loadData(): void {
     this.articulo = this.interData.getArticulo();
+    for(var k = 0; k < this.articulo.almacenes.length; k++) {
+      this.articulo.almacenes[k].contador = k+1;
+    }
   }
 
 
