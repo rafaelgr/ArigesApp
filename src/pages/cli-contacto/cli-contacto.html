@@ -58,6 +58,26 @@
       </a>
       </div>
     </ion-list>
+
+    <ion-list>
+        <ion-item no-lines class="grptitle">
+          Depertamentos
+        </ion-item>
+        
+        <ion-item style="font-size: 1.4rem" *ngFor="let dep of cliente.departamentos">
+           
+            <div> 
+              {{dep.nombre}}<br>
+              <strong>Dpto: </strong> {{dep.departamento}}<span *ngIf="dep.departamento != null && dep.cargo != null">-</span>{{dep.cargo}}
+            </div>
+            <div>
+              <strong>Teléfonos: </strong> {{dep.telefono}}<span *ngIf="dep.telefono != null && dep.movil != null">-</span>{{dep.movil}}
+              <br><strong>Email: </strong> {{dep.maidirec}}
+            </div>
+        
+        </ion-item>
+    </ion-list>
+
     <ion-list>
         <ion-item no-lines class="grptitle">
             Localización

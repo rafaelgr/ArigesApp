@@ -103,7 +103,7 @@ export class ArticulosPage {
     // formatear datos
     for (var i = 0; i < data.length; i++) {
       data[i].preciove = numeral(data[i].preciove).format('0,0.00 $');
-      data[i].stock = numeral(data[i].stock).format('0,0');
+      data[i].stock = numeral(data[i].stock).format('0,0.00');
       data[i].reservas = numeral(data[i].reservas).format('0,0');
       data[i].pedido = numeral(data[i].pedido).format('0,0');
       if (data[i].rotacion == 0) {
@@ -112,7 +112,7 @@ export class ArticulosPage {
         data[i].rotacion = "SI";
       }
       for(var j= 0; j < data[i].almacenes.length; j++) {
-        data[i].almacenes[j].stockalm = numeral(data[i].almacenes[j].stockalm).format('0,0');
+        data[i].almacenes[j].stockalm = numeral(data[i].almacenes[j].stockalm).format('0,0.00');
       }
     }
     return data;
