@@ -64,4 +64,8 @@ export class HomePage {
   goCobros(): void {
     this.navCtrl.push('CobrosPage');
   }
+
+  goVisitas(): void {
+    this.navCtrl.push('VisitasAgentePage');
+  }
 }

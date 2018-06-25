@@ -291,6 +291,16 @@ export class ArigesDataProvider {
     });
   }
 
+  getVisitasAgente(apiUrl, tipo, login): any {
+    let params = {
+      'tipo': tipo,
+      'login': login
+    };
+    return this.http.get(apiUrl + '/api/acciones/tipos/agente/logado', {
+      params: params
+    });
+  }
+
   putCabeceraOferta(apiUrl, oferta): any {
     return this.http.put(apiUrl + '/api/ofertas/caboferta', oferta);
   }
