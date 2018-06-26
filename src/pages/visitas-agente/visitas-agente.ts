@@ -19,6 +19,8 @@ export class VisitasAgentePage {
   modalCabecera: any;
   tipo: number = 21;
   modalVisitas: any;
+  fechaInicial: any;
+  fechaFinal: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
     public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController, 
@@ -47,8 +49,10 @@ export class VisitasAgentePage {
   }
 
   loadData(): void {
+    this.fechaInicial = this.navParams.get("fechaInicial");
+    this.fechaFinal = this.navParams.get("fechaFinal");
     
-    this.arigesData.getVisitasAgente(this.settings.url, this.tipo, this.settings.user.login)
+    this.arigesData.getVisitasAgente(this.settings.url, this.tipo, this.settings.user.login, this.fechaInicial, this.fechaFinal)
       .subscribe(
         (data) => {
           if(data.length > 0) {
@@ -102,7 +106,7 @@ export class VisitasAgentePage {
   showNoEncontrado(): void {
     let alert = this.alertCrtl.create({
       title: "AVISO",
-      subTitle: "No se ha encontrado ningúna visita para este usuario y cliente",
+      subTitle: "No se ha encontrado ningúna visita para este usuario",
       buttons: ['OK']
     });
     alert.present();

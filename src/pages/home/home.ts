@@ -13,6 +13,7 @@ export class HomePage {
   settings: any;
   nombreEmpresa: string = "";
   nombreUsuario: string = "";
+  modalFechas: any;
 
   constructor(public navCtrl: NavController, public localData: LocalDataProvider) {
     
@@ -66,6 +67,6 @@ export class HomePage {
   }
 
   goVisitas(): void {
-    this.navCtrl.push('VisitasAgentePage');
+    this.navCtrl.push('ModalVisitasFechasPage');
   }
 }

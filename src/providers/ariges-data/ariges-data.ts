@@ -291,10 +291,12 @@ export class ArigesDataProvider {
     });
   }
 
-  getVisitasAgente(apiUrl, tipo, login): any {
+  getVisitasAgente(apiUrl, tipo, login, fechaInicial, fechaFinal): any {
     let params = {
       'tipo': tipo,
-      'login': login
+      'login': login,
+      'fechaInicial': fechaInicial,
+      'fechaFinal': fechaFinal
     };
     return this.http.get(apiUrl + '/api/acciones/tipos/agente/logado', {
       params: params
