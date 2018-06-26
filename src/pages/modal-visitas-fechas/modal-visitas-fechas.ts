@@ -68,4 +68,8 @@ export class ModalVisitasFechasPage {
     }
   }
 
+  goHome(): void {
+    this.navCtrl.setRoot('HomePage');
+  }
+
 }
