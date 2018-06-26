@@ -33,7 +33,7 @@
             <ion-label color="cabecera" stacked>Fecha final:</ion-label>
             <ion-datetime formControlName="fechaFinal" displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" cancelText="Cancelar" doneText="Hecho" [(ngModel)]="fechaFinal" ></ion-datetime>
         </ion-item>
-        <ion-item *ngIf="errorFecha && submitAttempt" no-lines>
+        <ion-item *ngIf="errorFecha && submitAttempt" no-lines text-wrap>
             <p style="color:red">La fecha final no puede ser mayor que la inicial.</p>
         </ion-item>   
       </form>

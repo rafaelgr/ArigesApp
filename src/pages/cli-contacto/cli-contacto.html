@@ -65,15 +65,17 @@
         </ion-item>
         
         <ion-item style="font-size: 1.4rem" *ngFor="let dep of cliente.departamentos">
-           
-            <div> 
-              {{dep.nombre}}<br>
-              <strong>Dpto: </strong> {{dep.departamento}}<span *ngIf="dep.departamento != null && dep.cargo != null">-</span>{{dep.cargo}}
-            </div>
-            <div>
-              <strong>Teléfonos: </strong> {{dep.telefono}}<span *ngIf="dep.telefono != null && dep.movil != null">-</span>{{dep.movil}}
-              <br><strong>Email: </strong> {{dep.maidirec}}
-            </div>
+          <div *ngIf="dep.nombre != null || dep.departamento != null || dep.telefono != null || dep.maidirec != null || dep.cargo != null || dep.movil != null">
+              <div> 
+                  <strong>{{dep.nombre}}</strong><br>
+                  <strong>Dpto: </strong> {{dep.departamento}}<span *ngIf="dep.departamento != null && dep.cargo != null">-</span>{{dep.cargo}}
+                </div>
+                <div>
+                  <strong>Teléfonos: </strong> {{dep.telefono}}<span *ngIf="dep.telefono != null && dep.movil != null">-</span>{{dep.movil}}
+                  <br><strong>Email: </strong> {{dep.maidirec}}
+                </div>
+          </div> 
+            
         
         </ion-item>
     </ion-list>

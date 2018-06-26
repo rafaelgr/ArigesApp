@@ -37,25 +37,13 @@
       </ion-item>         
     </form>
     <ion-item no-lines class="myGreen">
+        <button ion-button outline item-end round icon-left (click)="goSettings()">
+            <ion-icon name="settings"></ion-icon>
+            Configurar
+          </button>
       <button ion-button outline item-end round icon-left (click)="doLogin()">
         <ion-icon name="checkmark"></ion-icon>
         Aceptar
-      </button>
-    </ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-item text-wrap no-lines>
-      <ion-thumbnail item-start>
-        <div class="psb">
-            <img src="assets/imgs/ajustes.png">
-        </div>
-      </ion-thumbnail>
-      <p>pulsar el boton para volver a configurar</p>
-    </ion-item>
-    <ion-item no-lines class="myGreen">
-      <button ion-button outline item-end round icon-left (click)="goSettings()">
-        <ion-icon name="settings"></ion-icon>
-        Configurar
       </button>
     </ion-item>
   </ion-list>
