@@ -12,10 +12,14 @@
   
   <ion-content padding>
     <ion-list>
-      <ion-item no-lines class="grptitle">
-            Visitas
-            
-      </ion-item>
+        <ion-item text-wrap no-lines>
+            <ion-thumbnail item-start>
+                <div class="psb">
+                    <img src="assets/imgs/visitas.png">
+                </div>
+              </ion-thumbnail>
+          <p>Estas son las visitas disponibles</p>
+        </ion-item>
       <ion-item *ngFor="let visita of visitas" text-wrap>
             <div>
               <strong>

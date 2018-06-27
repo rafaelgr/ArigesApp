@@ -1,22 +1,4 @@
 page-modal-visitas-fechas {
-    .grptitle {
-        background-color: #718dba;
-        color: white;
-    }
-
-    .mas {
-        margin-left: 65%;
-        margin-top: 0;
-    }
-
-    form {
-        border: 1px solid black;
-    }
-
-    ion-toolbar {
-        text-align: center;
-    }
-
     ion-header {
         text-align: center;
     }
@@ -36,8 +18,8 @@ page-modal-visitas-fechas {
           ion-header ion-icon.back-button-icon.icon {
         color: #718dba;
     }
-    
-    .item-md ion-thumbnail, .item-ios ion-thumbnail, .item-wp ion-thumbnail {
+
+    .item-md ion-thumbnail, .item-ios ion-thumbnail, .item-wp ion-thumbnail{
         min-width: 0px;
         min-height: 0px;
         width: 7rem;    
@@ -47,4 +29,5 @@ page-modal-visitas-fechas {
             margin-left: 20%
         }
     }
+    
 }

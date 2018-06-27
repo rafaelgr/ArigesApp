@@ -112,7 +112,8 @@ export class ArticulosPage {
         data[i].rotacion = "SI";
       }
       for(var j= 0; j < data[i].almacenes.length; j++) {
-        data[i].almacenes[j].stockalm = numeral(data[i].almacenes[j].stockalm).format('0,0.00');
+        
+        data[i].almacenes[j].stockalmFormat = numeral(data[i].almacenes[j].stockalm).format('0,0.00');
       }
     }
     return data;

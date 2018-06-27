@@ -45,16 +45,16 @@
           <ion-grid style=" border: 1px solid grey; font-size: 1.4rem;" no-padding>
               
               <div *ngFor="let almacen of articulo.almacenes">
-               
+                <div *ngIf="almacen.stockalm != 0" >
                     <ion-row [ngClass]="{'color': almacen.contador%2 > 0}">
                         <ion-col col-4 >
                             {{almacen.nomalmac}}
                         </ion-col>
                         <ion-col  col-8 style="text-align:right;">
-                            {{almacen.stockalm}}
+                            {{almacen.stockalmFormat}}
                         </ion-col>
                       </ion-row>
-                
+                </div>
               </div>
             </ion-grid>
       </ion-item>

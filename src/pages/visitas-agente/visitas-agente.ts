@@ -106,7 +106,7 @@ export class VisitasAgentePage {
   showNoEncontrado(): void {
     let alert = this.alertCrtl.create({
       title: "AVISO",
-      subTitle: "No se ha encontrado ningúna visita para este usuario",
+      subTitle: "No se ha encontrado ningúna visita para este usuario entre estas fechas",
       buttons: ['OK']
     });
     alert.present();

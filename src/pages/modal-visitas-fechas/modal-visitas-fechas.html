@@ -14,16 +14,15 @@
 
 <ion-content padding>
     <ion-list>
+            <ion-item text-wrap no-lines>
+                    <ion-thumbnail item-start>
+                      <div class="psb">
+                          <img src="assets/imgs/visitas.png">
+                      </div>
+                    </ion-thumbnail>
+                    <p>Introduca la fecha inicial y la fecha final de la visita.</p>
+                  </ion-item>
         <form [formGroup]="visitasForm" no-lines>
-            <ion-item no-lines class="grptitle">
-                <div>Visitas</div>
-               
-                          <button color="light" ion-button outline item-end round icon-left (click)="buscarVisitas()">
-                            <ion-icon name="search"></ion-icon>
-                            Buscar
-                          </button>
-              </ion-item>
-        
         <ion-item>
             <ion-label color="cabecera" stacked>Fecha inicial:</ion-label>
             <ion-datetime formControlName="fechaInicial" displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" cancelText="Cancelar" doneText="Hecho" [(ngModel)]="fechaInicial" ></ion-datetime>
@@ -37,6 +36,12 @@
             <p style="color:red">La fecha final no puede ser mayor que la inicial.</p>
         </ion-item>   
       </form>
+      <ion-item no-lines class="myGreen">
+            <button  ion-button outline item-end round icon-left (click)="buscarVisitas()">
+                    <ion-icon name="search"></ion-icon>
+                    Buscar
+                  </button>
+          </ion-item>
       </ion-list>
 
 </ion-content>
