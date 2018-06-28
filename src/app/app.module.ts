@@ -12,6 +12,7 @@ import { LocalDataProvider } from '../providers/local-data/local-data';
 import { ArigesDataProvider } from '../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../providers/inter-data/inter-data';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { AppVersion } from '@ionic-native/app-version';
 
 
 
@@ -34,6 +35,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     StatusBar,
     SplashScreen,
     Geolocation,
+    AppVersion,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LocalDataProvider,
     ArigesDataProvider,

@@ -16,6 +16,7 @@ export class LoginPage {
   login: string = "";
   password: string = "";
   submitAttempt: boolean = false;
+ 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public localData: LocalDataProvider, public arigesData: ArigesDataProvider,
@@ -24,7 +25,10 @@ export class LoginPage {
       login: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required])]
     });
+
+    
   }
+   
 
   ionViewDidLoad() {
     this.localData.getSettings().then(data => {

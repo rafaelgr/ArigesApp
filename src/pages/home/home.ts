@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, Platform } from 'ionic-angular';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
+import { AppVersion } from '@ionic-native/app-version';
+
 
 
 
@@ -14,8 +16,10 @@ export class HomePage {
   nombreEmpresa: string = "";
   nombreUsuario: string = "";
   modalFechas: any;
+  version: any;
+  
 
-  constructor(public navCtrl: NavController, public localData: LocalDataProvider) {
+  constructor(public navCtrl: NavController, public localData: LocalDataProvider, public appVer: AppVersion, public plt: Platform) {
     
   }
 
@@ -28,6 +32,13 @@ export class HomePage {
         } else {
           this.nombreEmpresa = this.settings.user.nomempre;
           this.nombreUsuario = this.settings.user.nomusu;
+          
+         
+            this.appVer.getVersionNumber().then(data => {
+              this.version = data;
+            }, (error) => {
+              console.log("herror al obtener la version");
+            });
         }
       } else {
         this.navCtrl.setRoot('SettingsPage');

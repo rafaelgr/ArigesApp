@@ -41,7 +41,7 @@ export class PedidosPage {
   }
 
   loadData(): void {
-    this.arigesData.getPedidos(this.settings.url)
+    this.arigesData.getPedidosAgente(this.settings.url, this.settings.user.codagent1)
       .subscribe(
         (data) => {
           this.pedidos = this.preparePedidos(data);
