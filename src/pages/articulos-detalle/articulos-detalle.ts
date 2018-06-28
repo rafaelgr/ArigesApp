@@ -52,12 +52,10 @@ export class ArticulosDetallePage {
 
   loadData(): void {
     this.articulo = this.interData.getArticulo();
-    var cont = 0;
+    
     for(var k = 0; k < this.articulo.almacenes.length; k++) {
-      if(this.articulo.almacenes[k].stockalm != 0) {
-        cont++
-        this.articulo.almacenes[k].contador = cont;
-      }
+        this.articulo.almacenes[k].contador = k + 1;
+      
     }
   }
 

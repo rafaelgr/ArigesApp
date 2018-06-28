@@ -205,6 +205,17 @@ export class ArigesDataProvider {
     return this.http.get(apiUrl + '/api/pedidos');
   }
 
+
+  getPedidosAgente(apiUrl, codagent): any {
+    
+    let params = {
+      'codagent': codagent
+    };
+    return this.http.get(apiUrl + '/api/pedidos/agente', {
+      params: params
+    });;
+  }
+
   getPedido(apiUrl, numpedcl): any {
     let params = {
       'numpedcl': numpedcl
@@ -216,6 +227,16 @@ export class ArigesDataProvider {
 
   getAlbaranes(apiUrl): any {
     return this.http.get(apiUrl + '/api/albaranes');
+  }
+
+  getAlbaranesAgente(apiUrl, codagent): any {
+    
+    let params = {
+      'codagent': codagent
+    };
+    return this.http.get(apiUrl + '/api/albaranes/agente', {
+      params: params
+    });;
   }
 
   

@@ -41,7 +41,7 @@ export class AlbaranesPage {
   }
 
   loadData(): void {
-    this.arigesData.getAlbaranes(this.settings.url)
+    this.arigesData.getAlbaranesAgente(this.settings.url, this.settings.user.codagent1)
       .subscribe(
         (data) => {
           this.albaranes = this.prepareAlbaranes(data);
