@@ -23,7 +23,7 @@ export class CliFacturasPage {
 
   }
 
-  ionViewWillEnter() {
+  ionViewDidLoad() {
     this.localData.getSettings().then(data => {
       if (data) {
         this.settings = JSON.parse(data);

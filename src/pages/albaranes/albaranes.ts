@@ -21,7 +21,7 @@ export class AlbaranesPage {
     public interData: InterDataProvider, public loadingCtrl: LoadingController) {
   }
 
-  ionViewWillEnter() {
+  ionViewDidLoad() {
     this.localData.getSettings().then(data => {
       if (data) {
         this.settings = JSON.parse(data);
