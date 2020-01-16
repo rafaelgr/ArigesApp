@@ -17,7 +17,7 @@ export class VisitasAgentePage {
   cliente: any = {};
   visitas: any = [];
   modalCabecera: any;
-  tipo: number = 21;
+  tipo: number = 6;
   modalVisitas: any;
   fechaInicial: any;
   fechaFinal: any;
@@ -77,6 +77,9 @@ export class VisitasAgentePage {
       visitas[i].hora = d.getHours();
       visitas[i].minutos = d.getMinutes()
       visitas[i].fecha = moment(visitas[i].fechora).format('DD/MM/YYYY');
+      if (visitas[i].nomclien) {
+        visitas[i].nombreCliente = visitas[i].nomclien;
+      }
     }
     return visitas;
   }
