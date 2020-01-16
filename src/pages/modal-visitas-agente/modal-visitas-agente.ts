@@ -31,8 +31,8 @@ export class ModalVisitasAgentePage {
     estado: 0,
     tipo: 0,
     medio: "",
-    observaciones: ""
-    
+    observaciones: "",
+    nomclien: ""
   };
 
   formasPago: any = [];
@@ -40,20 +40,15 @@ export class ModalVisitasAgentePage {
  
   tipoAccion: any;
   fecha: any;
-  
  
   edicion: boolean = false;
-
-  
-  
+  verNomclien: boolean = false;
+ 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
     public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController, 
     public formBuilder: FormBuilder, public viewCtrl: ViewController) {
-
-      
-      this.tipoAccion = 21;
-
+      this.tipoAccion = 6;
   }
 
   ionViewWillEnter() {
@@ -71,19 +66,18 @@ export class ModalVisitasAgentePage {
     this.edicion =  this.navParams.get('edicion');
     this.cliente = this.interData.getCliente();
     if(this.edicion != true) {
-       this.fecha = new Date();
-       this.visita.fecha = moment(this.fecha).format('DD/MM/YYYY');
-       this.visita.hora = this.fecha.getHours();
-       this.visita.minutos = this.fecha.getMinutes();
-       this.recuperarMedio();
-      
+      this.fecha = new Date();
+      this.visita.fecha = moment(this.fecha).format('DD/MM/YYYY');
+      this.visita.hora = this.fecha.getHours();
+      this.visita.minutos = this.fecha.getMinutes();
+      this.recuperarMedio();
       setTimeout(() => { this.tipoAccion = 21; }, 500)
     }else {
       this.visita = this.navParams.get('visita');
       setTimeout(() => {  this.tipoAccion = this.visita.tipo; }, 500)
      
     }
-    this.arigesData.getTipoAccion(this.settings.url, this.tipoAccion)
+    this.arigesData.getTipoAccion(this.settings.url, 6)
       .subscribe(
         (data) => {
           this.tipos = data;
@@ -98,33 +92,30 @@ export class ModalVisitasAgentePage {
   }
 
   guardarVisita(): void{
-   
-     
-        if( this.edicion != true){
-          this.arigesData.postVisita(this.settings.url, this.saveObjectMysql())
-            .subscribe(
-              (datos) => {
-                this.viewCtrl.dismiss();
-              },
-              (error) => {
-                this.showError(error);
-            });
-        }else {
-          this.arigesData.putVisita(this.settings.url, this.saveObjectMysql())
-            .subscribe(
-              (datos) => {
-                this.viewCtrl.dismiss();
-              },
-              (error) => {
-                this.showError(error);
-            });
-        }
-      
-    
+    if (this.tipoAccion === 7 && this.visita.nomclien === "") {
+      this.showError("Debe introducir el nombre del cliente potencial");
+      return;
+    }
+    if( this.edicion != true){
+      this.arigesData.postVisita(this.settings.url, this.saveObjectMysql())
+        .subscribe(
+          (datos) => {
+            this.viewCtrl.dismiss();
+          },
+          (error) => {
+            this.showError(error);
+        });
+    }else {
+      this.arigesData.putVisita(this.settings.url, this.saveObjectMysql())
+        .subscribe(
+          (datos) => {
+            this.viewCtrl.dismiss();
+          },
+          (error) => {
+            this.showError(error);
+        });
+    }
   }
-     
-  
-
 
   showError(error): void {
     let alert = this.alertCrtl.create({
@@ -135,21 +126,15 @@ export class ModalVisitasAgentePage {
     alert.present();
   }
 
-  cantidadNoValida(): void {
-    let alert = this.alertCrtl.create({
-      title: "ERROR",
-      subTitle: 'Debe introducir un valor y este no puede ser mayor que el total del visita.',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
 
   dismiss() {
-   
     this.viewCtrl.dismiss();
   }
 
   recuperarMedio(): void {
+    if (this.tipoAccion === 7) {
+      this.verNomclien = true;
+    }
     this.arigesData.getUnTipoAccion(this.settings.url, this.tipoAccion)
       .subscribe(
         (data) => {
@@ -161,34 +146,40 @@ export class ModalVisitasAgentePage {
   }
 
   saveObjectMysql(): any {
-
+    if (this.tipoAccion == 7) {
+      this.visita.codclien = 999999;
+    }
+    if (this.tipoAccion == 6) {
+      this.visita.codclien = 0;
+    }
     var visitaObje = {};
-          
-          if(this.edicion){
-            this.fecha = moment(new Date(this.visita.fechora)).format('YYYY-MM-DD HH:mm:ss');
-            visitaObje = {
-              usuario: this.visita.usuario, 
-              fechora: this.fecha, 
-              codclien: this.visita.codclien,
-              tipo: this.tipoAccion,
-              medio: this.visita.medio,
-              observaciones: this.visita.observaciones
-            }
-          } else {
-            this.fecha = moment(this.fecha).format('YYYY-MM-DD HH:mm:ss');
-            visitaObje = {
-              usuario: this.settings.user.login,
-              fechora: this.fecha,
-              codclien: this.cliente.codclien,
-              agente: this.cliente.codagent,
-              codtraba: this.settings.user.codtraba,
-              estado: 0,
-              tipo: this.tipoAccion,
-              medio: this.visita.medio,
-              observaciones: this.visita.observaciones,
-              
-            }
-          }
-          return visitaObje;
-  }
+    if(this.edicion){
+      this.fecha = moment(new Date(this.visita.fechora)).format('YYYY-MM-DD HH:mm:ss');
+      visitaObje = {
+        usuario: this.visita.usuario, 
+        fechora: this.fecha, 
+        codclien: this.visita.codclien,
+        tipo: this.tipoAccion,
+        medio: this.visita.medio,
+        observaciones: this.visita.observaciones,
+        nomclien: this.visita.nomclien
+      }
+      }
+      else {
+        this.fecha = moment(this.fecha).format('YYYY-MM-DD HH:mm:ss');
+        visitaObje = {
+          usuario: this.settings.user.login,
+          fechora: this.fecha,
+          codclien: this.cliente.codclien,
+          agente: this.cliente.codagent,
+          codtraba: this.settings.user.codtraba,
+          estado: 0,
+          tipo: this.tipoAccion,
+          medio: this.visita.medio,
+          observaciones: this.visita.observaciones,
+          nomclien: this.visita.nomclien
+        }
+      }
+      return visitaObje;
+    }
 }

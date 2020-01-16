@@ -32,7 +32,10 @@
             <ion-option  *ngFor="let ti of tipos" [value]="ti.codigo" >{{ti.denominacion}}</ion-option>
           </ion-select>
         </ion-item>
-        
+        <ion-item *ngIf="verNomclien">
+          <ion-label color="cabecera" stacked>Nombre cliente potencial:</ion-label>
+          <ion-input type="text" [(ngModel)]="visita.nomclien" [ngModelOptions]="{standalone: true}" ></ion-input>
+        </ion-item>        
         <ion-item >
           <ion-label color="cabecera" stacked>Observaciones:</ion-label>
           <ion-textarea maxlength ="400"  [(ngModel)]="visita.observaciones" [ngModelOptions]="{standalone: true}" ></ion-textarea>
