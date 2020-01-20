@@ -59,11 +59,12 @@ export class ModalVisitasFechasPage {
 
   buscarVisitas(): void {
     this.submitAttempt = true;
+    var masUndia = moment(this.fechaFinal).add('days', 1).format("YYYY-MM-DD");
     if (this.visitasForm.valid) {
       if(this.fechaInicial > this.fechaFinal) {
         this.errorFecha = true;
       } else {
-        this.navCtrl.push('VisitasAgentePage', {fechaInicial: this.fechaInicial, fechaFinal: this.fechaFinal});
+        this.navCtrl.push('VisitasAgentePage', {fechaInicial: this.fechaInicial, fechaFinal: masUndia});
       }
     }
   }
