@@ -41,23 +41,56 @@
     <ion-item no-lines class="grptitle">
       Stock por almacén
     </ion-item>
-      <ion-item >
+      <ion-list wrap-text>
+        <ion-grid style=" border: 1px solid grey; font-size: 1.4rem;" no-padding>
+              
+         
+            
+                <ion-row >
+                    <ion-col col-7 style="font-size: 1em;padding-top: 4%;padding-bottom: 4%;padding-left: 2%;font-weight: bold;">
+                      
+                        Nombre
+                      
+                    </ion-col>
+                    <ion-col  col-3 style="font-size:1em;padding-top: 4%;padding-bottom: 4%;font-weight: bold;">
+                    
+                        Stock
+                    
+                    </ion-col>
+                    <ion-col  col-2 style="font-size: 1em;padding-top: 4%;padding-bottom: 4%;font-weight: bold;">
+                   
+                      Res.
+                     
+                    </ion-col>
+                </ion-row>
+           
+        
+      </ion-grid>
           <ion-grid style=" border: 1px solid grey; font-size: 1.4rem;" no-padding>
               
               <div *ngFor="let almacen of articulo.almacenes">
                 
-                    <ion-row [ngClass]="{'color': almacen.contador%2 > 0}">
-                        <ion-col col-4 >
+                    <ion-row [ngClass]="{'color': almacen.contador%2 > 0}" *ngIf="almacen.stockalm != 0.00 || almacen.reservaAlm != 0.00">
+                        <ion-col col-7 style="font-size: 1em;padding-top: 4%;">
+                        
                             {{almacen.nomalmac}}
+                          
                         </ion-col>
-                        <ion-col  col-8 style="text-align:right;">
+                        <ion-col  col-3 style="text-align:left; font-size: 0.8em;padding-top: 4%;">
+                        
                             {{almacen.stockalmFormat}}
+                        
                         </ion-col>
-                      </ion-row>
+                        <ion-col  col-2 style="text-align:left;font-size: 0.8em;padding-top: 4%">
+                       
+                          {{almacen.reservasalmFormat}}
+                         
+                        </ion-col>
+                    </ion-row>
                
               </div>
-            </ion-grid>
-      </ion-item>
+          </ion-grid>
+      </ion-list>
   </ion-list>
 </ion-content>
 

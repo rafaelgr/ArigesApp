@@ -114,6 +114,7 @@ export class ArticulosPage {
       for(var j= 0; j < data[i].almacenes.length; j++) {
         
         data[i].almacenes[j].stockalmFormat = numeral(data[i].almacenes[j].stockalm).format('0,0.00');
+        data[i].almacenes[j].reservasalmFormat = numeral(data[i].almacenes[j].reservaAlm).format('0,0.00');
       }
     }
     return data;
