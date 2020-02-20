@@ -80,4 +80,8 @@ export class HomePage {
   goVisitas(): void {
     this.navCtrl.push('ModalVisitasFechasPage');
   }
+
+  goCopyPaste(): void {
+    this.navCtrl.push('CopyPastePage');
+  }
 }
