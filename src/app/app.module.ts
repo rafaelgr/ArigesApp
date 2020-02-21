@@ -19,6 +19,7 @@ import { Clipboard } from '@ionic-native/clipboard/ngx';
 
 
 
+
 @NgModule({
   declarations: [
     MyApp
@@ -44,6 +45,7 @@ import { Clipboard } from '@ionic-native/clipboard/ngx';
     InterDataProvider,
     ScreenOrientation,
     Clipboard
+  
   ]
 })
 export class AppModule {}
