@@ -3,9 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
-import * as moment from 'moment';
-import * as numeral from 'numeral';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { Clipboard } from '@ionic-native/clipboard';
 
 @IonicPage()
 @Component({
@@ -17,17 +15,20 @@ export class ArticulosDetallePage {
   settings: any;
   cliente: any = {};
   articulo = {
+    codartic: "",
+    nomartic: "",
     almacenes: [
       
     ]
   };
+  textCopy: string = "";
 
  
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
     public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController,
-    private screenOrientation: ScreenOrientation) {
+    public clipboard: Clipboard) {
       
   }
 
@@ -52,10 +53,31 @@ export class ArticulosDetallePage {
 
   loadData(): void {
     this.articulo = this.interData.getArticulo();
-    
+    this.textCopy = this.articulo.codartic + "  " +this.articulo.nomartic;
+    this.textCopy =  this.textCopy.toString();
     for(var k = 0; k < this.articulo.almacenes.length; k++) {
         this.articulo.almacenes[k].contador = k + 1;
       
+    }
+    try{
+      this.clipboard.clear();
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
+  //Copy Event
+  copyText(){
+    try{
+      this.clipboard.copy(this.textCopy)
+     .then(rs => {
+        this.showCopiado();
+      }).catch(error => {
+        this.showError(error);
+      });
+    }catch(e) {
+      console.log(e)
+      this.showError(e);
     }
   }
 
@@ -69,4 +91,16 @@ export class ArticulosDetallePage {
     });
     alert.present();
   }
+
+  showCopiado(): void {
+    let alert = this.alertCrtl.create({
+      title: "AVISO",
+      subTitle: "Se copió el código y nombre del artículo con éxito",
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 }
+
+
+
