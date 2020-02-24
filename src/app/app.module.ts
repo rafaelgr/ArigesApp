@@ -13,7 +13,7 @@ import { ArigesDataProvider } from '../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../providers/inter-data/inter-data';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { AppVersion } from '@ionic-native/app-version';
-import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { Clipboard } from '@ionic-native/clipboard';
 
 
 
