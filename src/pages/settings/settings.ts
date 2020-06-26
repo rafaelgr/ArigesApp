@@ -11,7 +11,8 @@ import { LocalDataProvider} from '../../providers/local-data/local-data';
 })
 export class SettingsPage {
   settings:any = { 
-    url: "" 
+    url: "",
+    url_docs: "" 
   };
   settingsForm: FormGroup;
   submitAttempt: boolean = false;
@@ -19,7 +20,8 @@ export class SettingsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public formBuilder: FormBuilder, public localDataProvider: LocalDataProvider) {
     this.settingsForm = formBuilder.group({
-      url: ['', Validators.compose([Validators.required])]
+      url: ['', Validators.compose([Validators.required])],
+      urlDocs: ['', Validators.compose([Validators.required])]
     });
   }
 
