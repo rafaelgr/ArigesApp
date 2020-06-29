@@ -360,4 +360,8 @@ export class ArigesDataProvider {
   deleteOferta(apiUrl, numofert): any {
     return this.http.delete(apiUrl + '/api/ofertas/caboferta?numofert='+ numofert);
   }
+
+  postIntercambio(apiUrl, solicitud): any {
+    return this.http.post(apiUrl + '/intercambio', solicitud);
+  }
 }
