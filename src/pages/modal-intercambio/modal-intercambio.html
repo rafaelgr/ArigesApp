@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+      <ion-buttons end>
+          <button ion-button icon-only (click)="dismiss()">
+            <ion-icon class="myGreen" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+          </button>
+        </ion-buttons>
+    <ion-title>SOLICITAR DOCUMENTO</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item text-wrap no-lines>
+        <ion-thumbnail item-start>
+            <div class="psb">
+                <img src="assets/imgs/enviar.png">
+            </div>
+          </ion-thumbnail>
+      <p>Introduca el correo al  que enviar y pulse Enviar</p>
+    </ion-item>
+    <form [formGroup]="correoForm" no-lines>
+      <ion-item>
+        <ion-label stacked>Correo al que enviar</ion-label>
+        <ion-input type="text" [(ngModel)]="correo" formControlName="correo"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!correoForm.controls.correo.valid  && submitAttempt" no-lines>
+        <p style="color:red">Debe introducir un valor.</p>
+      </ion-item>
+
+    </form>
+    <ion-item no-lines  class="myGreen">
+      <button ion-button outline item-end round icon-left (click)="enviar()">
+        <ion-icon name="mail"></ion-icon>
+        Enviar
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>
