@@ -16,7 +16,9 @@ export class PedidosDetallePage {
 
   settings: any;
   cliente: any = {};
-  pedido = {};
+  pedido = {
+    numpedcl: 0
+  };
   modalIntercambio: any;
 
 
