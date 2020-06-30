@@ -45,7 +45,6 @@ import { Clipboard } from '@ionic-native/clipboard';
     InterDataProvider,
     ScreenOrientation,
     Clipboard
-  
   ]
 })
 export class AppModule {}

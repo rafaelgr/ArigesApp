@@ -17,6 +17,12 @@
     <ion-item no-lines class="grptitle" text-wrap>
       Factura: {{factura.numfactu}} Importe: {{factura.bases}}
     </ion-item>
+    <ion-item no-lines  class="myGreen">
+      <button ion-button outline item-end round icon-left (click)="doSend()">
+        <ion-icon name="mail"></ion-icon>
+        Enviar por correo
+      </button>
+    </ion-item>
     <ion-item *ngFor="let linea of factura.lineas" text-wrap>
       <div *ngIf="linea.numalbar != -1">
         <ion-item no-lines class="grptitle" text-wrap>

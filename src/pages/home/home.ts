@@ -37,7 +37,7 @@ export class HomePage {
             this.appVer.getVersionNumber().then(data => {
               this.version = data;
             }, (error) => {
-              console.log("herror al obtener la version");
+              console.log("Error al obtener la version");
             });
         }
       } else {

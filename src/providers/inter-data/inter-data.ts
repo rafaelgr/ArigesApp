@@ -10,6 +10,7 @@ export class InterDataProvider {
   articulo: any;
   proveedor: any;
   lineaOferta: any;
+  tipoS2: any;
 
   constructor() {
 
@@ -77,5 +78,13 @@ export class InterDataProvider {
 
   getLineaOferta(): any {
     return this.lineaOferta;
+  }
+
+  setTipoS2(tipoS2): void {
+    this.tipoS2 = tipoS2;
+  }
+
+  getTipoS2(): any {
+    return this.tipoS2;
   }
 }

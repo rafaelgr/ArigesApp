@@ -364,4 +364,20 @@ export class ArigesDataProvider {
   postIntercambio(apiUrl, solicitud): any {
     return this.http.post(apiUrl + '/intercambio', solicitud);
   }
+
+  postS2Albaran(apiUrl, email, clave): any {
+    return this.http.post(apiUrl + '/api/albaranes/enviar-s2', {email, clave});
+  }
+
+  postS2Pedido(apiUrl, email, clave): any {
+    return this.http.post(apiUrl + '/api/pedidos/enviar-s2', {email, clave});
+  }
+
+  postS2Oferta(apiUrl, email, clave): any {
+    return this.http.post(apiUrl + '/api/ofertas/enviar-s2', {email, clave});
+  }
+
+  postS2Factura(apiUrl, email, clave): any {
+    return this.http.post(apiUrl + '/api/facturas/enviar-s2', {email, clave});
+  }
 }

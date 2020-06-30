@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
@@ -17,9 +17,10 @@ export class CliFacturasDetallePage {
   settings: any;
   cliente: any = {};
   factura: any = {};
+  modalIntercambio: any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
+  constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider, public modalCtrl: ModalController,
     public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController,
     private screenOrientation: ScreenOrientation) {
 
@@ -58,5 +59,35 @@ export class CliFacturasDetallePage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  showMessage(msg): void {
+    let alert = this.alertCrtl.create({
+      title: "AVISO",
+      subTitle: msg,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  doSend(): void {
+    this.modalIntercambio = this.modalCtrl.create('ModalIntercambioPage');
+    
+    this.modalIntercambio.onDidDismiss( datos => {
+      if (!datos) return;
+      console.log('FACTURA:', this.factura);
+      this.arigesData.postS2Factura(this.settings.url, datos.correo, 
+        this.factura.codtipom + "_" + this.factura.numfactu + "_" + moment(this.factura.fecfactu, 'DD/MM/YYYY').format('YYYY-MM-DD'))
+      .subscribe(
+        data => {
+          this.showMessage('Su solicitud se ha cursado correctamente.')
+        },
+        err => {
+          this.showError(err);
+        }
+      )
+    });
+    this.interData.setTipoS2('FAC');
+    this.modalIntercambio.present();
   }
 }

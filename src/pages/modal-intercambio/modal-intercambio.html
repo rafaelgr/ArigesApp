@@ -5,7 +5,7 @@
             <ion-icon class="myGreen" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
           </button>
         </ion-buttons>
-    <ion-title>SOLICITAR DOCUMENTO</ion-title>
+    <ion-title>SOLICITAR DOCUMENTO ({{tipo}})</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -26,7 +26,7 @@
         <ion-input type="text" [(ngModel)]="correo" formControlName="correo"></ion-input>
       </ion-item>
       <ion-item *ngIf="!correoForm.controls.correo.valid  && submitAttempt" no-lines>
-        <p style="color:red">Debe introducir un valor.</p>
+        <p style="color:red">Debe introducir un correo electrónico.</p>
       </ion-item>
 
     </form>
