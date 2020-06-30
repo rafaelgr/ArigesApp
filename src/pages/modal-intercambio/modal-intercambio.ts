@@ -57,6 +57,11 @@ export class ModalIntercambioPage {
 
   loadData():void {
     this.tipo = this.interData.getTipoS2();
+    const cliente = this.interData.getCliente();
+    console.log("CLIENTE", cliente);
+    if (cliente && cliente.maiclie1) {
+      this.correo = cliente.maiclie1
+    }
   }
 
   enviar(): void {

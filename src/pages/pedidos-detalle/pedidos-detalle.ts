@@ -86,6 +86,7 @@ export class PedidosDetallePage {
       )
     });
     this.interData.setTipoS2('PED');
+    this.interData.setCliente(null);
     this.modalIntercambio.present();
   }
 }

@@ -107,6 +107,7 @@ export class AlbaranesDetallePage {
       )
     });
     this.interData.setTipoS2('ALB');
+    this.interData.setCliente(null);
     this.modalIntercambio.present();
   }
 }
