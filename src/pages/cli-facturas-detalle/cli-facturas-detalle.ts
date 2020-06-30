@@ -75,9 +75,9 @@ export class CliFacturasDetallePage {
     
     this.modalIntercambio.onDidDismiss( datos => {
       if (!datos) return;
-      console.log('FACTURA:', this.factura);
+      const numero = this.factura.numfactu.replace(this.factura.letraser, "");
       this.arigesData.postS2Factura(this.settings.url, datos.correo, 
-        this.factura.codtipom + "_" + this.factura.numfactu + "_" + moment(this.factura.fecfactu, 'DD/MM/YYYY').format('YYYY-MM-DD'))
+        this.factura.codtipom + "_" + numero + "_" + moment(this.factura.fecfactu, 'DD/MM/YYYY').format('YYYY-MM-DD'))
       .subscribe(
         data => {
           this.showMessage('Su solicitud se ha cursado correctamente.')
