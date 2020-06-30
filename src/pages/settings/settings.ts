@@ -20,8 +20,7 @@ export class SettingsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public formBuilder: FormBuilder, public localDataProvider: LocalDataProvider) {
     this.settingsForm = formBuilder.group({
-      url: ['', Validators.compose([Validators.required])],
-      urlDocs: ['', Validators.compose([Validators.required])]
+      url: ['', Validators.compose([Validators.required])]
     });
   }
 

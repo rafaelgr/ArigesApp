@@ -29,13 +29,6 @@
       <ion-item *ngIf="!settingsForm.controls.url.valid  && submitAttempt" no-lines>
         <p style="color:red">Introduzca una url válida.</p>
       </ion-item>
-      <ion-item>
-        <ion-label stacked>URL DOCS</ion-label>
-        <ion-input formControlName="urlDocs" type="text" [(ngModel)]="settings.url_docs"></ion-input>
-      </ion-item>
-      <ion-item *ngIf="!settingsForm.controls.urlDocs.valid  && submitAttempt" no-lines>
-        <p style="color:red">Introduzca una url válida.</p>
-      </ion-item>
     </form>
     <ion-item no-lines class="myGreen">
       <button ion-button outline item-end round icon-left (click)="saveSettings()">
