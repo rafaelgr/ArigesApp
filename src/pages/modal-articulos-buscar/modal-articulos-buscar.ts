@@ -42,7 +42,7 @@ export class ModalArticulosBuscarPage {
     public localData: LocalDataProvider, public formBuilder: FormBuilder, public alertCrtl: AlertController,
     public interData: InterDataProvider, public loadingCtrl: LoadingController) {
     this.buscarArtForm = formBuilder.group({
-      parnom: ['', Validators.compose([Validators.required])]
+      parnom: ['', Validators.compose([])]
     });
   }
 
@@ -80,6 +80,11 @@ export class ModalArticulosBuscarPage {
  
       str = str.replace('*', '%');
  
+    }
+    if(str == "" && this.parpro == "" && this.parfam == "" && this.codigo == "") {
+      var error = "Se tiene que rellenar al menos uno de los campos";
+      this.showError(error);
+      return;
     }
  
     let loading = this.loadingCtrl.create({

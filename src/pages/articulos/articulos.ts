@@ -4,7 +4,6 @@ import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
-import * as moment from 'moment';
 import * as numeral from 'numeral';
 
 @IonicPage()
@@ -32,7 +31,7 @@ export class ArticulosPage {
     public localData: LocalDataProvider, public formBuilder: FormBuilder, public alertCrtl: AlertController,
     public interData: InterDataProvider, public loadingCtrl: LoadingController) {
     this.buscarArtForm = formBuilder.group({
-      parnom: ['', Validators.compose([Validators.required])]
+      parnom: ['', Validators.compose([])]
     });
   }
 
@@ -65,10 +64,17 @@ export class ArticulosPage {
       str = str.replace('*', '%');
  
     }
+
+    if(str == "" && this.parpro == "" && this.parfam == "" && this.codigo == "") {
+      var error = "Se tiene que rellenar al menos uno de los campos";
+      this.showError(error);
+      return;
+    }
     let loading = this.loadingCtrl.create({
       content: 'Buscando...'
     });
     loading.present();
+  
     this.arigesData.getArticulosExtBis(this.settings.url, str, this.parpro,
       this.parfam, this.codigo, this.obsole, this.rotacion)
       .subscribe(
