@@ -117,7 +117,7 @@ export class ModalArticulosBuscarPage {
             this.articulos = [];
             this.showNoEncontrado();
           } else {
-            this.showError(error);
+            this.showError(error.error);
           }
         }
       );
