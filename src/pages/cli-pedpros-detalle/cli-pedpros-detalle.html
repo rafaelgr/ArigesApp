@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{cliente.nomclien}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome()" class="myGreen" end>
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item no-lines class="grptitle" text-wrap>
+      <div>
+        <strong> Pedido: </strong> {{pedido.numpedcl}} <strong>Importe: </strong>{{pedido.totalped}}
+      </div>
+      <div>
+        <strong>Observaciones: </strong><br>{{pedido.observa}}
+      </div>
+    </ion-item>
+    <ion-item no-lines class="myGreen">
+      <button ion-button outline item-end round icon-left (click)="doSend()">
+        <ion-icon name="mail"></ion-icon>
+        Enviar por correo
+      </button>
+    </ion-item>
+    <ion-item *ngFor="let linea of pedido.lineas" text-wrap>
+      <div>
+        <strong>Referencia: </strong>{{linea.codartic}}
+      </div>
+      <div>
+        {{linea.nomartic}}
+      </div>
+      <div>
+        <strong>Cantidad: </strong>{{linea.cantidad}}
+        <strong>Precio: </strong>{{linea.precioar}}
+      </div>
+      <div>
+        <strong>Dto1: </strong>{{linea.dtoline1}}
+        <strong>Dto2: </strong>{{linea.dtoline2}}
+        <strong>Total: </strong>{{linea.importel}}
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

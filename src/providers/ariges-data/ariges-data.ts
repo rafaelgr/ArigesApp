@@ -76,6 +76,10 @@ export class ArigesDataProvider {
     return this.http.get(apiUrl + '/api/pedidos/cliente/' + codclien);
   }
 
+  getPedidosProveedorCliente(apiUrl, codclien): any {
+    return this.http.get(apiUrl + '/api/pedidos/proveedor/cliente/' + codclien);
+  }
+
   getAlbaranesCliente(apiUrl, codclien): any {
     return this.http.get(apiUrl + '/api/albaranes/cliente/' + codclien);
   }
@@ -99,13 +103,13 @@ export class ArigesDataProvider {
   }
 
   getArticulosExt(apiUrl, parnom, parpro, parfam, codigo, obsole, rotacion): any {
-    
+
     let params = {
       'parnom': parnom,
       'parpro': parpro,
       'parfam': parfam,
       'codigo': codigo,
-      'obsole': obsole, 
+      'obsole': obsole,
       'rotacion': rotacion
     };
     return this.http.get(apiUrl + '/api/articulos/ext', {
@@ -114,13 +118,13 @@ export class ArigesDataProvider {
   }
 
   getArticulosExtBis(apiUrl, parnom, parpro, parfam, codigo, obsole, rotacion): any {
-    
+
     let params = {
       'parnom': parnom,
       'parpro': parpro,
       'parfam': parfam,
       'codigo': codigo,
-      'obsole': obsole, 
+      'obsole': obsole,
       'rotacion': rotacion
     };
     return this.http.get(apiUrl + '/api/articulos/ext/bis', {
@@ -186,11 +190,11 @@ export class ArigesDataProvider {
 
   getProveedoresDescuentosRappeles(apiUrl, codprove): any {
     return this.http.get(apiUrl + '/api/proveedores/descuentos-rappeles', {
-        params: {
-            "codprove": codprove
-        }
+      params: {
+        "codprove": codprove
+      }
     })
-}
+  }
 
   getFamilias(apiUrl, parnom): any {
     let params = {
@@ -207,7 +211,7 @@ export class ArigesDataProvider {
 
 
   getPedidosAgente(apiUrl, codagent): any {
-    
+
     let params = {
       'codagent': codagent
     };
@@ -220,7 +224,7 @@ export class ArigesDataProvider {
     let params = {
       'numpedcl': numpedcl
     };
-    return this.http.get(apiUrl + + '/api/pedidos/pedido',{
+    return this.http.get(apiUrl + + '/api/pedidos/pedido', {
       params: params
     });
   }
@@ -230,7 +234,7 @@ export class ArigesDataProvider {
   }
 
   getAlbaranesAgente(apiUrl, codagent): any {
-    
+
     let params = {
       'codagent': codagent
     };
@@ -239,14 +243,14 @@ export class ArigesDataProvider {
     });;
   }
 
-  
+
 
   getAlbaranDetalle(apiUrl, codtipom, numalbar): any {
     let params = {
       'codtipom': codtipom,
       'numalbar': numalbar
     };
-    return this.http.get(apiUrl + '/api/albaranes/detalle',{
+    return this.http.get(apiUrl + '/api/albaranes/detalle', {
       params: params
     });
   }
@@ -260,18 +264,18 @@ export class ArigesDataProvider {
       'numorden': numorden
     };
     return this.http.get(apiUrl + '/api/cobros/parciales/cobro/devolver', {
-      params : params
+      params: params
     });
   }
 
-  
+
 
   getCobrosUsuario(apiUrl, codusu): any {
     let params = {
       'codusu': codusu
     };
     return this.http.get(apiUrl + '/api/cobros/parciales/cobro/devolver/usuario', {
-      params : params
+      params: params
     });
   }
 
@@ -283,8 +287,9 @@ export class ArigesDataProvider {
     let params = {
       'tipo': tipo
     };
-    return this.http.get(apiUrl + '/api/acciones/tipos', { 
-      params: params}
+    return this.http.get(apiUrl + '/api/acciones/tipos', {
+      params: params
+    }
     );
   }
 
@@ -292,8 +297,9 @@ export class ArigesDataProvider {
     let params = {
       'tipo': tipo
     };
-    return this.http.get(apiUrl + '/api/acciones/tipos/uno', { 
-      params: params}
+    return this.http.get(apiUrl + '/api/acciones/tipos/uno', {
+      params: params
+    }
     );
   }
 
@@ -327,21 +333,21 @@ export class ArigesDataProvider {
   putCabeceraOferta(apiUrl, oferta): any {
     return this.http.put(apiUrl + '/api/ofertas/caboferta', oferta);
   }
- 
+
 
   postLineaOferta(apiUrl, oferta): any {
     return this.http.post(apiUrl + '/api/ofertas/linoferta', oferta);
   }
 
-  postCobroParcial(apiUrl, cobroParcial) : any {
+  postCobroParcial(apiUrl, cobroParcial): any {
     return this.http.post(apiUrl + '/api/cobros/nuevo/parcial', cobroParcial);
   }
 
-  postVisita(apiUrl, visita) : any {
+  postVisita(apiUrl, visita): any {
     return this.http.post(apiUrl + '/api/acciones/', visita);
   }
 
-  putVisita(apiUrl, visita) : any {
+  putVisita(apiUrl, visita): any {
     return this.http.put(apiUrl + '/api/acciones/', visita);
   }
 
@@ -352,13 +358,13 @@ export class ArigesDataProvider {
   putLineaOferta(apiUrl, oferta): any {
     return this.http.put(apiUrl + '/api/ofertas/linoferta', oferta);
   }
- 
+
   deleteLineaOferta(apiUrl, numofert, numlinea): any {
-    return this.http.delete(apiUrl + '/api/ofertas/linoferta?numofert='+ numofert +'&numlinea='+ numlinea);
+    return this.http.delete(apiUrl + '/api/ofertas/linoferta?numofert=' + numofert + '&numlinea=' + numlinea);
   }
 
   deleteOferta(apiUrl, numofert): any {
-    return this.http.delete(apiUrl + '/api/ofertas/caboferta?numofert='+ numofert);
+    return this.http.delete(apiUrl + '/api/ofertas/caboferta?numofert=' + numofert);
   }
 
   postIntercambio(apiUrl, solicitud): any {
@@ -366,18 +372,18 @@ export class ArigesDataProvider {
   }
 
   postS2Albaran(apiUrl, email, clave): any {
-    return this.http.post(apiUrl + '/api/albaranes/enviar-s2', {email, clave});
+    return this.http.post(apiUrl + '/api/albaranes/enviar-s2', { email, clave });
   }
 
   postS2Pedido(apiUrl, email, clave): any {
-    return this.http.post(apiUrl + '/api/pedidos/enviar-s2', {email, clave});
+    return this.http.post(apiUrl + '/api/pedidos/enviar-s2', { email, clave });
   }
 
   postS2Oferta(apiUrl, email, clave): any {
-    return this.http.post(apiUrl + '/api/ofertas/enviar-s2', {email, clave});
+    return this.http.post(apiUrl + '/api/ofertas/enviar-s2', { email, clave });
   }
 
   postS2Factura(apiUrl, email, clave): any {
-    return this.http.post(apiUrl + '/api/facturas/enviar-s2', {email, clave});
+    return this.http.post(apiUrl + '/api/facturas/enviar-s2', { email, clave });
   }
 }
