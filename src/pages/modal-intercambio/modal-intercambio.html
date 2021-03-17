@@ -1,10 +1,10 @@
 <ion-header>
   <ion-navbar>
-      <ion-buttons end>
-          <button ion-button icon-only (click)="dismiss()">
-            <ion-icon class="myGreen" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
-          </button>
-        </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon class="myGreen" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>SOLICITAR DOCUMENTO ({{tipo}})</ion-title>
   </ion-navbar>
 </ion-header>
@@ -13,12 +13,12 @@
 <ion-content padding>
   <ion-list>
     <ion-item text-wrap no-lines>
-        <ion-thumbnail item-start>
-            <div class="psb">
-                <img src="assets/imgs/enviar.png">
-            </div>
-          </ion-thumbnail>
-      <p>Introduca el correo al  que enviar y pulse Enviar</p>
+      <ion-thumbnail item-start>
+        <div class="psb">
+          <img src="assets/imgs/enviar.png">
+        </div>
+      </ion-thumbnail>
+      <p>Introduca el correo al que enviar y pulse Enviar</p>
     </ion-item>
     <form [formGroup]="correoForm" no-lines>
       <ion-item>
@@ -30,7 +30,7 @@
       </ion-item>
 
     </form>
-    <ion-item no-lines  class="myGreen">
+    <ion-item no-lines class="myGreen">
       <button ion-button outline item-end round icon-left (click)="enviar()">
         <ion-icon name="mail"></ion-icon>
         Enviar
@@ -42,7 +42,7 @@
 <ion-footer>
   <ion-toolbar>
     <ion-title>
-      <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
     </ion-title>
   </ion-toolbar>
 </ion-footer>

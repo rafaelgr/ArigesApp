@@ -17,83 +17,83 @@
     <ion-item no-lines class="grptitle">
       Indicadores
     </ion-item>
-    <ion-item   (click)="goPage({ title: 'Ofertas', component: 'CliOfertasPage' })">
-      <div >
-          <strong>Ofertas: </strong> {{indicadores.ofertas}}
+    <ion-item (click)="goPage({ title: 'Ofertas', component: 'CliOfertasPage' })">
+      <div>
+        <strong>Ofertas: </strong> {{indicadores.ofertas}}
       </div>
-                  <ion-icon class="myGreen" name="log-in" item-end></ion-icon>
+      <ion-icon class="myGreen" name="log-in" item-end></ion-icon>
     </ion-item>
-    
-      
-      <ion-item (click)="goPage({ title: 'Pedidos', component: 'CliPedidosPage' })">
-        <div >
-          <strong>Pedidos: </strong> {{indicadores.pedidos}}
-        </div>
-           
-            <ion-icon class="myGreen" name="log-in" item-end></ion-icon>
-        
-      </ion-item>
-      <ion-item (click)="goPage({ title: 'Albaranes', component: 'CliAlbaranesPage' })">
-        <div >
-          <strong>Albaranes: </strong> {{indicadores.albaranes}}
-        </div>
-           
-            <ion-icon class="myGreen" name="log-in" item-end></ion-icon>
-        
-      </ion-item>
-      
-      
-      <ion-item>
-        <div>
-          <strong>Saldo: </strong> {{indicadores.saldoPendiente}}
-        </div>
-      </ion-item>
-      <ion-item>
-        <div>
-          <strong>Saldo Vencido: </strong> {{indicadores.saldoVencido}}
-        </div>
-      </ion-item>
-    
-      <ion-item>
-        <div>
-          <strong>Situación: </strong> {{cliente.situacio}}
-        </div>
-      </ion-item>
-   
-      <ion-item>
-        <div>
-          <strong>Agente: </strong> {{cliente.nomagent}}
-        </div>
-      </ion-item>
-    
-      <ion-item>
-        <div>
-          <strong>F.Pago: </strong> {{cliente.nomforpa}}
-        </div>
-      </ion-item>
-    
-      <ion-item>
-        <div>
-          <strong>Limite de crédito: </strong> {{cliente.limiteCredito}}
-        </div>
-      </ion-item>
-      <ion-item>
-        <div>
-          <strong>Tipo crédito: </strong> {{cliente.nomCreditoPrivado}}
-        </div>
-      </ion-item>
-    
+
+
+    <ion-item (click)="goPage({ title: 'Pedidos', component: 'CliPedidosPage' })">
+      <div>
+        <strong>Pedidos: </strong> {{indicadores.pedidos}}
+      </div>
+
+      <ion-icon class="myGreen" name="log-in" item-end></ion-icon>
+
+    </ion-item>
+    <ion-item (click)="goPage({ title: 'Albaranes', component: 'CliAlbaranesPage' })">
+      <div>
+        <strong>Albaranes: </strong> {{indicadores.albaranes}}
+      </div>
+
+      <ion-icon class="myGreen" name="log-in" item-end></ion-icon>
+
+    </ion-item>
+
+
+    <ion-item>
+      <div>
+        <strong>Saldo: </strong> {{indicadores.saldoPendiente}}
+      </div>
+    </ion-item>
+    <ion-item>
+      <div>
+        <strong>Saldo Vencido: </strong> {{indicadores.saldoVencido}}
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div>
+        <strong>Situación: </strong> {{cliente.situacio}}
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div>
+        <strong>Agente: </strong> {{cliente.nomagent}}
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div>
+        <strong>F.Pago: </strong> {{cliente.nomforpa}}
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div>
+        <strong>Limite de crédito: </strong> {{cliente.limiteCredito}}
+      </div>
+    </ion-item>
+    <ion-item>
+      <div>
+        <strong>Tipo crédito: </strong> {{cliente.nomCreditoPrivado}}
+      </div>
+    </ion-item>
+
     <ion-item text-wrap>
       <div>
         <strong>Observaciones:</strong>
         <p>{{cliente.observac}}</p>
       </div>
     </ion-item>
-    
-    
-  
+
+
+
   </ion-list>
- 
+
   <ion-list>
     <ion-item no-lines class="grptitle">
       Cobros pendientes
@@ -118,21 +118,21 @@
 
   <ion-list>
     <ion-item no-lines class="grptitle">
-        Evolución de ventas
+      Evolución de ventas
     </ion-item>
     <ion-item no-lines *ngIf="misDatos.length > 0">
-      
+
       <ion-grid style=" border: 1px solid grey;" no-padding>
-        
+
         <div *ngFor="let dato of misDatos">
           <ion-row [ngClass]="{'color': dato.anyo%2 > 0}">
-          <ion-col col-4 >
-            {{dato.anyo}}
-          </ion-col>
-          <ion-col  col-8 style="text-align:right;">
+            <ion-col col-4>
+              {{dato.anyo}}
+            </ion-col>
+            <ion-col col-8 style="text-align:right;">
               {{dato.valor}}
-          </ion-col>
-        </ion-row>
+            </ion-col>
+          </ion-row>
         </div>
       </ion-grid>
     </ion-item>
@@ -142,7 +142,7 @@
 <ion-footer>
   <ion-toolbar>
     <ion-title>
-      <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
     </ion-title>
   </ion-toolbar>
 </ion-footer>

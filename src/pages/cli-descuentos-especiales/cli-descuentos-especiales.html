@@ -1,40 +1,40 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{cliente.nomclien}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome()" class="myGreen" end>
+        <ion-icon name="home"></ion-icon>
       </button>
-      <ion-title>{{cliente.nomclien}}</ion-title>
-      <ion-buttons end>
-        <button ion-button icon-only (click)="goHome()" class="myGreen" end>
-          <ion-icon name="home"></ion-icon>
-        </button>
-      </ion-buttons>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-    <ion-list>
-      <ion-item no-lines class="grptitle">
-        Descuentos especiales
-      </ion-item>
-      <ion-item *ngFor="let descuento of descuentos" text-wrap>
-        <div>
-          <strong>Codigo: </strong> {{descuento.codfamia}}
-          <strong>Familia: </strong> {{descuento.nomfamia}}
-          <br><strong>Fecha: </strong> {{descuento.fechadto}}
-        </div>
-        <div>
-          <strong>Dto1: </strong> {{descuento.dtoline1}}
-          <strong>Dto2: </strong> {{descuento.dtoline2}}
-        </div>
-      </ion-item>
-    </ion-list>
-  </ion-content>
-  
-  <ion-footer>
-    <ion-toolbar>
-      <ion-title>
-        <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
-      </ion-title>
-    </ion-toolbar>
-  </ion-footer>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item no-lines class="grptitle">
+      Descuentos especiales
+    </ion-item>
+    <ion-item *ngFor="let descuento of descuentos" text-wrap>
+      <div>
+        <strong>Codigo: </strong> {{descuento.codfamia}}
+        <strong>Familia: </strong> {{descuento.nomfamia}}
+        <br><strong>Fecha: </strong> {{descuento.fechadto}}
+      </div>
+      <div>
+        <strong>Dto1: </strong> {{descuento.dtoline1}}
+        <strong>Dto2: </strong> {{descuento.dtoline2}}
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

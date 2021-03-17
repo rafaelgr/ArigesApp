@@ -6,11 +6,11 @@
 -->
 <ion-header>
   <ion-navbar>
-      <ion-buttons end>
-          <button ion-button icon-only (click)="dismiss()">
-            <ion-icon class="myGreen" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
-          </button>
-        </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon class="myGreen" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>OFERTA LINEA</ion-title>
   </ion-navbar>
 </ion-header>
@@ -18,71 +18,74 @@
 
 <ion-content padding>
   <ion-list>
-    <form   [formGroup]="linForm" no-lines>
-    <ion-item no-lines class="grptitle">
-                <div *ngIf="datos.numlinea != 0">Linea (Edición)</div>
-                <div *ngIf="datos.numlinea == 0">Linea (Creación)</div>
-                <button color="light" ion-button outline item-end round icon-left (click)="guardarLinea()">
-                  <ion-icon name="checkmark-circle-outline"></ion-icon>
-                  Aceptar
-                </button>
-    </ion-item>
-    <ion-item no-lines>
-        <ion-label  color="cabecera" stacked>Articulo:</ion-label>
-        <ion-input type="text" #articulo [(ngModel)]="nomartic" [formControl]="nomartiControl" formControlName="nomartic" placeholder="Pulse buscar para seleccionar un articulo" (focus)="noSeleccionado()" disabled  ngDefaultControl></ion-input>
-        
-    </ion-item>
-    <ion-item no-lines class="myGreen">
-      <button ion-button outline item-end round icon-left (click)="openModalBuscarArticulos()">
-        <ion-icon name="search"></ion-icon>
-        Buscar
-      </button>
-    </ion-item>
-    <ion-item *ngIf="!linForm.controls.nomartic.valid && falta" no-lines>
-      <p style="color:red">Debe introducir un valor.</p>
-    </ion-item>
-    
-    <div *ngIf="encontrado" no-lines>
-        <ion-item *ngFor="let articulo of datos.articulos"  (click)="selectArticulo(articulo)">
-            <h4>{{articulo.nomartic}}</h4>
-            <ion-icon name="search" class="myGreen" item-end></ion-icon>
-          </ion-item>
-    </div>
-    <ion-item >
-      <ion-label   color="cabecera" stacked>Referencia:</ion-label>
-      <ion-input type="text" value="{{datos.articulo.codartic}}" disabled></ion-input>
-    </ion-item>
-    <ion-item >
-      <ion-label   color="cabecera" stacked>Cantidad:</ion-label>
-      <ion-input type="number" #focusInput [(ngModel)]="cantidad"  formControlName="cantidad" (keyup)="cambiaCantidad()" (ionChange)="cambiaCantidad()"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!linForm.controls.cantidad.valid && falta" no-lines>
-      <p style="color:red">La cantidad es requerida y <br>tiene que ser mayor que cero.</p>
-    </ion-item>
-    <ion-item >
-        <ion-label   color="cabecera" stacked>Precio:</ion-label>
-        <ion-input  value="{{datos.precioar}}"   disabled></ion-input>
-    </ion-item>
-    <ion-item >
-      <ion-label   color="cabecera" stacked>Descuento 1:</ion-label>
-      <ion-input  value="{{datos.articulo.precio.dto1}}"  disabled></ion-input>
-    </ion-item>
-    <ion-item >
-      <ion-label   color="cabecera" stacked>Descuento 2</ion-label>
-      <ion-input  value="{{datos.articulo.precio.dto2}}"  disabled></ion-input>
-    </ion-item>
-    <ion-item >
-        <ion-label   color="cabecera" stacked>Importe:</ion-label>
-        <ion-input value="{{datos.importel}}"  disabled></ion-input>
-    </ion-item>
-  </form>
+    <form [formGroup]="linForm" no-lines>
+      <ion-item no-lines class="grptitle">
+        <div *ngIf="datos.numlinea != 0">Linea (Edición)</div>
+        <div *ngIf="datos.numlinea == 0">Linea (Creación)</div>
+        <button color="light" ion-button outline item-end round icon-left (click)="guardarLinea()">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+          Aceptar
+        </button>
+      </ion-item>
+      <ion-item no-lines>
+        <ion-label color="cabecera" stacked>Articulo:</ion-label>
+        <ion-input type="text" #articulo [(ngModel)]="nomartic" [formControl]="nomartiControl"
+          formControlName="nomartic" placeholder="Pulse buscar para seleccionar un articulo" (focus)="noSeleccionado()"
+          disabled ngDefaultControl></ion-input>
+
+      </ion-item>
+      <ion-item no-lines class="myGreen">
+        <button ion-button outline item-end round icon-left (click)="openModalBuscarArticulos()">
+          <ion-icon name="search"></ion-icon>
+          Buscar
+        </button>
+      </ion-item>
+      <ion-item *ngIf="!linForm.controls.nomartic.valid && falta" no-lines>
+        <p style="color:red">Debe introducir un valor.</p>
+      </ion-item>
+
+      <div *ngIf="encontrado" no-lines>
+        <ion-item *ngFor="let articulo of datos.articulos" (click)="selectArticulo(articulo)">
+          <h4>{{articulo.nomartic}}</h4>
+          <ion-icon name="search" class="myGreen" item-end></ion-icon>
+        </ion-item>
+      </div>
+      <ion-item>
+        <ion-label color="cabecera" stacked>Referencia:</ion-label>
+        <ion-input type="text" value="{{datos.articulo.codartic}}" disabled></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="cabecera" stacked>Cantidad:</ion-label>
+        <ion-input type="number" #focusInput [(ngModel)]="cantidad" formControlName="cantidad"
+          (keyup)="cambiaCantidad()" (ionChange)="cambiaCantidad()"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!linForm.controls.cantidad.valid && falta" no-lines>
+        <p style="color:red">La cantidad es requerida y <br>tiene que ser mayor que cero.</p>
+      </ion-item>
+      <ion-item>
+        <ion-label color="cabecera" stacked>Precio:</ion-label>
+        <ion-input value="{{datos.precioar}}" disabled></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="cabecera" stacked>Descuento 1:</ion-label>
+        <ion-input value="{{datos.articulo.precio.dto1}}" disabled></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="cabecera" stacked>Descuento 2</ion-label>
+        <ion-input value="{{datos.articulo.precio.dto2}}" disabled></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="cabecera" stacked>Importe:</ion-label>
+        <ion-input value="{{datos.importel}}" disabled></ion-input>
+      </ion-item>
+    </form>
   </ion-list>
 </ion-content>
 
 <ion-footer>
-    <ion-toolbar>
-      <ion-title>
-        <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
-      </ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
+    </ion-title>
+  </ion-toolbar>
 </ion-footer>

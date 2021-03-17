@@ -12,11 +12,11 @@
 <ion-content padding>
   <ion-list>
     <ion-item text-wrap no-lines>
-        <ion-thumbnail item-start>
-            <div class="psb">
-                <img src="assets/imgs/articulos.png">
-            </div>
-          </ion-thumbnail>
+      <ion-thumbnail item-start>
+        <div class="psb">
+          <img src="assets/imgs/articulos.png">
+        </div>
+      </ion-thumbnail>
       <p>Introduca los criterios que desee y pulse buscar</p>
     </ion-item>
     <form [formGroup]="buscarArtForm" no-lines>
@@ -32,7 +32,8 @@
           Proveedor (al menos tres caracteres)
           <ion-icon name="search"></ion-icon>
         </ion-label>
-        <ion-input type="text" [(ngModel)]="parpro"  [ngModelOptions]="{ standalone: true }" (ionChange)="onChangeProveedor()"></ion-input>
+        <ion-input type="text" [(ngModel)]="parpro" [ngModelOptions]="{ standalone: true }"
+          (ionChange)="onChangeProveedor()"></ion-input>
       </ion-item>
       <ion-list *ngIf="showProveedores">
         <ion-item style="font-size: 0.8em;" *ngFor="let proveedor of proveedores" (click)="selectProveedor(proveedor)">
@@ -46,7 +47,8 @@
           Familia (al menos tres caracteres)
           <ion-icon name="search"></ion-icon>
         </ion-label>
-        <ion-input type="text" [(ngModel)]="parfam"  [ngModelOptions]="{ standalone: true }"  (ionChange)="onChangeFamilia()"></ion-input>
+        <ion-input type="text" [(ngModel)]="parfam" [ngModelOptions]="{ standalone: true }"
+          (ionChange)="onChangeFamilia()"></ion-input>
       </ion-item>
       <ion-list *ngIf="showFamilias">
         <ion-item style="font-size: 0.8em;" *ngFor="let familia of familias" (click)="selectFamilia(familia)">
@@ -77,7 +79,7 @@
       </ion-item>
 
     </form>
-    <ion-item no-lines  class="myGreen">
+    <ion-item no-lines class="myGreen">
       <button ion-button outline item-end round icon-left (click)="doSearch()">
         <ion-icon name="search"></ion-icon>
         Buscar
@@ -95,7 +97,7 @@
 <ion-footer>
   <ion-toolbar>
     <ion-title>
-      <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
     </ion-title>
   </ion-toolbar>
 </ion-footer>

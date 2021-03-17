@@ -1,46 +1,47 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{cliente.nomclien}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome()" class="myGreen" end>
+        <ion-icon name="home"></ion-icon>
       </button>
-      <ion-title>{{cliente.nomclien}}</ion-title>
-      <ion-buttons end>
-        <button ion-button icon-only (click)="goHome()" class="myGreen" end>
-          <ion-icon name="home"></ion-icon>
-        </button>
-      </ion-buttons>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-    <ion-list>
-      <ion-item no-lines class="grptitle">
-            Visitas
-            <button color="light" ion-button outline item-end round icon-left (click)="openModalVisita()">
-                <ion-icon name="add"></ion-icon>
-                Nueva
-            </button>
-      </ion-item>
-      <ion-item *ngFor="let visita of visitas" text-wrap (click)="openModalVisita(visita)">
-        
-            <div>
-                <strong>Fecha: </strong> {{visita.fecha}} <strong>a las </strong> {{visita.hora}}<strong>:</strong>{{visita.minutos}} <strong>horas </strong>
-                <br><strong>Nombre: </strong> {{visita.denominacion}}
-            </div>
-              <div>
-                <strong>Observaciones: </strong> {{visita.observaciones}}
-              </div>
-              <ion-icon name="log-in" item-end class="myGreen"></ion-icon>
-     
-      
-      </ion-item>
-    </ion-list>
-  </ion-content>
-  
-  <ion-footer>
-    <ion-toolbar>
-      <ion-title>
-        <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
-      </ion-title>
-    </ion-toolbar>
-  </ion-footer>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item no-lines class="grptitle">
+      Visitas
+      <button color="light" ion-button outline item-end round icon-left (click)="openModalVisita()">
+        <ion-icon name="add"></ion-icon>
+        Nueva
+      </button>
+    </ion-item>
+    <ion-item *ngFor="let visita of visitas" text-wrap (click)="openModalVisita(visita)">
+
+      <div>
+        <strong>Fecha: </strong> {{visita.fecha}} <strong>a las </strong>
+        {{visita.hora}}<strong>:</strong>{{visita.minutos}} <strong>horas </strong>
+        <br><strong>Nombre: </strong> {{visita.denominacion}}
+      </div>
+      <div>
+        <strong>Observaciones: </strong> {{visita.observaciones}}
+      </div>
+      <ion-icon name="log-in" item-end class="myGreen"></ion-icon>
+
+
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

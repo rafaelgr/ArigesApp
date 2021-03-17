@@ -17,19 +17,19 @@
     <ion-item no-lines class="grptitle" text-wrap>
       <strong>Albaran: </strong> {{albaran.numalbar}} <strong>Importe: </strong>{{albaran.totalalb}}
       <div>
-          <strong>Observaciones: </strong><br>{{albaran.observa}}
+        <strong>Observaciones: </strong><br>{{albaran.observa}}
       </div>
     </ion-item>
-    <ion-item no-lines  class="myGreen">
+    <ion-item no-lines class="myGreen">
       <button ion-button outline item-end round icon-left (click)="doSend()">
         <ion-icon name="mail"></ion-icon>
         Enviar por correo
       </button>
     </ion-item>
     <ion-item *ngFor="let linea of albaran.lineas" text-wrap>
-        <div>
-            <strong>Referencia: </strong>{{linea.codartic}}
-        </div>
+      <div>
+        <strong>Referencia: </strong>{{linea.codartic}}
+      </div>
       <div>
         {{linea.nomartic}}
       </div>
@@ -49,7 +49,7 @@
 <ion-footer>
   <ion-toolbar>
     <ion-title>
-      <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
     </ion-title>
   </ion-toolbar>
 </ion-footer>

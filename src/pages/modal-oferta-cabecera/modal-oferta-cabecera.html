@@ -1,11 +1,10 @@
-
 <ion-header>
   <ion-navbar>
-      <ion-buttons end>
-          <button ion-button icon-only class="myGreen" (click)="dismiss()">
-            <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
-          </button>
-        </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only class="myGreen" (click)="dismiss()">
+        <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>OFERTA CABECERA</ion-title>
   </ion-navbar>
 </ion-header>
@@ -14,42 +13,44 @@
 <ion-content padding>
   <ion-list>
     <form [formGroup]="cabForm" no-lines>
-    <ion-item no-lines class="grptitle">
-      <div *ngIf="!datos.oferta">Cabecera (Creación)</div>
-      <div *ngIf="datos.oferta">Cabecera (Edición)</div>
-                <button color="light" ion-button outline item-end round icon-left (click)="guardarCabecera()">
-                  <ion-icon name="checkmark-circle-outline"></ion-icon>
-                  Aceptar
-                </button>
-    </ion-item>
-    <ion-item >
-        <ion-label  color="cabecera" stacked>Agente:</ion-label>
-        <ion-input  value="{{datos.cliente.nomagent}}" disabled></ion-input>
-    </ion-item>
-    <ion-item >
+      <ion-item no-lines class="grptitle">
+        <div *ngIf="!datos.oferta">Cabecera (Creación)</div>
+        <div *ngIf="datos.oferta">Cabecera (Edición)</div>
+        <button color="light" ion-button outline item-end round icon-left (click)="guardarCabecera()">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+          Aceptar
+        </button>
+      </ion-item>
+      <ion-item>
+        <ion-label color="cabecera" stacked>Agente:</ion-label>
+        <ion-input value="{{datos.cliente.nomagent}}" disabled></ion-input>
+      </ion-item>
+      <ion-item>
         <ion-label color="cabecera" stacked>Cliente:</ion-label>
-        <ion-input value="{{datos.parnomcli}}"  disabled></ion-input>
-    </ion-item>
-    <ion-item >
+        <ion-input value="{{datos.parnomcli}}" disabled></ion-input>
+      </ion-item>
+      <ion-item>
         <ion-label color="cabecera" stacked>Fecha:</ion-label>
-        <ion-datetime formControlName="fecha" displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" cancelText="Cancelar" doneText="Hecho" [(ngModel)]="fecha" ></ion-datetime>
-    </ion-item>
-    <ion-item >
+        <ion-datetime formControlName="fecha" displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" cancelText="Cancelar"
+          doneText="Hecho" [(ngModel)]="fecha"></ion-datetime>
+      </ion-item>
+      <ion-item>
         <ion-label color="cabecera" stacked>Total:</ion-label>
         <ion-input value="{{totalofe}}" disabled></ion-input>
-    </ion-item>
-    <ion-item >
-      <ion-label color="cabecera" stacked>Observaciones:</ion-label>
-      <ion-textarea maxlength ="400" value="{{observa}}" [ngModelOptions]="{standalone: true}" [(ngModel)]="observa"></ion-textarea>
-    </ion-item>
-  </form>
+      </ion-item>
+      <ion-item>
+        <ion-label color="cabecera" stacked>Observaciones:</ion-label>
+        <ion-textarea maxlength="400" value="{{observa}}" [ngModelOptions]="{standalone: true}" [(ngModel)]="observa">
+        </ion-textarea>
+      </ion-item>
+    </form>
   </ion-list>
 </ion-content>
 
 <ion-footer>
-    <ion-toolbar>
-      <ion-title>
-        <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
-      </ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
+    </ion-title>
+  </ion-toolbar>
 </ion-footer>

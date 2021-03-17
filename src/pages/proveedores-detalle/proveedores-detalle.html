@@ -28,61 +28,61 @@
       </div>
     </ion-item>
     <ion-item text-wrap>
-        {{proveedor.perprov1}} ({{proveedor.telprov1}})
-        <ion-icon name="call" item-end></ion-icon>
-    </ion-item>    
+      {{proveedor.perprov1}} ({{proveedor.telprov1}})
+      <ion-icon name="call" item-end></ion-icon>
+    </ion-item>
     <ion-item text-wrap>
-        {{proveedor.maiprov1}}
-        <ion-icon name="mail" item-end></ion-icon>
-    </ion-item>     
+      {{proveedor.maiprov1}}
+      <ion-icon name="mail" item-end></ion-icon>
+    </ion-item>
     <ion-item text-wrap>
       <div class="grptitle2">
         Comercial
       </div>
     </ion-item>
     <ion-item text-wrap>
-        {{proveedor.perprov2}} ({{proveedor.telprov2}})
-        <ion-icon name="call" item-end></ion-icon>
-    </ion-item>    
+      {{proveedor.perprov2}} ({{proveedor.telprov2}})
+      <ion-icon name="call" item-end></ion-icon>
+    </ion-item>
     <ion-item text-wrap>
-        {{proveedor.maiprov2}}
-        <ion-icon name="mail" item-end></ion-icon>
+      {{proveedor.maiprov2}}
+      <ion-icon name="mail" item-end></ion-icon>
     </ion-item>
     <ion-item no-lines class="grptitle">
       Descuentos
     </ion-item>
     <div *ngIf="descuentos.length > 0">
-        <ion-item *ngFor="let descuento of descuentos" text-wrap>
-            <ion-grid>
-                <ion-row>
-                    <ion-col>
-                      <strong>Fecha:</strong> {{descuento.fechadto}}
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col  col-auto col-sm>
-                      <strong>Familia: </strong> {{descuento.nomfamia}}
-                    </ion-col>
-                    <ion-col  col-auto col-sm>
-                      <strong>Marca: </strong> {{descuento.nomarca}}
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col col-auto col-sm>
-                      <strong>Dto1: </strong> {{descuento.dtoline1}}
-                  </ion-col>
-                  <ion-col col-auto col-sm>
-                      <strong>Dto2: </strong> {{descuento.dtoline2}}
-                  </ion-col>
-                  <ion-col col-auto col-sm>
-                      <strong>Rap1: </strong> {{descuento.rap1}}
-                  </ion-col>
-                  <ion-col col-auto col-sm>
-                      <strong>Rap2: </strong> {{descuento.rap2}}
-                  </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-item>
+      <ion-item *ngFor="let descuento of descuentos" text-wrap>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <strong>Fecha:</strong> {{descuento.fechadto}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-auto col-sm>
+              <strong>Familia: </strong> {{descuento.nomfamia}}
+            </ion-col>
+            <ion-col col-auto col-sm>
+              <strong>Marca: </strong> {{descuento.nomarca}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-auto col-sm>
+              <strong>Dto1: </strong> {{descuento.dtoline1}}
+            </ion-col>
+            <ion-col col-auto col-sm>
+              <strong>Dto2: </strong> {{descuento.dtoline2}}
+            </ion-col>
+            <ion-col col-auto col-sm>
+              <strong>Rap1: </strong> {{descuento.rap1}}
+            </ion-col>
+            <ion-col col-auto col-sm>
+              <strong>Rap2: </strong> {{descuento.rap2}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
     </div>
   </ion-list>
 </ion-content>
@@ -90,7 +90,7 @@
 <ion-footer>
   <ion-toolbar>
     <ion-title>
-      <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
     </ion-title>
   </ion-toolbar>
 </ion-footer>

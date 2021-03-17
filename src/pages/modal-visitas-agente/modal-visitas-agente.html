@@ -1,13 +1,13 @@
 <ion-header>
   <ion-navbar>
-      <ion-buttons end>
-          <button ion-button icon-only (click)="dismiss()">
-            <ion-icon class="myGreen" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
-          </button>
-        </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon class="myGreen" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>
-        <div *ngIf="edicion">VISITAS (Edición)</div>
-        <div *ngIf="!edicion">VISITAS (Creación)</div>
+      <div *ngIf="edicion">VISITAS (Edición)</div>
+      <div *ngIf="!edicion">VISITAS (Creación)</div>
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -15,47 +15,50 @@
 
 
 <ion-content padding>
-<ion-list>
-  <ion-item no-lines class="grptitle" text-wrap>
-    
-    <div>
-      <strong>{{cliente.nomclien}} </strong>
-      <br><strong>Fecha: </strong> {{visita.fecha}} <strong>a las </strong>{{visita.hora}}<strong>:</strong>{{visita.minutos}} <strong> horas</strong>
-    </div>    
-  </ion-item>
-</ion-list>
-<ion-list>
-  <form no-lines>
+  <ion-list>
+    <ion-item no-lines class="grptitle" text-wrap>
+
+      <div>
+        <strong>{{cliente.nomclien}} </strong>
+        <br><strong>Fecha: </strong> {{visita.fecha}} <strong>a las
+        </strong>{{visita.hora}}<strong>:</strong>{{visita.minutos}} <strong> horas</strong>
+      </div>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <form no-lines>
       <ion-item>
-          <ion-label  color="cabecera" stacked>Tipo</ion-label>
-          <ion-select [(ngModel)]="tipoAccion" [ngModelOptions]="{ standalone: true }"  okText="Aceptar" cancelText="Cancelar" (ionChange)="recuperarMedio()">
-            <ion-option  *ngFor="let ti of tipos" [value]="ti.codigo" >{{ti.denominacion}}</ion-option>
-          </ion-select>
-        </ion-item>
-        <ion-item *ngIf="verNomclien">
-          <ion-label color="cabecera" stacked>Nombre cliente potencial:</ion-label>
-          <ion-input type="text" [(ngModel)]="visita.nomclien" [ngModelOptions]="{standalone: true}" ></ion-input>
-        </ion-item>        
-        <ion-item >
-          <ion-label color="cabecera" stacked>Observaciones:</ion-label>
-          <ion-textarea maxlength ="400"  [(ngModel)]="visita.observaciones" [ngModelOptions]="{standalone: true}" ></ion-textarea>
-        </ion-item>
-        <ion-item class="myGreen" no-lines>
-            <button  ion-button outline item-end round icon-left (click)="guardarVisita()">
-                <ion-icon name="checkmark-circle-outline"></ion-icon>
-                Aceptar
-            </button>
-        </ion-item>
-  </form>
-</ion-list>
+        <ion-label color="cabecera" stacked>Tipo</ion-label>
+        <ion-select [(ngModel)]="tipoAccion" [ngModelOptions]="{ standalone: true }" okText="Aceptar"
+          cancelText="Cancelar" (ionChange)="recuperarMedio()">
+          <ion-option *ngFor="let ti of tipos" [value]="ti.codigo">{{ti.denominacion}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="verNomclien">
+        <ion-label color="cabecera" stacked>Nombre cliente potencial:</ion-label>
+        <ion-input type="text" [(ngModel)]="visita.nomclien" [ngModelOptions]="{standalone: true}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="cabecera" stacked>Observaciones:</ion-label>
+        <ion-textarea maxlength="400" [(ngModel)]="visita.observaciones" [ngModelOptions]="{standalone: true}">
+        </ion-textarea>
+      </ion-item>
+      <ion-item class="myGreen" no-lines>
+        <button ion-button outline item-end round icon-left (click)="guardarVisita()">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+          Aceptar
+        </button>
+      </ion-item>
+    </form>
+  </ion-list>
 
 </ion-content>
 
 
 <ion-footer>
-<ion-toolbar>
-  <ion-title>
-    <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
-  </ion-title>
-</ion-toolbar>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
+    </ion-title>
+  </ion-toolbar>
 </ion-footer>

@@ -12,10 +12,10 @@
 <ion-content padding>
   <ion-list>
     <ion-item no-lines class="grptitle" text-wrap>
-        <div>
-            <strong>Nº </strong>{{pedido.numpedcl}}
-            <strong>del </strong>{{pedido.fecpedcl}}
-        </div>
+      <div>
+        <strong>Nº </strong>{{pedido.numpedcl}}
+        <strong>del </strong>{{pedido.fecpedcl}}
+      </div>
       <div>
         <strong>Agente: </strong>{{pedido.nomagent}}
       </div>
@@ -26,11 +26,11 @@
         <strong>Total: </strong>{{pedido.totalped}}
       </div>
       <div>
-          <strong>Observaciones: </strong><br>{{pedido.observa}}
+        <strong>Observaciones: </strong><br>{{pedido.observa}}
       </div>
     </ion-item>
   </ion-list>
-  <ion-item no-lines  class="myGreen">
+  <ion-item no-lines class="myGreen">
     <button ion-button outline item-end round icon-left (click)="doSend()">
       <ion-icon name="mail"></ion-icon>
       Enviar por correo
@@ -38,9 +38,9 @@
   </ion-item>
   <ion-list>
     <ion-item *ngFor="let linea of pedido.lineas" text-wrap>
-        <div>
-            <strong>Referencia: </strong>{{linea.codartic}}
-        </div>
+      <div>
+        <strong>Referencia: </strong>{{linea.codartic}}
+      </div>
       <div>
         {{linea.nomartic}}
       </div>
@@ -54,13 +54,13 @@
         <strong>Importe: </strong>{{linea.importel}}
       </div>
     </ion-item>
-  </ion-list>  
+  </ion-list>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
     <ion-title>
-      <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
     </ion-title>
   </ion-toolbar>
 </ion-footer>

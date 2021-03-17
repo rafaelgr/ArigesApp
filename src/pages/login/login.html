@@ -15,7 +15,7 @@
     <ion-item text-wrap no-lines>
       <ion-thumbnail item-start>
         <div class="psb">
-            <img src="assets/imgs/login.png" style="margin-left: 28%">
+          <img src="assets/imgs/login.png" style="margin-left: 28%">
         </div>
       </ion-thumbnail>
       <p>Introduzca su usuario y contraseña y pulse aceptar o...</p>
@@ -27,20 +27,20 @@
       </ion-item>
       <ion-item *ngIf="!loginForm.controls.login.valid  && submitAttempt" no-lines>
         <p style="color:red">Se necesita un usuario.</p>
-      </ion-item>   
+      </ion-item>
       <ion-item>
         <ion-label stacked>CONTRASEÑA</ion-label>
         <ion-input formControlName="password" type="password" [(ngModel)]="password"></ion-input>
       </ion-item>
       <ion-item *ngIf="!loginForm.controls.password.valid  && submitAttempt" no-lines>
         <p style="color:red">Se necesita una contraseña.</p>
-      </ion-item>         
+      </ion-item>
     </form>
     <ion-item no-lines class="myGreen">
-        <button ion-button outline item-end round icon-left (click)="goSettings()">
-            <ion-icon name="settings"></ion-icon>
-            Configurar
-          </button>
+      <button ion-button outline item-end round icon-left (click)="goSettings()">
+        <ion-icon name="settings"></ion-icon>
+        Configurar
+      </button>
       <button ion-button outline item-end round icon-left (click)="doLogin()">
         <ion-icon name="checkmark"></ion-icon>
         Aceptar
@@ -53,7 +53,7 @@
 <ion-footer>
   <ion-toolbar>
     <ion-title>
-      <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
     </ion-title>
   </ion-toolbar>
 </ion-footer>
