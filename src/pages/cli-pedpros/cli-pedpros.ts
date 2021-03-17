@@ -66,7 +66,7 @@ export class CliPedProsPage {
   }
 
   goPedido(pedido): void {
-    this.interData.setPedido(pedido);
+    this.interData.setPedidoProveedor(pedido);
     this.navCtrl.push('CliPedProsDetallePage');
   }
 

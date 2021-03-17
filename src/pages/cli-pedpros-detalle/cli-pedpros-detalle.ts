@@ -9,8 +9,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @IonicPage()
 @Component({
-  selector: 'page-cli-pedidos-detalle',
-  templateUrl: 'cli-pedidos-detalle.html',
+  selector: 'page-cli-pedpros-detalle',
+  templateUrl: 'cli-pedpros-detalle.html',
 })
 export class CliPedProsDetallePage {
 
@@ -47,7 +47,7 @@ export class CliPedProsDetallePage {
 
   loadData(): void {
     this.cliente = this.interData.getCliente();
-    this.pedido = this.interData.getPedido();
+    this.pedido = this.interData.getPedidoProveedor();
   }
 
 
