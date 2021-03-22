@@ -18,7 +18,7 @@
       Oferta: {{oferta.numofert}} Importe: {{oferta.totalofe}}
       Observaciones: <div>{{observa}}</div>
     </ion-item>
-    <ion-item no-lines  class="myGreen">
+    <ion-item no-lines class="myGreen">
       <button ion-button outline item-end round icon-left (click)="doSend()">
         <ion-icon name="mail"></ion-icon>
         Enviar por correo
@@ -26,7 +26,7 @@
     </ion-item>
     <ion-item *ngFor="let linea of oferta.lineas" text-wrap>
       <div>
-          <strong>Referencia: </strong>{{linea.codartic}}
+        <strong>Referencia: </strong>{{linea.codartic}}
       </div>
       <div>
         {{linea.nomartic}}
@@ -47,7 +47,7 @@
 <ion-footer>
   <ion-toolbar>
     <ion-title>
-      <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
     </ion-title>
   </ion-toolbar>
 </ion-footer>

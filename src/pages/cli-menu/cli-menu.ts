@@ -9,24 +9,25 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 })
 export class CliMenuPage {
   rootPage = 'CliResumenPage';
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
   cliente: any
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
+  constructor(public navCtrl: NavController, public navParams: NavParams,
     public menu: MenuController) {
-      this.pages = [
-        { title: 'Resumen', component: 'CliResumenPage' },
-        { title: 'Contacto', component: 'CliContactoPage' },
-        { title: 'Ofertas', component: 'CliOfertasPage' },
-        { title: 'Pedidos', component: 'CliPedidosPage' },
-        { title: 'Albaranes', component: 'CliAlbaranesPage' },
-        { title: 'Facturas', component: 'CliFacturasPage' },
-        { title: 'Precios', component: 'CliPreciosPage' },
-        { title: 'Precios especiales', component: 'CliPreciosEspecialesPage' },
-        { title: 'Descuentos especiales', component: 'CliDescuentosEspecialesPage' },
-        { title: 'Visitas de agente', component: 'CliVisitasAgentePage' }
-      ];
-      this.cliente = this.navParams.get('cliente');
+    this.pages = [
+      { title: 'Resumen', component: 'CliResumenPage' },
+      { title: 'Contacto', component: 'CliContactoPage' },
+      { title: 'Ofertas', component: 'CliOfertasPage' },
+      { title: 'Pedidos', component: 'CliPedidosPage' },
+      { title: 'Pedidos Proveedor', component: 'CliPedProsPage' },
+      { title: 'Albaranes', component: 'CliAlbaranesPage' },
+      { title: 'Facturas', component: 'CliFacturasPage' },
+      { title: 'Precios', component: 'CliPreciosPage' },
+      { title: 'Precios especiales', component: 'CliPreciosEspecialesPage' },
+      { title: 'Descuentos especiales', component: 'CliDescuentosEspecialesPage' },
+      { title: 'Visitas de agente', component: 'CliVisitasAgentePage' }
+    ];
+    this.cliente = this.navParams.get('cliente');
   }
 
   ionViewDidLoad() {

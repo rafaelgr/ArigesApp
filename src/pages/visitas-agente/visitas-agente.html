@@ -1,47 +1,48 @@
 <ion-header>
-    <ion-navbar>
-      <ion-title>VISITAS</ion-title>
-      <ion-buttons end>
-        <button ion-button icon-only (click)="goHome()" class="myGreen">
-          <ion-icon name="home"></ion-icon>
-        </button>
-      </ion-buttons>
-    </ion-navbar>
-  </ion-header>
-  
-  
-  <ion-content padding>
-    <ion-list>
-        <ion-item text-wrap no-lines>
-            <ion-thumbnail item-start>
-                <div class="psb">
-                    <img src="assets/imgs/visitas.png">
-                </div>
-              </ion-thumbnail>
-          <p>Estas son las visitas disponibles</p>
-        </ion-item>
-      <ion-item *ngFor="let visita of visitas" text-wrap>
-            <div>
-              <strong>
-                {{visita.nombreCliente}}
-              </strong>
-            </div>
-            <div>
-                <strong>Fecha: </strong> {{visita.fecha}} <strong>a las </strong> {{visita.hora}}<strong>:</strong>{{visita.minutos}} <strong>horas </strong>
-                <br><strong>Tipo: </strong> {{visita.denominacion}}
-            </div>
-              <div>
-                <strong>Observaciones: </strong> {{visita.observaciones}}
-              </div>
-      
-      </ion-item>
-    </ion-list>
-  </ion-content>
-  
-  <ion-footer>
-    <ion-toolbar>
-      <ion-title>
-        <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
-      </ion-title>
-    </ion-toolbar>
-  </ion-footer>
+  <ion-navbar>
+    <ion-title>VISITAS</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome()" class="myGreen">
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item text-wrap no-lines>
+      <ion-thumbnail item-start>
+        <div class="psb">
+          <img src="assets/imgs/visitas.png">
+        </div>
+      </ion-thumbnail>
+      <p>Estas son las visitas disponibles</p>
+    </ion-item>
+    <ion-item *ngFor="let visita of visitas" text-wrap>
+      <div>
+        <strong>
+          {{visita.nombreCliente}}
+        </strong>
+      </div>
+      <div>
+        <strong>Fecha: </strong> {{visita.fecha}} <strong>a las </strong>
+        {{visita.hora}}<strong>:</strong>{{visita.minutos}} <strong>horas </strong>
+        <br><strong>Tipo: </strong> {{visita.denominacion}}
+      </div>
+      <div>
+        <strong>Observaciones: </strong> {{visita.observaciones}}
+      </div>
+
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

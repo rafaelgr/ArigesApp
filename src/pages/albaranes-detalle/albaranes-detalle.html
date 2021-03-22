@@ -17,19 +17,19 @@
         <strong>del </strong>{{albaran.fechaalb}}
       </div>
       <div>
-          <strong>Agente: </strong>{{albaran.nomagent}}
+        <strong>Agente: </strong>{{albaran.nomagent}}
       </div>
       <div>
-          <strong>Cliente: </strong>{{albaran.nomclien}}
+        <strong>Cliente: </strong>{{albaran.nomclien}}
       </div>
       <div>
-            <strong>Observaciones: </strong>
-            <p>{{albaran.observa}}</p>     
+        <strong>Observaciones: </strong>
+        <p>{{albaran.observa}}</p>
       </div>
-      
+
     </ion-item>
   </ion-list>
-  <ion-item no-lines  class="myGreen">
+  <ion-item no-lines class="myGreen">
     <button ion-button outline item-end round icon-left (click)="doSend()">
       <ion-icon name="mail"></ion-icon>
       Enviar por correo
@@ -37,9 +37,9 @@
   </ion-item>
   <ion-list>
     <ion-item *ngFor="let linea of alb.lineas" text-wrap>
-        <div>
-            <strong>Referencia: </strong>{{linea.codartic}}
-        </div>
+      <div>
+        <strong>Referencia: </strong>{{linea.codartic}}
+      </div>
       <div>
         {{linea.nomartic}}
       </div>
@@ -53,13 +53,13 @@
         <strong>Importe: </strong>{{linea.importel}}
       </div>
     </ion-item>
-  </ion-list>  
+  </ion-list>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
     <ion-title>
-      <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
     </ion-title>
   </ion-toolbar>
 </ion-footer>

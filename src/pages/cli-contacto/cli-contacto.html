@@ -37,66 +37,69 @@
       <ion-icon name="call" item-end></ion-icon>
     </a>
     <a ion-item href="mailto:{{cliente.maiclie1}}" text-wrap>
-        {{cliente.maiclie1}}
-        <ion-icon name="mail" item-end></ion-icon>
+      {{cliente.maiclie1}}
+      <ion-icon name="mail" item-end></ion-icon>
     </a>
   </ion-list>
   <ion-list>
-      <ion-item no-lines class="grptitle">
-        Comercial
-      </ion-item>
-      <div *ngIf="cliente.telclie2 != null || cliente.telclie2 != undefined">
-        <a ion-item text-wrap href="tel:{{cliente.telclie2}}">
-          {{cliente.perclie2}} ({{cliente.telclie2}})
-          <ion-icon name="call" item-end></ion-icon>
-        </a>
-      </div>
-      <div *ngIf="cliente.maiclie2 != null || cliente.maiclie2 != undefined">
-        <a ion-item text-wrap href="mailto:{{cliente.maiclie2}}">
-          {{cliente.maiclie2}}
-          <ion-icon name="mail" item-end></ion-icon>
+    <ion-item no-lines class="grptitle">
+      Comercial
+    </ion-item>
+    <div *ngIf="cliente.telclie2 != null || cliente.telclie2 != undefined">
+      <a ion-item text-wrap href="tel:{{cliente.telclie2}}">
+        {{cliente.perclie2}} ({{cliente.telclie2}})
+        <ion-icon name="call" item-end></ion-icon>
       </a>
+    </div>
+    <div *ngIf="cliente.maiclie2 != null || cliente.maiclie2 != undefined">
+      <a ion-item text-wrap href="mailto:{{cliente.maiclie2}}">
+        {{cliente.maiclie2}}
+        <ion-icon name="mail" item-end></ion-icon>
+      </a>
+    </div>
+  </ion-list>
+
+  <ion-list>
+    <ion-item no-lines class="grptitle">
+      Otros contactos
+    </ion-item>
+
+    <ion-item style="font-size: 1.4rem" *ngFor="let dep of cliente.departamentos">
+      <div
+        *ngIf="dep.nombre != null || dep.departamento != null || dep.telefono != null || dep.maidirec != null || dep.cargo != null || dep.movil != null">
+        <div>
+          <strong>{{dep.nombre}}</strong><br>
+          <strong>Dpto: </strong> {{dep.departamento}}<span
+            *ngIf="dep.departamento != null && dep.cargo != null">-</span>{{dep.cargo}}
+        </div>
+        <div>
+          <strong>Teléfonos: </strong> {{dep.telefono}}<span
+            *ngIf="dep.telefono != null && dep.movil != null">-</span>{{dep.movil}}
+          <br><strong>Email: </strong> {{dep.maidirec}}
+        </div>
       </div>
-    </ion-list>
 
-    <ion-list>
-        <ion-item no-lines class="grptitle">
-          Otros contactos
-        </ion-item>
-        
-        <ion-item style="font-size: 1.4rem" *ngFor="let dep of cliente.departamentos">
-          <div *ngIf="dep.nombre != null || dep.departamento != null || dep.telefono != null || dep.maidirec != null || dep.cargo != null || dep.movil != null">
-              <div> 
-                  <strong>{{dep.nombre}}</strong><br>
-                  <strong>Dpto: </strong> {{dep.departamento}}<span *ngIf="dep.departamento != null && dep.cargo != null">-</span>{{dep.cargo}}
-                </div>
-                <div>
-                  <strong>Teléfonos: </strong> {{dep.telefono}}<span *ngIf="dep.telefono != null && dep.movil != null">-</span>{{dep.movil}}
-                  <br><strong>Email: </strong> {{dep.maidirec}}
-                </div>
-          </div> 
-            
-        
-        </ion-item>
-    </ion-list>
 
-    <ion-list>
-        <ion-item no-lines class="grptitle">
-            Localización
-        </ion-item>
-        <ion-item no-lines class="myGreen">
-          <button ion-button outline item-end round icon-left (click)="openMap()">
-            <ion-icon name="search"></ion-icon>
-            Ver en el mapa
-          </button>
-        </ion-item>
-    </ion-list>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item no-lines class="grptitle">
+      Localización
+    </ion-item>
+    <ion-item no-lines class="myGreen">
+      <button ion-button outline item-end round icon-left (click)="openMap()">
+        <ion-icon name="search"></ion-icon>
+        Ver en el mapa
+      </button>
+    </ion-item>
+  </ion-list>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
     <ion-title>
-      <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
     </ion-title>
   </ion-toolbar>
 </ion-footer>

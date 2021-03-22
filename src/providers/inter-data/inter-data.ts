@@ -5,6 +5,7 @@ export class InterDataProvider {
   cliente: any;
   oferta: any;
   pedido: any;
+  pedpro: any;
   albaran: any;
   factura: any;
   articulo: any;
@@ -40,13 +41,21 @@ export class InterDataProvider {
     return this.pedido;
   }
 
+  setPedidoProveedor(pedpro): void {
+    this.pedpro = pedpro;
+  }
+
+  getPedidoProveedor(): any {
+    return this.pedpro;
+  }
+
   setAlbaran(albaran): void {
     this.albaran = albaran;
   }
 
   getAlbaran(): any {
     return this.albaran;
-  }  
+  }
 
   setFactura(factura): void {
     this.factura = factura;

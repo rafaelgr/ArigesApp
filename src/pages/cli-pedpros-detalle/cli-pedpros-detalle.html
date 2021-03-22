@@ -16,30 +16,27 @@
   <ion-list>
     <ion-item no-lines class="grptitle" text-wrap>
       <div>
-        <p>{{articulo.nomartic}}</p>
+        <strong> Pedido: </strong> {{pedido.numpedpr}}
       </div>
       <div>
-        <strong>Codigo:</strong> {{articulo.codartic}}
-        <strong>PVP: </strong> {{articulo.precio.importe}}
-        <strong>Stock: </strong> {{articulo.stock}}
+        <strong>Observaciones: </strong><br>{{pedido.observaciones}}
       </div>
     </ion-item>
-    <ion-item text-wrap>
+    <!-- <ion-item no-lines class="myGreen">
+      <button ion-button outline item-end round icon-left (click)="doSend()">
+        <ion-icon name="mail"></ion-icon>
+        Enviar por correo
+      </button>
+    </ion-item> -->
+    <ion-item *ngFor="let linea of pedido.lineas" text-wrap>
       <div>
-        <strong>Origen: </strong>{{articulo.precio.origenDesc}}
+        <strong>Linea: </strong>{{linea.numlinea}} <strong>Referencia: </strong>{{linea.codartic}}
       </div>
       <div>
-        <strong>Precio: </strong>{{articulo.precio.pvp}}
-      </div>
-
-      <div>
-        <strong>Dto1: </strong>{{articulo.precio.dto1}}
+        {{linea.nomartic}}
       </div>
       <div>
-        <strong>Dto2: </strong>{{articulo.precio.dto2}}
-      </div>
-      <div>
-        <strong>Importe: </strong>{{articulo.precio.importe}}
+        <strong>Cantidad: </strong>{{linea.cantidad}}
       </div>
     </ion-item>
   </ion-list>

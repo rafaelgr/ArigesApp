@@ -1,85 +1,93 @@
 <ion-header>
-    <ion-navbar>
-        <ion-buttons end>
-            <button ion-button icon-only (click)="dismiss()">
-              <ion-icon class="myGreen" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
-            </button>
-          </ion-buttons>
-      <ion-title>
-          <div *ngIf="desdeMenu == true">COBROS (Edición)</div>
-          <div *ngIf="desdeMenu != true">COBROS (Creación)</div>
-      </ion-title>
-    </ion-navbar>
-  </ion-header>
+  <ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon class="myGreen" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      <div *ngIf="desdeMenu == true">COBROS (Edición)</div>
+      <div *ngIf="desdeMenu != true">COBROS (Creación)</div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 
 
 
 <ion-content padding>
   <ion-list>
     <ion-item no-lines class="grptitle" text-wrap>
-        <div *ngIf="!mismoUsuario">
-            <strong>Usuario: </strong> {{cobro.codusu}}
-          </div>
+      <div *ngIf="!mismoUsuario">
+        <strong>Usuario: </strong> {{cobro.codusu}}
+      </div>
       <div>
         <strong>Nº Factura</strong> {{cobro.numfact}}
         <strong>del </strong>{{cobro.fechafact}}
       </div>
       <div>
-          <strong>Nº vencimiento: </strong>{{cobro.numorden}} <strong>Feha: </strong> {{cobro.fechavenci}}
+        <strong>Nº vencimiento: </strong>{{cobro.numorden}} <strong>Feha: </strong> {{cobro.fechavenci}}
       </div>
       <div>
-          <strong>Forma pago: </strong>{{cobro.nomforpa}} 
-          <br><strong>Importe: </strong> {{cobro.total}}
+        <strong>Forma pago: </strong>{{cobro.nomforpa}}
+        <br><strong>Importe: </strong> {{cobro.total}}
       </div>
       <div>
         <strong>Cliente: </strong> {{cobro.nomclien}}
       </div>
       <div>
-            <strong>Observaciones: </strong>
-            <p>{{cobro.observa}}</p>     
+        <strong>Observaciones: </strong>
+        <p>{{cobro.observa}}</p>
       </div>
-      
+
     </ion-item>
   </ion-list>
   <ion-list>
     <form [formGroup]="pagoForm" no-lines>
-        <ion-item>
-            <ion-label  color="cabecera" stacked>Forma de pago</ion-label>
-            <ion-select [(ngModel)]="fPago" [ngModelOptions]="{ standalone: true }"  okText="Aceptar" cancelText="Cancelar" disabled *ngIf="!mismoUsuario">
-              <ion-option  *ngFor="let formaPago of formasPago" [value]="formaPago.tipoformapago" >{{formaPago.descformapago}}</ion-option>
-            </ion-select>
+      <ion-item>
+        <ion-label color="cabecera" stacked>Forma de pago</ion-label>
+        <ion-select [(ngModel)]="fPago" [ngModelOptions]="{ standalone: true }" okText="Aceptar" cancelText="Cancelar"
+          disabled *ngIf="!mismoUsuario">
+          <ion-option *ngFor="let formaPago of formasPago" [value]="formaPago.tipoformapago">{{formaPago.descformapago}}
+          </ion-option>
+        </ion-select>
 
-            <ion-select [(ngModel)]="fPago" [ngModelOptions]="{ standalone: true }"  okText="Aceptar" cancelText="Cancelar" *ngIf="mismoUsuario">
-                <ion-option  *ngFor="let formaPago of formasPago" [value]="formaPago.tipoformapago" >{{formaPago.descformapago}}</ion-option>
-              </ion-select>
-          </ion-item>
-          <ion-item>
-            <ion-label  color="cabecera" stacked>Cantidad:</ion-label>
-            <ion-input type="number"  [(ngModel)]="cantidad" formControlName="cantidad" #input disabled *ngIf="!mismoUsuario"></ion-input>
-            <ion-input type="number"  [(ngModel)]="cantidad" formControlName="cantidad" #input *ngIf="mismoUsuario"></ion-input>
-          </ion-item>
-          
-          <ion-item >
-            <ion-label color="cabecera" stacked>Observaciones:</ion-label>
-            <ion-textarea maxlength ="400"  [(ngModel)]="cobro.observa" [ngModelOptions]="{standalone: true}" disabled *ngIf="!mismoUsuario"></ion-textarea>
-            <ion-textarea maxlength ="400"  [(ngModel)]="cobro.observa" [ngModelOptions]="{standalone: true}" *ngIf="mismoUsuario"></ion-textarea>
-          </ion-item>
-          <ion-item class="myGreen" no-lines>
-              <button  ion-button outline item-end round icon-left (click)="guardarPago()">
-                  <ion-icon name="checkmark-circle-outline"></ion-icon>
-                  Aceptar
-              </button>
-          </ion-item>
+        <ion-select [(ngModel)]="fPago" [ngModelOptions]="{ standalone: true }" okText="Aceptar" cancelText="Cancelar"
+          *ngIf="mismoUsuario">
+          <ion-option *ngFor="let formaPago of formasPago" [value]="formaPago.tipoformapago">{{formaPago.descformapago}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label color="cabecera" stacked>Cantidad:</ion-label>
+        <ion-input type="number" [(ngModel)]="cantidad" formControlName="cantidad" #input disabled
+          *ngIf="!mismoUsuario"></ion-input>
+        <ion-input type="number" [(ngModel)]="cantidad" formControlName="cantidad" #input *ngIf="mismoUsuario">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="cabecera" stacked>Observaciones:</ion-label>
+        <ion-textarea maxlength="400" [(ngModel)]="cobro.observa" [ngModelOptions]="{standalone: true}" disabled
+          *ngIf="!mismoUsuario"></ion-textarea>
+        <ion-textarea maxlength="400" [(ngModel)]="cobro.observa" [ngModelOptions]="{standalone: true}"
+          *ngIf="mismoUsuario"></ion-textarea>
+      </ion-item>
+      <ion-item class="myGreen" no-lines>
+        <button ion-button outline item-end round icon-left (click)="guardarPago()">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+          Aceptar
+        </button>
+      </ion-item>
     </form>
   </ion-list>
- 
+
 </ion-content>
 
 
 <ion-footer>
   <ion-toolbar>
     <ion-title>
-      <span style="font-size:0.8em;">(c) Ariadna Software SL 2020</span>
+      <span style="font-size:0.8em;">(c) Ariadna Software SL 2021</span>
     </ion-title>
   </ion-toolbar>
 </ion-footer>
