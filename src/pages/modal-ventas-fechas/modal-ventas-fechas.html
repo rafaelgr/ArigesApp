@@ -34,7 +34,7 @@
           cancelText="Cancelar" doneText="Hecho" [(ngModel)]="fechaFinal"></ion-datetime>
       </ion-item>
       <ion-item *ngIf="errorFecha && submitAttempt" no-lines text-wrap>
-        <p style="color:red">La fecha final no puede ser mayor que la inicial.</p>
+        <p style="color:red">La fecha final no puede ser menor que la inicial.</p>
       </ion-item>
     </form>
     <ion-item no-lines class="myGreen">

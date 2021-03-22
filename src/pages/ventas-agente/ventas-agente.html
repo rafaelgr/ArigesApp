@@ -20,19 +20,30 @@
       </ion-thumbnail>
       <p>Estas son las ventas disponibles</p>
     </ion-item>
-    <ion-item *ngFor="let venta of ventas" text-wrap>
-      <!-- <div>
+    <ion-item>
+      <div>
+        <strong>Periodo actual:</strong> De {{fechaI1}} a {{fechaF1}}
+      </div>
+      <div>
+        <strong>Venta:</strong> {{totalF1}} <strong>Variación:</strong> {{porF}}
+      </div>
+      <div>
+        <strong>Periodo anterior:</strong> De {{fechaI2}} a {{fechaF2}}
+      </div>
+      <div>
+        <strong>Venta:</strong> {{totalF2}}
+      </div>
+    </ion-item>
+    <ion-item *ngFor="let venta of ventas" text-wrap class="myGreen">
+      <div>
         <strong>
-          {{venta.nombreCliente}}
+          {{venta.nomtipar}}
         </strong>
       </div>
       <div>
-        <strong>Fecha: </strong> {{venta.fecha}} <strong>a las </strong>
-        {{venta.hora}}<strong>:</strong>{{venta.minutos}} <strong>horas </strong>
-        <br><strong>Tipo: </strong> {{venta.denominacion}}
-      </div> -->
-      <div>
-        <strong>Observaciones: </strong> {{venta.observaciones}}
+        <strong>Venta actual: </strong> {{venta.totalF}} <strong>Venta anterior: </strong> {{venta.totalaF}}
+        <br>
+        <strong>Variación: </strong> {{venta.porF}}
       </div>
 
     </ion-item>
