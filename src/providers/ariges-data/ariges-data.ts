@@ -333,10 +333,10 @@ export class ArigesDataProvider {
   getVentasAgente(apiUrl, codagen, fechaInicial, fechaFinal): any {
     let params = {
       'codagen': codagen,
-      'fechaInicial': fechaInicial,
-      'fechaFinal': fechaFinal
+      'fechaini': fechaInicial,
+      'fechafin': fechaFinal
     };
-    return this.http.get(apiUrl + '/api/acciones/tipos/agente/logado', {
+    return this.http.get(apiUrl + '/api/estadisticas/ventas_agente/', {
       params: params
     });
   }

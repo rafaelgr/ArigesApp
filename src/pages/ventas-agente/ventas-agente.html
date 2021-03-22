@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>VISITAS</ion-title>
+    <ion-title>VENTAS</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="goHome()" class="myGreen">
         <ion-icon name="home"></ion-icon>
@@ -15,13 +15,13 @@
     <ion-item text-wrap no-lines>
       <ion-thumbnail item-start>
         <div class="psb">
-          <img src="assets/imgs/ventas.png">
+          <img src="assets/imgs/estadisticas.png">
         </div>
       </ion-thumbnail>
       <p>Estas son las ventas disponibles</p>
     </ion-item>
     <ion-item *ngFor="let venta of ventas" text-wrap>
-      <div>
+      <!-- <div>
         <strong>
           {{venta.nombreCliente}}
         </strong>
@@ -30,7 +30,7 @@
         <strong>Fecha: </strong> {{venta.fecha}} <strong>a las </strong>
         {{venta.hora}}<strong>:</strong>{{venta.minutos}} <strong>horas </strong>
         <br><strong>Tipo: </strong> {{venta.denominacion}}
-      </div>
+      </div> -->
       <div>
         <strong>Observaciones: </strong> {{venta.observaciones}}
       </div>

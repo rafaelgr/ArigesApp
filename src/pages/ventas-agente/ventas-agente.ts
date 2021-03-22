@@ -15,12 +15,15 @@ export class VentasAgentePage {
   settings: any;
   cliente: any = {};
   ventas: any = [];
+  ventas_anteriores: any = [];
   modalCabecera: any;
   usuario: any = {};
   tipo: number = 6;
   modalVentas: any;
   fechaInicial: any;
   fechaFinal: any;
+  fechaInicialAnterior: any;
+  fechaFinalAnterior: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
     public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController,
@@ -51,11 +54,27 @@ export class VentasAgentePage {
   loadData(): void {
     this.fechaInicial = this.navParams.get("fechaInicial");
     this.fechaFinal = this.navParams.get("fechaFinal");
+    this.fechaInicialAnterior = moment(this.fechaInicial).add('years', -1).format('YYYY-MM-DD');
+    this.fechaFinalAnterior = moment(this.fechaFinal).add('years', -1).format('YYYY-MM-DD');
     this.arigesData.getVentasAgente(this.settings.url, this.settings.user.codagent1, this.fechaInicial, this.fechaFinal)
       .subscribe(
         (data) => {
           if (data.length > 0) {
-            this.ventas = this.prepareVentas(data);
+            this.ventas = data;
+            this.arigesData.getVentasAgente(this.settings.url, this.settings.user.codagent1, this.fechaInicialAnterior, this.fechaFinalAnterior)
+              .subscribe(
+                (data) => {
+                  if (data.length > 0) {
+                    this.ventas_anteriores = data;
+                  } else {
+                    this.showNoEncontrado();
+                  }
+
+                },
+                (error) => {
+                  this.showError(error);
+                }
+              );
           } else {
             this.showNoEncontrado();
           }
@@ -67,20 +86,8 @@ export class VentasAgentePage {
       );
   }
 
-  prepareVentas(ventas): any {
-    var d;
+  prepareVentas(): any {
 
-    for (var i = 0; i < ventas.length; i++) {
-      // formateamos las cabeceras
-      d = new Date(ventas[i].fechora);
-      ventas[i].hora = d.getHours();
-      ventas[i].minutos = d.getMinutes()
-      ventas[i].fecha = moment(ventas[i].fechora).format('DD/MM/YYYY');
-      if (ventas[i].nomclien) {
-        ventas[i].nombreCliente = ventas[i].nomclien;
-      }
-    }
-    return ventas;
   }
 
   showError(error): void {
@@ -95,10 +102,11 @@ export class VentasAgentePage {
   showNoEncontrado(): void {
     let alert = this.alertCrtl.create({
       title: "AVISO",
-      subTitle: "No se ha encontrado ningúna venta para este usuario entre estas fechas",
+      subTitle: "No se ha encontrado ningúna venta para este usuario entre estas fechas o en su periodo anterior",
       buttons: ['OK']
     });
     alert.present();
   }
 
 }
+
