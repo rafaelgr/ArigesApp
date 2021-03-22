@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>VENTAS (BUSCAR)</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome()" class="myGreen">
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item text-wrap no-lines>
+      <ion-thumbnail item-start>
+        <div class="psb">
+          <img src="assets/imgs/estadisticas.png">
+        </div>
+      </ion-thumbnail>
+      <p>Introduca la fecha inicial y la fecha final del periodo de ventas.</p>
+    </ion-item>
+    <form [formGroup]="ventasForm" no-lines>
+      <ion-item>
+        <ion-label color="cabecera" stacked>Fecha inicial:</ion-label>
+        <ion-datetime formControlName="fechaInicial" displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY"
+          cancelText="Cancelar" doneText="Hecho" [(ngModel)]="fechaInicial"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="cabecera" stacked>Fecha final:</ion-label>
+        <ion-datetime formControlName="fechaFinal" displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY"
+          cancelText="Cancelar" doneText="Hecho" [(ngModel)]="fechaFinal"></ion-datetime>
+      </ion-item>
+      <ion-item *ngIf="errorFecha && submitAttempt" no-lines text-wrap>
+        <p style="color:red">La fecha final no puede ser mayor que la inicial.</p>
+      </ion-item>
+    </form>
+    <ion-item no-lines class="myGreen">
+      <button ion-button outline item-end round icon-left (click)="buscarVentas()">
+        <ion-icon name="search"></ion-icon>
+        Buscar
+      </button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

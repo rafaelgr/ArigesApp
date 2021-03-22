@@ -330,6 +330,17 @@ export class ArigesDataProvider {
     });
   }
 
+  getVentasAgente(apiUrl, codagen, fechaInicial, fechaFinal): any {
+    let params = {
+      'codagen': codagen,
+      'fechaInicial': fechaInicial,
+      'fechaFinal': fechaFinal
+    };
+    return this.http.get(apiUrl + '/api/acciones/tipos/agente/logado', {
+      params: params
+    });
+  }
+
   putCabeceraOferta(apiUrl, oferta): any {
     return this.http.put(apiUrl + '/api/ofertas/caboferta', oferta);
   }
