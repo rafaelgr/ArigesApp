@@ -22,28 +22,32 @@
     </ion-item>
     <ion-item>
       <div>
-        <strong>Periodo actual:</strong> De {{fechaI1}} a {{fechaF1}}
+        <strong>Actual:</strong> De {{fechaI1}} a {{fechaF1}}
       </div>
       <div>
-        <strong>Venta:</strong> {{totalF1}} <strong>Variación:</strong> {{porF}}
+        <strong>Venta:</strong> {{totalF1}} 
       </div>
       <div>
-        <strong>Periodo anterior:</strong> De {{fechaI2}} a {{fechaF2}}
+        <strong>Anterior:</strong> De {{fechaI2}} a {{fechaF2}}
       </div>
       <div>
         <strong>Venta:</strong> {{totalF2}}
+      </div>
+      <div>
+        <strong>Variación:</strong> {{porF}}
       </div>
     </ion-item>
     <ion-item *ngFor="let venta of ventas" text-wrap class="myGreen">
       <div>
         <strong>
-          {{venta.nomtipar}}
+          {{venta.nomtipar}} 
         </strong>
+        {{venta.porF}}
       </div>
       <div>
-        <strong>Venta actual: </strong> {{venta.totalF}} <strong>Venta anterior: </strong> {{venta.totalaF}}
+        <strong>Venta actual: </strong> {{venta.totalF}} 
         <br>
-        <strong>Variación: </strong> {{venta.porF}}
+        <strong>Venta anterior: </strong> {{venta.totalaF}}
       </div>
 
     </ion-item>
