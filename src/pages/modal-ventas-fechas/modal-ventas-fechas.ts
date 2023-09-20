@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,  ViewController, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController, ModalController } from 'ionic-angular';
 import { LocalDataProvider } from '../../providers/local-data/local-data';
-import { FormGroup, Validators } from '@angular/forms';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
 import * as moment from 'moment';

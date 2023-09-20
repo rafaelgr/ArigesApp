@@ -4,7 +4,6 @@ import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
 import * as moment from 'moment';
-import * as numeral from 'numeral';
 
 @IonicPage()
 @Component({

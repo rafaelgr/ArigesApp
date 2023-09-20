@@ -5,7 +5,6 @@ import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
 import * as moment from 'moment';
 import * as numeral from 'numeral';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @IonicPage()
 @Component({
@@ -23,8 +22,7 @@ export class ProveedoresDetallePage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider,
-    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController,
-    private screenOrientation: ScreenOrientation) {
+    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
   }
 
   ionViewWillEnter() {

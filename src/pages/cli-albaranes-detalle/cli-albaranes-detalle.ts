@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, AlertController, ModalController }
 import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { ArigesDataProvider } from '../../providers/ariges-data/ariges-data';
 import { InterDataProvider } from '../../providers/inter-data/inter-data';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @IonicPage()
 @Component({
@@ -19,8 +18,7 @@ export class CliAlbaranesDetallePage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public interData: InterDataProvider, public modalCtrl: ModalController,
-    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController,
-    private screenOrientation: ScreenOrientation) {
+    public localData: LocalDataProvider, public arigesData: ArigesDataProvider, public alertCrtl: AlertController) {
 
   }
 

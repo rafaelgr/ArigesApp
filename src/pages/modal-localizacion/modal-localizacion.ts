@@ -57,7 +57,6 @@ export class ModalLocalizacionPage {
   loadMap(): void{
     
     var latLng = new google.maps.LatLng(0, 0);
-    var estado = 0;
 
     let mapOptions = {
       center: latLng,
